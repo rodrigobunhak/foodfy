@@ -1,17 +1,18 @@
-section p {
+section#principal p,
+section#content p {
   font-size: 18px;
   line-height: 28px;
   margin-top: 20px;
   color: #444444;
 }
 
-section h1 {
+section#principal h1 {
   margin-top: 50px;
   font-size: 24px;
   line-height: 28px;
 }
 
-section h2 {
+section#content h2 {
   margin-top: 30px;
   font-size: 20px;
   height: 24px;
