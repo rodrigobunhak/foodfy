@@ -9,12 +9,13 @@ server.set("view engine", "html")
 // directory when nunjucks will read files
 nunjucks.configure("views", {
   express: server,
+  autoescape: false,
   noCache: true
 })
 
 const recipes = require("./data")
 
-server.get("/", (req, res) => res.render('index'))
+server.get("/", (req, res) => res.render('index', {recipes}))
 
 server.get("/sobre", (req, res) => res.render('sobre'))
 

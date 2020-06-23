@@ -1,15 +1,46 @@
 {% extends "layout.html" %}
 
 {% block content %}
-<div class="card">
-  <div class="card__image">
-    <img src="{{recipe.image}}" alt="prato">
+<div class="recipe">
+
+  <img src="{{recipe.image}}" alt="prato">
+
+  <h1>{{recipe.title}}</h1>
+  <h3>por {{recipe.author}}</h3>
+  
+  <div class="sub-title">
+    <h2>Ingredientes</h2>
+    <span id="ingredients">ESCONDER</span>
   </div>
-  <div class="card__title">
-    <p>{{recipe.title}}</p>
+  <div class="ingredients">
+    <ul class="items">
+      {% for ingredient in recipe.ingredients %}
+        <li>{{ingredient}}</li>
+      {% endfor %}
+    </ul>
   </div>
-  <div class="card__info">
-    <p>{{recipe.author}}</p>
+
+  <div class="sub-title">
+    <h2>Modo de preparo</h2>
+    <span id="preparation">ESCONDER</span>
   </div>
+  <div class="preparation">
+    <ul class="items">
+      {% for step in recipe.preparation %}
+        <li>{{step}}</li>
+      {% endfor %}
+    </ul>
+  </div>
+
+  <div class="sub-title">
+    <h2>Informações adicionais</h2>
+    <span id="information">ESCONDER</span>
+  </div>
+  <div class="information">
+    <p>{{recipe.information}}</p>
+  </div>
+
 </div>
+
+
 {% endblock %}
