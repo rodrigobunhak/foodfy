@@ -1,169 +1,23 @@
 {% extends "layout.html" %}
 
 {% block content %}
+    
     <section class="cards">
-      <div class="card">
-        <div class="card__image">
-          <img src="/assets/burger.png" alt="prato">
-        </div>
-        <div class="card__title">
-          <p>Triplo bacon burguer</p>
-        </div>
-        <div class="card__info">
-          <p>por Jorge Relato</p>
-        </div>
-      </div>
 
+      {% for recipe in recipes %}
       <div class="card">
         <div class="card__image">
-          <img src="/assets/pizza.png" alt="prato">
+          <img src="{{recipe.image}}" alt="prato">
         </div>
         <div class="card__title">
-          <p>Pizza 4 estações</p>
+          <p>{{recipe.title}}</p>
         </div>
         <div class="card__info">
-          <p>port Fabiana Melo</p>
+          <p>{{recipe.author}}</p>
         </div>
       </div>
-      
-      <div class="card">
-        <div class="card__image">
-          <img src="/assets/espaguete.png" alt="prato">
-        </div>
-        <div class="card__title">
-          <p>Espaguete ao alho</p>
-        </div>
-        <div class="card__info">
-          <p>port Júlia Kinoto</p>
-        </div>
-      </div>
-
-      <div class="card">
-        <div class="card__image">
-          <img src="/assets/lasanha.png" alt="prato">
-        </div>
-        <div class="card__title">
-          <p>Lasanha mac n' cheese</p>
-        </div>
-        <div class="card__info">
-          <p>port Juliano Vieira</p>
-        </div>
-      </div>
-
-      <div class="card">
-        <div class="card__image">
-          <img src="/assets/doce.png" alt="prato">
-        </div>
-        <div class="card__title">
-          <p>Docinhos pão-do-céu</p>
-        </div>
-        <div class="card__info">
-          <p>por Ricardo Golvea</p>
-        </div>
-      </div>
-
-      <div class="card">
-        <div class="card__image">
-          <img src="/assets/asinhas.png" alt="prato">
-        </div>
-        <div class="card__title">
-          <p>Asinhas de frango ao barbecue</p>
-        </div>
-        <div class="card__info">
-          <p>por Vania Steroski</p>
-        </div>
-      </div>
-
-      <div class="card">
-        <div class="card__image">
-          <img src="/assets/burger.png" alt="prato">
-        </div>
-        <div class="card__title">
-          <p>Triplo bacon burguer</p>
-        </div>
-        <div class="card__info">
-          <p>por Jorge Relato</p>
-        </div>
-      </div>
-
-      <div class="card">
-        <div class="card__image">
-          <img src="/assets/pizza.png" alt="prato">
-        </div>
-        <div class="card__title">
-          <p>Pizza 4 estações</p>
-        </div>
-        <div class="card__info">
-          <p>port Fabiana Melo</p>
-        </div>
-      </div>
-      
-      <div class="card">
-        <div class="card__image">
-          <img src="/assets/espaguete.png" alt="prato">
-        </div>
-        <div class="card__title">
-          <p>Espaguete ao alho</p>
-        </div>
-        <div class="card__info">
-          <p>port Júlia Kinoto</p>
-        </div>
-      </div>
-
-      <div class="card">
-        <div class="card__image">
-          <img src="/assets/lasanha.png" alt="prato">
-        </div>
-        <div class="card__title">
-          <p>Lasanha mac n' cheese</p>
-        </div>
-        <div class="card__info">
-          <p>port Juliano Vieira</p>
-        </div>
-      </div>
-
-      <div class="card">
-        <div class="card__image">
-          <img src="/assets/doce.png" alt="prato">
-        </div>
-        <div class="card__title">
-          <p>Docinhos pão-do-céu</p>
-        </div>
-        <div class="card__info">
-          <p>por Ricardo Golvea</p>
-        </div>
-      </div>
-
-      <div class="card">
-        <div class="card__image">
-          <img src="/assets/asinhas.png" alt="prato">
-        </div>
-        <div class="card__title">
-          <p>Asinhas de frango ao barbecue</p>
-        </div>
-        <div class="card__info">
-          <p>por Vania Steroski</p>
-        </div>
-      </div>
+      {% endfor %}
 
     </section>
 {% endblock %}
 
-{% block modal %}
-  <div class="modal-overlay">
-    <div class="modal">
-      <div class="card">
-        <div class="card__image">
-          <img src="/assets/pizza.png" alt="prato">
-        </div>
-        <div class="card__title">
-          <p>Pizza 4 estações</p>
-        </div>
-        <div class="card__info">
-          <p>por Fabiana Melo</p>
-        </div>
-        <a href="#" class="close-modal">Fechar</a>
-      </div>
-    </div>
-  </div>
-{% endblock %}

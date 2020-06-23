@@ -1,14 +1,15 @@
-const cards = document.querySelectorAll("section.cards")
+const cards = document.querySelectorAll(".card")
 const modalElement = document.querySelector(".modal-overlay")
 
-for(let card of cards) {
-  card.addEventListener("click", function(){
-    modalElement.classList.add("active")
+// for(let card of cards) {
+//   card.addEventListener("click", function(){
+//     // window.location.href = `/detalhe-receita/${cards}`
+//     console.log(card.childElementCount)
+//   })
+// }
+
+for(let i = 0; i < cards.length; i++){
+  cards[i].addEventListener("click", function(){
+    window.location.href = `/detalhe-receita/${i}`
   })
 }
-
-const closeButton = document.querySelector(".close-modal")
-
-closeButton.addEventListener("click", function(){
-  modalElement.classList.remove("active")
-})
