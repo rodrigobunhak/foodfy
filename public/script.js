@@ -12,22 +12,37 @@ const informationButton = document.querySelector("span#information")
 
 for(let i = 0; i < cards.length; i++){
   cards[i].addEventListener("click", function(){
-    window.location.href = `/detalhe-receita/${i}`
+    window.location.href = `/detalhe-receitas/${i}`
   })
 }
 
-ingredientsButton.addEventListener("click", () => changeStatus(ingredientsElement, ingredientsButton))
+if(location.pathname.includes("detalhe-receitas")){
+  ingredientsButton.addEventListener("click", () => changeStatus(ingredientsElement, ingredientsButton))
 
-preparationButton.addEventListener("click", () => changeStatus(preparationElement, preparationButton))
+  preparationButton.addEventListener("click", () => changeStatus(preparationElement, preparationButton))
+  
+  informationButton.addEventListener("click", () => changeStatus(informationElement, informationButton))
+  
+  function changeStatus(element, button) {
+    if(button.textContent === "ESCONDER"){
+      button.textContent = "MOSTRAR"
+      element.classList.add("invisible")
+    } else {
+      button.textContent = "ESCONDER"
+      element.classList.remove("invisible")
+    }
+  }
+}
 
-informationButton.addEventListener("click", () => changeStatus(informationElement, informationButton))
+const currentPage = location.pathname
+const menuItems = document.querySelectorAll(".menu a")
 
-function changeStatus(element, button) {
-  if(button.textContent === "ESCONDER"){
-    button.textContent = "MOSTRAR"
-    element.classList.add("invisible")
-  } else {
-    button.textContent = "ESCONDER"
-    element.classList.remove("invisible")
+for(item of menuItems) {
+
+  //! Corrigir a classe active quando está com o detalhe da receita aberto
+  //
+  if(currentPage.includes(item.getAttribute("href"))) {
+    item.classList.add("active")
+
   }
 }

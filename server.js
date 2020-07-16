@@ -21,13 +21,13 @@ server.get("/sobre", (req, res) => res.render('sobre'))
 
 server.get("/receitas", (req, res) => res.render('receitas', {recipes: recipes}))
 
-server.get("/detalhe-receita/:index", function (req, res) {
+server.get("/detalhe-receitas/:index", function (req, res) {
   // Array de receitas carregadas do data.js
   const recipeIndex = req.params.index;
   const recipe = recipes[recipeIndex]
   // console.log(recipes[recipeIndex]);
 
-  return res.render('detalhe-receita', {recipe})
+  return res.render('detalhe-receitas', {recipe})
 })
 
 server.listen(5000, function() {

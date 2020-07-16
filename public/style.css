@@ -44,6 +44,10 @@ header .menu {
   margin-left: 120px;
 }
 
+header .menu a.active {
+  font-weight: bold;
+}
+
 header .menu .menu__item {
   text-decoration: none;
   list-style: none;
