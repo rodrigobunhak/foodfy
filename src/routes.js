@@ -1,6 +1,10 @@
 const express = require('express')
 const routes = express.Router()
 const receitas = require('./app/controllers/receitas')
+const recipes = require('./app/controllers/recipes')
+
+
+routes.get("/admin/recipes", recipes.index) // Mostrar a lista de receitas
 
 routes.get("/", receitas.index)
 routes.get("/sobre", receitas.sobre)

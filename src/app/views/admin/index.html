@@ -1,0 +1,24 @@
+{% extends "admin/layout.html" %}
+
+{% block content %}
+
+    <h3>Gerenciar receitas</h3>
+
+    <section class="cards">
+
+      {% for recipe in recipes %}
+      <div class="card">
+        <div class="card__image" style="background-image: url({{recipe.image}});">
+          
+        </div>
+        <div class="card__info">
+          <h3>{{recipe.title}}</h3>
+          <p>{{recipe.author}}</p>
+          <a href="#">Visualizar</a>
+        </div>
+      </div>
+      {% endfor %}
+
+    </section>
+{% endblock %}
+
