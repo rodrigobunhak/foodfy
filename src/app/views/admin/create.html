@@ -2,12 +2,12 @@
 
 {% block content %}
 
-    <h3>Criando receita</h3>
-
     <section class="details">
+
+      <h2>Criando receita</h2>
       
       <div class="item">
-        <div>Imagem da receita</div>
+        <div><h3>Imagem da receita</h3></div>
         <div>
           <input 
             type="url" 
@@ -18,7 +18,7 @@
       </div>
   
       <div class="item">
-        <div>Ingredientes</div>
+        <div><h3>Ingredientes</h3></div>
         <div>
           <input 
             type="text" 
@@ -31,7 +31,7 @@
       </div>
   
       <div class="item">
-        <div>Modo de preparo</div>
+        <div><h3>Modo de preparo</h3></div>
         <div>
           <input 
             type="text" 
@@ -44,25 +44,19 @@
       </div>
   
       <div class="item">
-        <div>Informações adicionais</div>
+        <div><h3>Informações adicionais</h3></div>
         <div>
-          <input 
-            type="text" 
-            name="info" 
-          >
+          <textarea  
+            name="info"
+            rows="5"
+          ></textarea>
         </div>
       </div>
   
       
-      <button type="submit">Salvar</button>
+      <button type="submit">Salvar receita</button>
       
 
     </section>
-
-    
-
-
-
-
 
 {% endblock %}
