@@ -1,0 +1,18 @@
+{% extends "admin/layout.html" %}
+
+{% block content %}
+
+    <section class="details">
+
+      <h2>Editando receita</h2>
+      
+      {% include 'admin/fields.html' %}
+  
+      <div class="container_button">
+        <button class="delete_button">Deletar</button>
+        <button type="submit">Salvar receita</button>
+      </div>
+      
+    </section>
+
+{% endblock %}

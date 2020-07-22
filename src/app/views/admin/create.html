@@ -1,4 +1,4 @@
-{% extends "admin/layout.html" %}
+{% extends "layout.html" %}
 
 {% block content %}
 
@@ -6,57 +6,10 @@
 
       <h2>Criando receita</h2>
       
-      <div class="item">
-        <div><h3>Imagem da receita</h3></div>
-        <div>
-          <input 
-            type="url" 
-            name="avatar_recipe" 
-            placeholder="http://"
-          >
-        </div>
-      </div>
+      {% include 'admin/fields.html' %}
   
-      <div class="item">
-        <div><h3>Ingredientes</h3></div>
-        <div>
-          <input 
-            type="text" 
-            name="ingredients" 
-          >
-        </div>
-        <div>
-          <a href="#">Adicionar novo ingrediente</a>
-        </div>
-      </div>
-  
-      <div class="item">
-        <div><h3>Modo de preparo</h3></div>
-        <div>
-          <input 
-            type="text" 
-            name="preparation" 
-          >
-        </div>
-        <div>
-          <a href="#">Adicionar novo passo</a>
-        </div>
-      </div>
-  
-      <div class="item">
-        <div><h3>Informações adicionais</h3></div>
-        <div>
-          <textarea  
-            name="info"
-            rows="5"
-          ></textarea>
-        </div>
-      </div>
-  
-      
       <button type="submit">Salvar receita</button>
       
-
     </section>
 
 {% endblock %}

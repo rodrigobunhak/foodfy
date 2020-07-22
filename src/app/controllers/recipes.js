@@ -11,6 +11,11 @@ module.exports = {
     return res.render('admin/create')
 
   },
+  edit(req, res){
+
+    return res.render('admin/edit')
+
+  },
   sobre(req, res) {
 
     return res.render('sobre')
