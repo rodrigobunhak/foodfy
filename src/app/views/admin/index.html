@@ -2,12 +2,14 @@
 
 {% block content %}
 
-    <h3>Gerenciar receitas</h3>
+  <section class="details">
+
+    <h2>Gerenciar receitas</h2>
 
     <section class="cards">
 
       {% for recipe in recipes %}
-      <div class="card">
+      <div class="card admin">
         <div class="card__image" style="background-image: url({{recipe.image}});">
           
         </div>
@@ -20,5 +22,7 @@
       {% endfor %}
 
     </section>
+
+  </section>
 {% endblock %}
 

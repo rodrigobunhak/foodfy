@@ -1,7 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Sriracha&display=swap');
 @import 'sobre.css';
-@import 'modal.css';
 
 /*==== GLOBAL ====*/
 
@@ -133,7 +132,7 @@ main .cards .card__info {
 /*==== CONTENT ====*/
 main .recipe img {
   border-radius: 16px;
-  margin-top: 56px;
+  margin-top: 25px;
   width: 100%;
 }
 
@@ -266,7 +265,7 @@ main.admin .cards .card__info h3 {
   line-height: 21px;
 }
 
-main.admin .cards .card__info p{
+main.admin .cards .card__info p {
   margin-top: 5px;
   margin-bottom: 10px;
   font-size: 14px;
@@ -274,7 +273,7 @@ main.admin .cards .card__info p{
   color: #777777;
 }
 
-main.admin .cards .card__info a{
+main.admin .cards .card__info a {
   line-height: 16px;
   color: #6558C3;
   font-weight: bold;
@@ -297,7 +296,7 @@ main.admin .cards .card__info a{
 /* FORM */
 
 .details {
-  margin-top: 30px;
+  margin-top: 55px;
   position: relative;
 }
 
@@ -312,6 +311,7 @@ main.admin .cards .card__info a{
   line-height: 24px;
   letter-spacing: 0.7px;
   font-weight: bold;
+  box-sizing: content-box;
 }
 
 .details .item div:nth-child(2) {

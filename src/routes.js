@@ -4,9 +4,14 @@ const receitas = require('./app/controllers/receitas')
 const recipes = require('./app/controllers/recipes')
 
 
-routes.get("/admin/recipes", recipes.index) // Mostrar a lista de receitas
-routes.get("/admin/create", recipes.create) // Formulário de nova receita
-routes.get("/admin/edit", recipes.edit)
+routes.get("/admin/recipes", recipes.index);
+routes.get("/admin/recipes/create", recipes.create); 
+routes.get("/admin/recipes/:id", recipes.show);
+routes.get("/admin/recipes/:id/edit", recipes.edit);
+
+// routes.post("/admin/recipes", recipes.post);
+// routes.put("/admin/recipes", recipes.put);
+// routes.delete("/admin/recipe", recipes.delete);
 
 routes.get("/", receitas.index)
 routes.get("/sobre", receitas.sobre)

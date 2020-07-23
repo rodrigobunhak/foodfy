@@ -1,0 +1,55 @@
+{% extends "admin/layout.html" %}
+
+{% block content %}
+
+    <section class="details">
+
+      <h2>Receita: {{ recipe.title }}</h2>
+  
+      <div class="recipe">
+
+        <img src="{{recipe.image}}" alt="prato">
+      
+        <h1>{{recipe.title}}</h1>
+        <h3>por {{recipe.author}}</h3>
+        
+        <div class="sub-title">
+          <h2>Ingredientes</h2>
+        </div>
+        <div class="ingredients">
+          <ul class="items">
+            {% for ingredient in recipe.ingredients %}
+              <li>{{ingredient}}</li>
+            {% endfor %}
+          </ul>
+        </div>
+      
+        <div class="sub-title">
+          <h2>Modo de preparo</h2>
+        </div>
+        <div class="preparation">
+          <ul class="items">
+            {% for step in recipe.preparation %}
+              <li>{{step}}</li>
+            {% endfor %}
+          </ul>
+        </div>
+      
+        <div class="sub-title">
+          <h2>Informações adicionais</h2>
+        </div>
+        <div class="information">
+          <p>{{recipe.information}}</p>
+        </div>
+      
+      </div>
+
+
+
+      <div class="container_button">
+        <button type="submit">Editar receita</button>
+      </div>
+      
+    </section>
+
+{% endblock %}

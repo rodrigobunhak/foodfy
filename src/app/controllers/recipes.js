@@ -11,6 +11,21 @@ module.exports = {
     return res.render('admin/create')
 
   },
+  show(req, res) {
+
+    const { id } = req.params
+
+    const foundRecipe = recipes.find(function(recipe, index) {
+      return index == id
+    })
+
+    const recipe = {
+      ...foundRecipe
+    }
+
+    return res.render('admin/detalhe',{ recipe })
+
+  },
   edit(req, res){
 
     return res.render('admin/edit')
