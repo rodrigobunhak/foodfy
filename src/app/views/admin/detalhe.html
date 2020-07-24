@@ -8,7 +8,11 @@
   
       <div class="recipe">
 
-        <img src="{{recipe.image}}" alt="prato">
+        <div class="container_image">
+          <img src="{{recipe.avatar_recipe}}" alt="prato">
+        </div>
+
+        
       
         <h1>{{recipe.title}}</h1>
         <h3>por {{recipe.author}}</h3>
@@ -39,7 +43,7 @@
           <h2>Informações adicionais</h2>
         </div>
         <div class="information">
-          <p>{{recipe.information}}</p>
+          <p>{{recipe.info}}</p>
         </div>
       
       </div>

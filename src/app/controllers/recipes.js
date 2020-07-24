@@ -1,9 +1,11 @@
-const recipes = require("../../data")
+const fs = require('fs')
+//const recipes = require("../../data")
+const data = require("../../data.json")
 
 module.exports = {
   index(req, res) {
 
-    return res.render('admin/index', {recipes})
+    return res.render('admin/index', {recipes: data.recipes})
 
   },
   create(req, res) {
@@ -15,7 +17,7 @@ module.exports = {
 
     const { id } = req.params
 
-    const foundRecipe = recipes.find(function(recipe, index) {
+    const foundRecipe = data.recipes.find(function(recipe, index) {
       return index == id
     })
 
@@ -24,6 +26,37 @@ module.exports = {
     }
 
     return res.render('admin/detalhe',{ recipe })
+
+  },
+  post(req, res) {
+
+    const keys = Object.keys(req.body)
+
+    for (key of keys) {
+      if (req.body[key] == "") {
+        return res.send('Please, fill all fields!')
+      }
+    }
+
+    let { title, author, avatar_recipe, ingredients, preparation, info } = req.body
+
+    ingredients = ingredients.toString().split(",")
+    preparation = preparation.toString().split(",")
+
+    data.recipes.push({
+      title,
+      author,
+      avatar_recipe,
+      ingredients,
+      preparation,
+      info
+    })
+
+    fs.writeFile("src/data.json", JSON.stringify(data, null, 2), function(err){
+      if (err) return res.send("Write file error!")
+
+      return res.redirect("/admin/recipes/create")
+    })
 
   },
   edit(req, res){

@@ -1,14 +1,18 @@
-{% extends "layout.html" %}
+{% extends "admin/layout.html" %}
 
 {% block content %}
 
     <section class="details">
 
       <h2>Criando receita</h2>
+
+      <form action="/admin/recipes" method="POST">
       
       {% include 'admin/fields.html' %}
   
       <button type="submit">Salvar receita</button>
+
+      </form>
       
     </section>
 

@@ -17,7 +17,7 @@ a {
 
 header,
 main {
-  max-width: 900px;
+  max-width: 1000px;
   margin: 0 auto;
 }
 
@@ -130,10 +130,16 @@ main .cards .card__info {
 }
 
 /*==== CONTENT ====*/
+main .recipe .container_image {
+  height: 300px;
+}
+
 main .recipe img {
   border-radius: 16px;
   margin-top: 25px;
   width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 main .recipe h1 {
@@ -228,7 +234,7 @@ header.admin {
 }
 
 header.admin .logo {
-  max-width: 900px;
+  max-width: 1000px;
   margin: 0 auto;
 }
 
