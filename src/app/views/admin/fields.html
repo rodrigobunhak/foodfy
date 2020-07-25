@@ -4,6 +4,7 @@
     <input 
       type="text" 
       name="title"
+      value="{{ recipe.title }}"
     >
   </div>
 </div>
@@ -14,6 +15,7 @@
     <input 
       type="text" 
       name="author"
+      value="{{ recipe.author }}"
     >
   </div>
 </div>
@@ -25,34 +27,60 @@
       type="url" 
       name="avatar_recipe" 
       placeholder="http://"
+      value="{{ recipe.avatar_recipe }}"
     >
   </div>
 </div>
 
-<div class="item">
+<div class="item ingredients">
   <div><h3>Ingredientes</h3></div>
-  <div>
-    <input 
-      type="text" 
-      name="ingredients" 
-    >
-  </div>
-  <div>
-    <a href="#">Adicionar novo ingrediente</a>
-  </div>
+  {% if recipe.ingredients %}
+    {% for ingredient in recipe.ingredients %}
+      <div class="ingredient">
+          <input 
+            type="text" 
+            name="ingredient[]" 
+            value="{{ ingredient }}"
+          >
+      </div>
+    {% endfor %}
+    {% else %}
+        <div class="ingredient">
+          <input 
+            type="text" 
+            name="ingredients[]" 
+          >
+        </div>
+  {% endif %}
+</div>
+<div>
+  <button type="button" class="add-ingredient">Adicionar novo ingrediente</button>
 </div>
 
-<div class="item">
+
+<div class="item passos">
   <div><h3>Modo de preparo</h3></div>
-  <div>
-    <input 
-      type="text" 
-      name="preparation" 
-    >
-  </div>
-  <div>
-    <a href="#">Adicionar novo passo</a>
-  </div>
+  {% if recipe.preparation %}
+    {% for preparation in recipe.preparation %}
+      <div class="passo">
+      <input 
+        type="text" 
+        name="preparation[]"
+        value="{{ preparation }}"
+      >
+      </div>
+    {% endfor %}
+    {% else %}
+      <div class="passo">
+      <input 
+        type="text" 
+        name="preparation[]"
+      >
+      </div>
+  {% endif %}
+</div>
+<div>
+  <button type="button" class="add-passo">Adicionar novo passo</button>
 </div>
 
 <div class="item">
@@ -61,6 +89,6 @@
     <textarea  
       name="info"
       rows="5"
-    ></textarea>
+    >{{ recipe.info }}</textarea>
   </div>
 </div>

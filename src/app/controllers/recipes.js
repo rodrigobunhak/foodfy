@@ -22,7 +22,8 @@ module.exports = {
     })
 
     const recipe = {
-      ...foundRecipe
+      ...foundRecipe,
+      id
     }
 
     return res.render('admin/detalhe',{ recipe })
@@ -39,9 +40,6 @@ module.exports = {
     }
 
     let { title, author, avatar_recipe, ingredients, preparation, info } = req.body
-
-    ingredients = ingredients.toString().split(",")
-    preparation = preparation.toString().split(",")
 
     data.recipes.push({
       title,
@@ -61,7 +59,18 @@ module.exports = {
   },
   edit(req, res){
 
-    return res.render('admin/edit')
+    const { id } = req.params
+
+    const foundRecipe = data.recipes.find(function(recipe, index) {
+      return index == id
+    })
+
+    const recipe = {
+      ...foundRecipe
+    }
+
+    return res.render('admin/edit',{ recipe })
+
 
   },
   sobre(req, res) {

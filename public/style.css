@@ -8,6 +8,7 @@
   margin: 0;
   padding: 0;
   border: 0;
+  box-sizing: border-box;
 }
 
 a {
@@ -308,7 +309,7 @@ main.admin .cards .card__info a {
 
 
 .details .item {
-  padding: 15px 0;
+  /* padding: 15px 0; */
 }
 
 .details h3,
@@ -318,6 +319,7 @@ main.admin .cards .card__info a {
   letter-spacing: 0.7px;
   font-weight: bold;
   box-sizing: content-box;
+  margin-top: 30px;
 }
 
 .details .item div:nth-child(2) {
@@ -333,9 +335,10 @@ input, textarea {
   font-size: 16px;
   border: 1px solid rgba(0,0,0,0.2);
   padding: 10px;
-  margin: 5px auto 10px auto;
+  margin: 10px auto 10px auto;
   box-sizing: border-box;
   border-radius: 4px;
+  font-family: 'Roboto', sans-serif;
 }
 
 input::placeholder {
@@ -343,14 +346,21 @@ input::placeholder {
   font-weight: normal;
 }
 
-.details button {
+.details button[type="submit"],
+.details button.delete_button,
+.details button.fat_button {
   padding: 10px 20px;
   background-color: #6558C3;
   color: white;
   border-radius: 4px;
+  cursor: pointer;
 }
 
-.details .delete_button {
+.details button.fat_button a {
+  color: white;
+}
+
+.details button.delete_button {
   background-color: #DC4747;
 }
 
@@ -360,7 +370,11 @@ input::placeholder {
   right: 0;
 }
 
-.details a {
+.details button[type="button"] {
   color: #6558C3;
   font-weight: bold;
+  background-color: transparent;
+  font-size: 16px;
+  cursor: pointer;
+  outline: none;
 }
