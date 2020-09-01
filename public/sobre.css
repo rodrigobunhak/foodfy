@@ -1,5 +1,9 @@
-section#principal p,
-section#content p {
+#principal {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+section#principal p {
   font-size: 18px;
   line-height: 28px;
   margin-top: 20px;
@@ -10,10 +14,12 @@ section#principal h1 {
   margin-top: 50px;
   font-size: 24px;
   line-height: 28px;
+  color: white;
 }
 
-section#content h2 {
+section#principal h2 {
   margin-top: 30px;
   font-size: 20px;
   height: 24px;
+  color: white;
 }
