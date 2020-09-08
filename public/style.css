@@ -4,28 +4,38 @@
 
 /*==== GLOBAL ====*/
 
+:root {
+  --main-color: #FFB703;
+  --bege-color: #F4F3EE;
+  --gelo-color: #F7FFF7;
+  --font-color: #161A10;
+  --font-color-detaque: #F7FFF7;
+}
+
 * {
   margin: 0;
   padding: 0;
   border: 0;
   box-sizing: border-box;
+  color: var(--font-color);
 }
 
 a {
   text-decoration: none;
-  color: black;
+  color: var(--font-color);
 }
 
 .content,
 .recipe,
-.recipes {
+.recipes,
+.details {
   max-width: 1000px;
   margin: 0 auto;
 }
 
 body {
   font-family: 'Roboto', sans-serif;
-  background: #0e0d0d;
+  background: var(--bege-color);
 }
 
 /*==== HEADER ====*/
@@ -37,43 +47,31 @@ body {
 
 .header {
   display: flex;
-  background: #0e0d0d;
+  background: var(--main-color);
   height: 100px;
   align-items: center;
-  position: relative;
-}
-
-.header img {
-  height: 100%;
-  top: 10px;
-  left: 30px;
-  position: absolute;
+  padding: 0 0 0 50px;
 }
 
 .header h1 {
   font-family: 'Sriracha', cursive;
   font-size: 42px;
-  margin-left: 150px;
-}
-
-.header a {
-  color: white;
 }
 
 .header .menu {
   display: flex;
   align-items: center;
-  margin-left: 60px;
+  padding: 0 0 0 50px;
 }
 
 .header .menu a.active {
   font-weight: bold;
 }
 
-.header .menu .menu__item {
+.header .menu .menu-item {
   text-decoration: none;
   list-style: none;
-  margin-right: 30px;
+  padding: 0 30px 0 0;
   font-size: 16px;
   line-height: 19px;
 }
@@ -81,41 +79,43 @@ body {
 /*==== BANNER ====*/
 
 .banner {
-  background: #d3d3d3;
-  background-image: url("assets/banner2.png");
-  background-size: cover;
-  margin-bottom: 50px;
-  height: 366px;
+  background: var(--main-color);
+  
+  height: 25vh;
   display: flex;
-  position: relative;
-  z-index: -1;
+  justify-content: space-around;
+  padding: 25px 50px 25px 50px;
+
+  border-radius: 0 0 30px 30px;
 }
 
-.banner .banner-img {
-  background-image: linear-gradient(to right, #0e0d0d 3%, transparent 130%);
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+.banner .banner-image {
+  position: relative;
+  width: 30%;
+}
+.banner .banner-image img{
+  position: absolute;
+  height: 30vh;
+  bottom: 0;
 }
 
 .banner .banner-info {
-  margin-left: 50px;
-  max-width: 350px;
-  color: #d3d3d3;
+  width: 50%;
 }
 
 .banner .banner-info h1 {
-  font-size: 32px;
+  font-size: 48px;
   font-weight: bold;
-  line-height: 38px;
+  line-height: 42px;
+  color: var(--font-color);
 }
 
 .banner .banner-info p {
+  max-width: 350px;
   font-size: 18px;
   line-height: 28px;
   opacity: 0.7;
-  margin-top: 10px;
+  margin: 10px 0 0 20px;
 }
 
 main h1 {
@@ -261,22 +261,6 @@ footer p {
 
 /*==== ADMIN ====*/
 
-
-
-header.admin {
-  background-color: black;
-  width: 100%;
-  max-width: none;
-  display: block;
-  margin-top: 0;
-  padding: 27px 0 27px 0;
-}
-
-header.admin .logo {
-  max-width: 1000px;
-  margin: 0 auto;
-}
-
 main.admin .cards {
   margin: 20px auto;
 
@@ -323,6 +307,8 @@ main.admin .cards .card__info a {
   color: #6558C3;
   font-weight: bold;
 }
+
+
 
 
 
