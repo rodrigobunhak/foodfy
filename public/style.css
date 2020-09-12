@@ -7,7 +7,7 @@
 :root {
   --main-color: #FFB703;
   --bege-color: #F4F3EE;
-  --gelo-color: #F7FFF7;
+  --gelo-color: #fdfdf7;
   --font-color: #161A10;
   --font-color-detaque: #F7FFF7;
 }
@@ -87,6 +87,8 @@ body {
   padding: 25px 50px 25px 50px;
 
   border-radius: 0 0 30px 30px;
+
+  margin-bottom: 20px;
 }
 
 .banner .banner-image {
@@ -136,9 +138,10 @@ main .cards {
 }
 
 main .cards .card {
-  background: linear-gradient(to right, #ffffff 3%, rgb(201, 201, 201) 130%);
+  background: var(--gelo-color);
   min-height: 300px;
   border-radius: 20px;
+  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.1);
 }
 
 main .cards img {
@@ -147,28 +150,33 @@ main .cards img {
 }
 
 main .cards .card__title {
-  background: linear-gradient(to right, #ffffff 3%, rgb(201, 201, 201) 130%);
   border-radius: 20px;
-  margin-left: 10px;
-  height: 30px;
+  margin-top: 5px;
   display: flex;
-  align-items: center;
-  font-size: 18px;
-  line-height: 21px;
+  justify-content: center;
+  text-align: center;
+  font-size: 24px;
+  font-weight: bold;
+  line-height: 24px;
 }
 
 main .cards .card__info {
-  margin-top: 5px;
+  margin-top: 10px;
   font-size: 14px;
+  text-align: center;
   line-height: 16px;
   color: #777777;
   margin-left: 10px;
   margin-right: 10px;
   padding-bottom: 5px;
-  border-bottom: 1px solid rgb(197, 197, 197);
 }
 
 /*==== CONTENT ====*/
+
+main .content h1{
+  color: var(--font-color);
+}
+
 main .recipe .container_image {
   height: 300px;
 }
@@ -184,7 +192,7 @@ main .recipe img {
 main .recipe h1 {
   font-family: Roboto;
   font-size: 36px;
-  color: white;
+  color: var(--font-color);
   margin-top: 50px;
   text-align: center;
 }
@@ -193,7 +201,7 @@ main .recipe h3 {
   font-family: Roboto;
   font-size: 20px;
   font-weight: normal;
-  color: #777777;
+  color: var(--font-color);
   margin-top: 4px;
   text-align: center;
   margin-bottom: 10px;
@@ -209,7 +217,7 @@ main .recipe .sub-title h2 {
   font-family: Roboto;
   font-weight: bold;
   font-size: 24px;
-  color: white;
+  color: var(--font-color);
   margin-bottom: 20px;
   margin-top: 40px;
   margin-right: 15px;
@@ -304,7 +312,7 @@ main.admin .cards .card__info p {
 
 main.admin .cards .card__info a {
   line-height: 16px;
-  color: #6558C3;
+  color: var(--main-color);
   font-weight: bold;
 }
 
@@ -374,14 +382,14 @@ input::placeholder {
 .details button.delete_button,
 .details button.fat_button {
   padding: 10px 20px;
-  background-color: #6558C3;
-  color: white;
+  background-color: var(--main-color);
+  color: var(--font-color);
   border-radius: 4px;
   cursor: pointer;
 }
 
 .details button.fat_button a {
-  color: white;
+  color: var(--font-color);
 }
 
 .details button.delete_button {
@@ -395,7 +403,7 @@ input::placeholder {
 }
 
 .details button[type="button"] {
-  color: #6558C3;
+  color: var(--main-color);
   font-weight: bold;
   background-color: transparent;
   font-size: 16px;

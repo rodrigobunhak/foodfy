@@ -1,3 +1,11 @@
+:root {
+  --main-color: #FFB703;
+  --bege-color: #F4F3EE;
+  --gelo-color: #fdfdf7;
+  --font-color: #161A10;
+  --font-color-detaque: #F7FFF7;
+}
+
 #principal {
   max-width: 1000px;
   margin: 0 auto;
@@ -14,12 +22,12 @@ section#principal h1 {
   margin-top: 50px;
   font-size: 24px;
   line-height: 28px;
-  color: white;
+  color: var(--font-color);
 }
 
 section#principal h2 {
   margin-top: 30px;
   font-size: 20px;
   height: 24px;
-  color: white;
+  color: var(--font-color);
 }
