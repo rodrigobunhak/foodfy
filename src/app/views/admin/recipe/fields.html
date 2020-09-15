@@ -25,7 +25,7 @@
   <div>
     <input 
       type="url" 
-      name="avatar_recipe" 
+      name="image" 
       placeholder="http://"
       value="{{ recipe.avatar_recipe }}"
     >
@@ -39,7 +39,7 @@
       <div class="ingredient">
           <input 
             type="text" 
-            name="ingredient[]" 
+            name="ingredients[]" 
             value="{{ ingredient }}"
           >
       </div>
@@ -87,7 +87,7 @@
   <div><h3>Informações adicionais</h3></div>
   <div>
     <textarea  
-      name="info"
+      name="information"
       rows="5"
     >{{ recipe.info }}</textarea>
   </div>

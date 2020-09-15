@@ -1,16 +1,19 @@
 const fs = require('fs')
 //const recipes = require("../../data")
 const data = require("../../data.json")
+const Recipe =require('../models/Recipe');
 
 module.exports = {
   index(req, res) {
 
-    return res.render('admin/index', {recipes: data.recipes})
+    Recipe.all(function(recipes) {
+      return res.render('admin/recipe/index', {recipes})
+    })
 
   },
   create(req, res) {
 
-    return res.render('admin/create')
+    return res.render('admin/recipe/create')
 
   },
   show(req, res) {
@@ -26,7 +29,7 @@ module.exports = {
       id
     }
 
-    return res.render('admin/detalhe',{ recipe })
+    return res.render('admin/recipe/detalhe',{ recipe })
 
   },
   post(req, res) {
@@ -39,21 +42,8 @@ module.exports = {
       }
     }
 
-    let { title, author, avatar_recipe, ingredients, preparation, info } = req.body
-
-    data.recipes.push({
-      title,
-      author,
-      avatar_recipe,
-      ingredients,
-      preparation,
-      info
-    })
-
-    fs.writeFile("src/data.json", JSON.stringify(data, null, 2), function(err){
-      if (err) return res.send("Write file error!")
-
-      return res.redirect("/admin/recipes/create")
+    Recipe.create(req.body, function(recipe) {
+      return res.render('admin/recipe/index', {recipes: data.recipes})
     })
 
   },
@@ -69,7 +59,7 @@ module.exports = {
       ...foundRecipe
     }
 
-    return res.render('admin/edit',{ recipe })
+    return res.render('admin/recipe/edit',{ recipe })
 
 
   },

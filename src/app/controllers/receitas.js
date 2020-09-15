@@ -3,17 +3,17 @@ const recipes = require("../../data")
 module.exports = {
   index(req, res) {
 
-    return res.render('index', {recipes})
+    return res.render('site/index', {recipes})
 
   },
   sobre(req, res) {
 
-    return res.render('sobre')
+    return res.render('site/sobre')
 
   },
   receitas(req, res) {
 
-    res.render('receitas', {recipes: recipes})
+    res.render('site/receitas', {recipes: recipes})
 
   },
   detalhe(req, res) {
@@ -21,7 +21,7 @@ module.exports = {
       const recipeIndex = req.params.index;
       const recipe = recipes[recipeIndex]
     
-      return res.render('detalhe-receitas', {recipe})
+      return res.render('site/detalhe-receitas', {recipe})
 
   }
 }

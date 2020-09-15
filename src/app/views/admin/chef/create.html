@@ -1,0 +1,19 @@
+{% extends "admin/layout.html" %}
+
+{% block content %}
+
+    <section class="details">
+
+      <h2>Criando chef</h2>
+
+      <form action="/admin/chefs" method="POST">
+      
+      {% include 'admin/chef/fields.html' %}
+  
+      <button type="submit">Salvar chef</button>
+
+      </form>
+      
+    </section>
+
+{% endblock %}
