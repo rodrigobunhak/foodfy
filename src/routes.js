@@ -15,6 +15,7 @@ routes.post("/admin/recipes", recipes.post);
 
 // CHEFS
 routes.get("/admin/chefs/create", chefs.create);
+routes.get("/admin/chefs/:id/edit", chefs.edit);
 routes.post("/admin/chefs", chefs.post);
 
 

@@ -21,5 +21,13 @@ module.exports = {
       return res.render('admin/chef/index', {chef})
     })
 
+  },
+  edit(req, res) {
+
+    Chef.find(req.params.id, function(chef) {
+      if (!chef) return res.send("Chef not found!")
+
+      return res.render('admin/chef/edit', {chef});
+    })
   }
 }
