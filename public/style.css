@@ -7,9 +7,8 @@
 :root {
   --main-color: #FFB703;
   --bege-color: #F4F3EE;
-  --gelo-color: #fdfdf7;
   --font-color: #161A10;
-  --font-color-detaque: #F7FFF7;
+  --font-color-suave: #262923;
 }
 
 * {
@@ -344,8 +343,7 @@ main.admin .cards .card__info a {
   /* padding: 15px 0; */
 }
 
-.details h3,
-.details .item div:nth-child(1) {
+.details h3 {
   font-size: 16px;
   line-height: 24px;
   letter-spacing: 0.7px;
@@ -409,4 +407,60 @@ input::placeholder {
   font-size: 16px;
   cursor: pointer;
   outline: none;
+}
+
+/** chefs page  */
+
+.list {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  column-gap: 15px;
+  row-gap: 15px;
+
+  margin: 20px 0 20px 0;
+}
+
+.list .item {
+  display: flex;
+  border-left: 3px solid var(--main-color);
+  background: white;
+  border-radius: 2px;
+  padding: 5px 0 5px 0;
+  box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.1);
+}
+
+.list .item .item_avatar {
+  display: flex;
+  align-items: center;
+  margin: 0 0 0 0;
+  padding-left: 10px;
+}
+
+.list .item .item_avatar img {
+  width: 65px;
+  height: 65px;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.list .item .item_info {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 10px 5px 10px 10px;
+}
+
+.list .item .item_info h2 {
+  font-size: 14px;
+  font-weight: normal;
+  font-weight: bold;
+  /* color: var(--bege-color); */
+  color: var(--font-color);
+  line-height: 16px;
+}
+
+.list .item .item_info a {
+  font-size: 12px;
+  font-weight: bold;
+  color: var(--main-color);
 }

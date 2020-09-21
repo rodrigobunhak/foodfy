@@ -6,6 +6,25 @@
 
     <h2>Gerenciar chefs</h2>
 
+    <section class="list">
+
+        {% for chef in chefs %}
+          <div class="item">
+            
+            <div class="item_avatar">
+              <img src="{{chef.avatar_url}}" alt="chef avatar">
+            </div>
+            <div class="item_info">
+              <h2>{{chef.name}}</h2>
+
+              <a href="#">Visualizar</a>
+            </div>
+            
+          </div>
+        {% endfor %}
+
+      </section>
+
 
   </section>
 {% endblock %}

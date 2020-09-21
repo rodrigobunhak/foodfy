@@ -3,6 +3,10 @@ const Chef = require('../models/Chef');
 module.exports = {
   index(req, res) {
 
+    Chef.all(function(chefs) {
+      res.render('admin/chef/index', {chefs})
+    })
+
   },
   create(req, res) {
     return res.render('admin/chef/create');

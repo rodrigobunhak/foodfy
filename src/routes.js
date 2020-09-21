@@ -14,6 +14,7 @@ routes.post("/admin/recipes", recipes.post);
 // routes.delete("/admin/recipe", recipes.delete);
 
 // CHEFS
+routes.get("/admin/chefs", chefs.index);
 routes.get("/admin/chefs/create", chefs.create);
 routes.get("/admin/chefs/:id/edit", chefs.edit);
 routes.post("/admin/chefs", chefs.post);
