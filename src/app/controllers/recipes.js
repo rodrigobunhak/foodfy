@@ -18,18 +18,11 @@ module.exports = {
   },
   show(req, res) {
 
-    const { id } = req.params
+    Recipe.find(req.params.id, function(recipe) {
+      if (!recipe) return res.send("Recipe not found!")
 
-    const foundRecipe = data.recipes.find(function(recipe, index) {
-      return index == id
+      return res.render('admin/recipe/detalhe', { recipe })
     })
-
-    const recipe = {
-      ...foundRecipe,
-      id
-    }
-
-    return res.render('admin/recipe/detalhe',{ recipe })
 
   },
   post(req, res) {

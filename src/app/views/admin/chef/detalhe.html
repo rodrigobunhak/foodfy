@@ -1,0 +1,59 @@
+{% extends "admin/layout.html" %}
+
+{% block content %}
+
+    <section class="details">
+
+      <div class="content-head">
+        <div class="title">
+          <h1>Chef: {{ chef.name }}</h1>
+        </div>
+        <div class="action">
+          <button class="fat_button">
+            <a href="/admin/chefs/{{ chef.id }}/edit" type="submit">Editar chef</a>
+          </button>
+        </div>
+      </div>
+
+      <div class="content-chef">
+        <div class="avatar">
+          <img src="{{chef.avatar_url}}" alt="chef">
+        </div>
+        <div class="name">
+          <h1>{{chef.name}}</h1>
+        </div>
+        <div class="observation">
+          <p>4 receitas</p>
+        </div>
+      </div>
+
+      <div class="content-recipe">
+        <div class="title">
+          <h2>Receitas</h2>
+        </div>
+
+        <section class="list recipe-list">
+
+          {% for recipe in recipes %}
+            <div class="item">
+
+              <div class="item_avatar">
+                <img src="{{recipe.image}}" alt="recipe image">
+              </div>
+              <div class="item_info">
+                <h2>{{recipe.title}}</h2>
+
+                <p>por {{recipe.chef_name}}</p>
+
+                <a href="/admin/recipes/{{recipe.id}}">Visualizar</a>
+              </div>
+
+            </div>
+          {% endfor %}
+
+        </section>
+      </div>
+
+    </section>
+
+{% endblock %}

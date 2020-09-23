@@ -38,10 +38,18 @@ module.exports = {
     db.query(`
       SELECT *
       FROM chefs
-      WHERE id = $1`, [id], function(err, results) {
+      WHERE id = $1`, [id], function(err, chef_results) {
         if(err) throw `Database Error: ${err}`
 
-        callback(results.rows[0])
+        db.query(`
+          SELECT recipes.*, chefs.name AS chef_name
+          FROM recipes
+          LEFT JOIN chefs ON (recipes.chef_id = chefs.id)
+          WHERE chefs.id = $1`, [id], function(err, recipes_results) {
+            if(err) throw `Database Error: ${err}`
+            
+            callback(chef_results.rows[0], recipes_results.rows)
+          })
       }
     )
   }
