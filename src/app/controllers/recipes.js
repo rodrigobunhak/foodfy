@@ -1,6 +1,3 @@
-const fs = require('fs')
-//const recipes = require("../../data")
-const data = require("../../data.json")
 const Recipe =require('../models/Recipe');
 
 module.exports = {
@@ -36,42 +33,39 @@ module.exports = {
     }
 
     Recipe.create(req.body, function(recipe) {
-      return res.render('admin/recipe/index', {recipes: data.recipes})
+      return res.render('admin/recipe/index', {recipe})
     })
 
   },
-  edit(req, res){
+  edit(req, res) {
 
-    const { id } = req.params
+    Recipe.find(req.params.id, function(recipe) {
+      if (!recipe) return res.send("Recipe not found!")
 
-    const foundRecipe = data.recipes.find(function(recipe, index) {
-      return index == id
+      Recipe.chefSelectOptions(function(options) {
+        return res.render('admin/recipe/edit',{ recipe, chefOptions: options })
+      })
     })
+  },
+  put(req, res) {
 
-    const recipe = {
-      ...foundRecipe
+    const keys = Object.keys(req.body)
+
+    for (key of keys) {
+      if (req.body[key] == "") {
+        return res.send('Please, fill all fields!')
+      }
     }
 
-    return res.render('admin/recipe/edit',{ recipe })
+    console.log(req.body)
 
-
+    Recipe.update(req.body, function() {
+      return res.redirect(`recipes/${req.body.id}`)
+    })
   },
-  sobre(req, res) {
-
-    return res.render('sobre')
-
-  },
-  receitas(req, res) {
-
-    res.render('receitas', {recipes: recipes})
-
-  },
-  detalhe(req, res) {
-
-      const recipeIndex = req.params.index;
-      const recipe = recipes[recipeIndex]
-    
-      return res.render('detalhe-receitas', {recipe})
-
+  delete(req, res) {
+    Recipe.delete(req.body.id, function() {
+      return res.redirect(`/recipes`)
+    })
   }
 }

@@ -4,14 +4,29 @@
 
     <section class="details">
 
-      <h2>Editando receita</h2>
-      
-      {% include 'admin/recipe/fields.html' %}
-  
-      <div class="container_button">
-        <button class="delete_button">Deletar</button>
-        <button type="submit">Salvar receita</button>
+
+      <div class="content-head">
+        <div class="title">
+          <h1>Editando Receita</h1>
+        </div>
+        <div class="action">
+          
+           <button type="submit" class="delete_button" form="delete-form">Deletar</button>
+           
+           <button type="submit" form="create-form">Salvar receita</button>
+         
+        </div>
       </div>
+      
+      <form method="POST" action="/admin/recipes?_method=PUT" id="create-form">
+        {% include 'admin/recipe/fields.html' %}
+        <input type="hidden" name="id" value="{{recipe.id}}">
+      </form>
+
+      <form method="POST" action="/admin/recipes?_method=DELETE" id="delete-form">
+        <input type="hidden" name="id" value="{{recipe.id}}">
+      </form>
+      
       
     </section>
 

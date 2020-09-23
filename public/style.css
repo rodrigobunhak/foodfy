@@ -93,6 +93,7 @@ body {
 
 .header .banner {
   padding-bottom: 40px;
+  border-bottom: 3px solid var(--font-color);
 }
 
 .header .banner .info {
@@ -354,7 +355,7 @@ main.admin .cards .card__info a {
   font-size: 14px;
 }
 
-input, textarea {
+input, textarea, select {
   width: 100%;
   outline: none;
   color: #555;
@@ -565,4 +566,53 @@ input::placeholder {
 
 .details .content-recipe .list {
   margin: 0;
+}
+
+/** LISTAGEM RECEITAS PÁGINA PRINCIPAL */
+/** layout possui 3 colunas */
+/** os item tem a imagem no topo e as informação em linha */
+
+.three-column {
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+.list.three-column .item {
+  display: flex;
+  flex-direction: column;
+  border-top: 3px solid var(--main-color);
+  border-left: none;
+  background: white;
+  border-radius: 2px;
+  padding: 0;
+}
+
+.list.three-column .item .item_avatar {
+  display: flex;
+  align-items: center;
+  margin: 0 0 0 0;
+  padding: 0;
+}
+
+.list.three-column .item .item_avatar img {
+  width: 100%;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 0;
+}
+
+.list.three-column .item .item_info {
+  display: flex;
+  
+  flex-direction: column;
+  align-items: center;
+  
+  padding: 10px 0 60px 0;
+}
+
+.list.three-column .item .item_info h2 {
+  font-size: 20px;
+  font-weight: bold;
+  color: var(--font-color);
+  line-height: 16px;
+  margin-bottom: 10px;
 }

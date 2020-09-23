@@ -10,13 +10,18 @@
 </div>
 
 <div class="item">
-  <div><h3>Author</h3></div>
+  <div><h3>Chef</h3></div>
   <div>
-    <input 
-      type="text" 
-      name="author"
-      value="{{ recipe.author }}"
-    >
+    <select name="chef">
+      {% for chef in chefOptions%}
+
+        <option value="{{chef.id}}"
+          {% if recipe.chef_id == chef.id %} selected {% endif %}>
+          {{chef.name}}  
+        </option>
+
+      {% endfor %}
+    </select>
   </div>
 </div>
 
@@ -27,7 +32,7 @@
       type="url" 
       name="image" 
       placeholder="http://"
-      value="{{ recipe.avatar_recipe }}"
+      value="{{ recipe.image }}"
     >
   </div>
 </div>
@@ -89,6 +94,6 @@
     <textarea  
       name="information"
       rows="5"
-    >{{ recipe.info }}</textarea>
+    >{{ recipe.information }}</textarea>
   </div>
 </div>
