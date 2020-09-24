@@ -13,12 +13,12 @@
           
            <button type="submit" class="delete_button" form="delete-form">Deletar</button>
            
-           <button type="submit" form="create-form">Salvar receita</button>
+           <button type="submit" form="update-form">Salvar</button>
          
         </div>
       </div>
       
-      <form method="POST" action="/admin/recipes?_method=PUT" id="create-form">
+      <form method="POST" action="/admin/recipes?_method=PUT" id="update-form">
         {% include 'admin/recipe/fields.html' %}
         <input type="hidden" name="id" value="{{recipe.id}}">
       </form>

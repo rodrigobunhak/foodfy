@@ -4,9 +4,22 @@
 
   <section class="details">
 
-    <div class="title">
-      <h2>Receitas</h2>
-    </div>
+    <div class="content-head filter">
+        <div class="title">
+          <h1>Receitas</h1>
+        </div>
+        <div class="action">
+          <form action="/recipes" method="GET">
+            <input 
+                type="text" 
+                name="filter" 
+                placeholder="Nome"
+                value={{filter}}
+            >
+            <button type="submit">Filtrar</button>
+          </form>
+        </div>
+      </div>
 
     <section class="list three-column">
 

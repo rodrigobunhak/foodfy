@@ -3,8 +3,24 @@ const Recipe =require('../models/Recipe');
 module.exports = {
   index(req, res) {
 
-    Recipe.all(function(recipes) {
-      return res.render('admin/recipe/index', {recipes})
+    // Recipe.all(function(recipes) {
+    //   return res.render('admin/recipe/index', {recipes})
+    // })
+
+    const { filter } = req.query
+
+    Recipe.findBy(filter, function(recipes) {
+
+      if(recipes == '') {
+        
+        Recipe.all(function(recipes) {
+          return res.render('admin/recipe/index', {recipes})
+        })
+
+      } else {
+        return res.render('admin/recipe/index', {recipes})
+      }
+
     })
 
   },
@@ -34,8 +50,9 @@ module.exports = {
       }
     }
 
-    Recipe.create(req.body, function(recipe) {
-      return res.render('admin/recipe/index', {recipe})
+    Recipe.create(req.body, function(recipes) {
+      
+      return res.redirect(`/admin/recipes/${recipes.id}`)
     })
 
   },
@@ -67,7 +84,7 @@ module.exports = {
   },
   delete(req, res) {
     Recipe.delete(req.body.id, function() {
-      return res.redirect(`/recipes`)
+      return res.redirect(`/admin/recipes`)
     })
   }
 }

@@ -1,4 +1,5 @@
-const Recipe =require('../models/Recipe');
+const Recipe = require('../models/Recipe');
+const Chef = require('../models/Chef');
 
 module.exports = {
   index(req, res) {
@@ -14,8 +15,27 @@ module.exports = {
   },
   recipes(req, res) {
 
-    Recipe.all(function(recipes) {
-      return res.render('site/recipes', {recipes})
+    const { filter } = req.query
+
+    Recipe.findBy(filter, function(recipes) {
+
+      if(recipes == '') {
+        
+        Recipe.all(function(recipes) {
+          return res.render('site/recipes', {recipes})
+        })
+
+      } else {
+        return res.render('site/recipes', {recipes})
+      }
+
+    })
+
+  },
+  chefs(req, res) {
+
+    Chef.all(function(chefs) {
+      return res.render('site/chefs', {chefs})
     })
 
   },

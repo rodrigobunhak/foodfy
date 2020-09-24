@@ -58,6 +58,23 @@ module.exports = {
       }
     )
   },
+  findBy(filter, callback) {
+    
+    db.query(`
+    SELECT recipes.*, chefs.name AS chef_name
+    FROM recipes
+    LEFT JOIN chefs ON (recipes.chef_id = chefs.id) 
+    WHERE recipes.title ILIKE '%${filter}%'
+    ORDER BY title ASC
+    `
+    ,
+    function(err, results) {
+      if(err) throw `Database Error: ${err}`
+
+      callback(results.rows)
+    }
+    )
+  },
   chefSelectOptions(callback) {
     db.query(`SELECT name, id FROM chefs`, function(err, results) {
       if(err) throw `Database error: ${err}`

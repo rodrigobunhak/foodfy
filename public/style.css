@@ -518,6 +518,7 @@ input::placeholder {
   padding: 10px 0 10px 0;
 }
 
+
 .details .content-head .title h1 {
   font-size: 24px;
   color: var(--font-color);
@@ -615,4 +616,30 @@ input::placeholder {
   color: var(--font-color);
   line-height: 16px;
   margin-bottom: 10px;
+}
+
+/** FILTRO */
+
+.filter .title {
+  width: 50%;
+}
+
+.filter .action {
+  width: 50%;
+}
+
+.filter .action form {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.filter .action input {
+  width: auto;
+  margin: 0;
+  border-radius: 4px 0 0 4px;
+}
+
+.filter .action button[type="submit"] {
+  border-radius: 0 4px 4px 0;
+  outline: none;
 }

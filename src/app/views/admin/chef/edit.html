@@ -10,13 +10,21 @@
         </div>
         <div class="action">
           
-           <button class="delete_button">Deletar</button>
-           <button type="submit">Salvar receita</button>
+           <button class="delete_button" form="delete-form">Deletar</button>
+           <button type="submit" form="update-form">Salvar</button>
          
         </div>
       </div>
       
-      {% include 'admin/chef/fields.html' %}
+      <form method="POST" action="/admin/chefs?_method=PUT" id="update-form">
+        {% include 'admin/chef/fields.html' %}
+        <input type="hidden" name="id" value="{{chef.id}}">
+      </form>
+
+      <form method="POST" action="/admin/chefs?_method=DELETE" id="delete-form">
+        <input type="hidden" name="id" value="{{chef.id}}">
+      </form>
+      
       
     </section>
 

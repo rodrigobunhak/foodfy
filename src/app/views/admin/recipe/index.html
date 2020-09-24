@@ -4,9 +4,22 @@
 
   <section class="details">
 
-    <div class="title">
-      <h2>Gerenciar receitas</h2>
-    </div>
+      <div class="content-head filter">
+        <div class="title">
+          <h1>Gerenciar receitas</h1>
+        </div>
+        <div class="action">
+          <form action="/admin/recipes" method="GET">
+            <input 
+                type="text" 
+                name="filter" 
+                placeholder="Nome"
+                value={{filter}}
+            >
+            <button type="submit">Filtrar</button>
+          </form>
+        </div>
+      </div>
 
     <section class="list recipe-list">
 
