@@ -10,7 +10,9 @@ module.exports = {
   },
   create(req, res) {
 
-    return res.render('admin/recipe/create')
+    Recipe.chefSelectOptions(function(options) {
+      return res.render('admin/recipe/create',{ chefOptions: options })
+    })
 
   },
   show(req, res) {

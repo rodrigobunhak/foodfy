@@ -1,4 +1,5 @@
-const cards = document.querySelectorAll(".card")
+const cards = document.querySelectorAll("#card")
+const recipe = document.querySelectorAll(".recipe")
 // const buttonsOnOff = document.querySelectorAll("span")
 const ingredientsElement = document.querySelector("div.ingredients")
 const ingredientsButton = document.querySelector("span#ingredients")
@@ -12,11 +13,12 @@ const informationButton = document.querySelector("span#information")
 
 for(let i = 0; i < cards.length; i++){
   cards[i].addEventListener("click", function(){
-    window.location.href = `/detalhe-receitas/${i}`
+    window.location.href = `/recipes/` + recipe[i].dataset.id
+    console.log(recipe[i].dataset.id)
   })
 }
 
-if(location.pathname.includes("detalhe-receitas")){
+if(location.pathname.includes("recipes")){
   ingredientsButton.addEventListener("click", () => changeStatus(ingredientsElement, ingredientsButton))
 
   preparationButton.addEventListener("click", () => changeStatus(preparationElement, preparationButton))

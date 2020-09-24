@@ -20,17 +20,19 @@ module.exports = {
     const query = `
       INSERT INTO recipes (
         title,
+        chef_id,
         image,
         ingredients,
         preparation,
         information,
         created_at
-      ) VALUES ($1, $2, $3, $4, $5, $6)
+      ) VALUES ($1, $2, $3, $4, $5, $6, $7)
       RETURNING id
     `
 
     const values = [
       data.title,
+      data.chef,
       data.image,
       data.ingredients,
       data.preparation,
