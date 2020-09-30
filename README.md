@@ -28,21 +28,37 @@ Site para gerenciamento de receitas online
  
 ## How to use
  
-Here will be the images and descriptions. Principal content.
- 
+### 1 - Main page
+![Home Screen](https://github.com/rodrigobunhak/foodfy/blob/master/readme_images/initial-page.png)
+
+### 2 - List all recipes
+
+![Home Screen](https://github.com/rodrigobunhak/foodfy/blob/master/readme_images/admin-recipes-page.png)
+
+### 3 - List all chefs
+
+![Home Screen](https://github.com/rodrigobunhak/foodfy/blob/master/readme_images/show-chefs-page.png)
+
+### 4 - Show details chef
+
+![Home Screen](https://github.com/rodrigobunhak/foodfy/blob/master/readme_images/detail-chef-page.png)
+
+### 5 - Chef create
+
+![Home Screen](https://github.com/rodrigobunhak/foodfy/blob/master/readme_images/admin-chef-create.png)
+
+### 6 - Recipe create
+
+![Home Screen](https://github.com/rodrigobunhak/foodfy/blob/master/readme_images/admin-recipe-create.png)
+
+### 7 - Recipe edit
+
+![Home Screen](https://github.com/rodrigobunhak/foodfy/blob/master/readme_images/edit-recipe-page.png)
  
 ## Features
  
-  - Here will be the features.
- 
- 
-## Links
- 
-  - Link of deployed application: (if has been deployed)
-  - Repository: https://link_of_repository
-    - In case of sensitive bugs like security vulnerabilities, please contact
-      YOUR EMAIL directly instead of using issue tracker. We value your effort
-      to improve the security and privacy of this project!
+  - CRUD recipes
+  - CRUD chefs
  
  
 ## Versioning
