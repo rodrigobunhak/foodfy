@@ -1,32 +1,37 @@
-<h1 align="center">
+<p align="center">
     <img alt="Logo of the project" src="https://github.com/rodrigobunhak/foodfy/blob/master/readme_images/logo.png"/>
-</h1>
+</p>
+<p align="center">
+    <img alt="GitHub repo size" src="https://img.shields.io/github/repo-size/rodrigobunhak/foodfy?color=%23FFB703&style=for-the-badge">
+    <img alt="GitHub" src="https://img.shields.io/github/license/rodrigobunhak/foodfy?color=%23FFB703&style=for-the-badge">
+</p>
+
  
-## FoodFy
- 
+# FoodFy
+
 Site para gerenciamento de receitas online
+
  
- 
-## Technology 
+# Technology 
  
 * Java Script  x.x.x
 * ...
  
  
-## Services Used
+# Services Used
  
 * Github
 * ...
  
  
-## Getting started
- 
+# Getting started
+
 * To install depencies:
 >    $ npm install
 * To run the project:
 >    $ npm start
  
-## How to use
+# How to use
  
 ### 1 - Main page
 ![Home Screen](https://github.com/rodrigobunhak/foodfy/blob/master/readme_images/initial-page.png)
@@ -55,18 +60,18 @@ Site para gerenciamento de receitas online
 
 ![Home Screen](https://github.com/rodrigobunhak/foodfy/blob/master/readme_images/edit-recipe-page.png)
  
-## Features
+# Features
  
   - CRUD recipes
   - CRUD chefs
  
  
-## Versioning
+# Versioning
  
 1.0.0.0
  
  
-## Authors
+# Authors
  
 * **Rodrigo Bunhak**: @rodrigobunhak (https://github.com/rodrigobunhak)
  
