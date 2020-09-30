@@ -3,7 +3,7 @@
 </p>
 <p align="center">
     <img alt="GitHub repo size" src="https://img.shields.io/github/repo-size/rodrigobunhak/foodfy?color=%23FFB703&style=for-the-badge">
-    <img alt="GitHub" src="https://img.shields.io/github/license/rodrigobunhak/foodfy?color=%23FFB703&style=for-the-badge">
+    <img alt="APM" src="https://img.shields.io/apm/l/vim-mode?color=%23FFB703&style=for-the-badge">
 </p>
 
  
