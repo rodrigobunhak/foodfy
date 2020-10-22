@@ -172,9 +172,12 @@ main .recipe .container_image {
   height: 300px;
 }
 
+main .recipe {
+  margin-top: 25px;
+}
+
 main .recipe img {
   border-radius: 16px;
-  margin-top: 25px;
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -666,3 +669,33 @@ input::placeholder {
   width: 130px;
   height: 40px;
 }
+
+/* LIGHTBOX */
+
+.lightbox {
+  width: 100%;
+
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+
+  border-bottom: 1px solid rgba(177, 177, 177, 0.2);
+}
+
+.lightbox .lighbox-img {
+  width: 60px;
+  height: 60px;
+  margin: 10px 5px;
+  border-radius: 4px;
+
+  cursor: pointer;
+
+  opacity: .3;
+  transition: 400ms;
+}
+
+.lightbox .lighbox-img:hover,
+.lightbox .lighbox-img.active {
+  opacity: 1;
+}
+
