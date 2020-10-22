@@ -362,6 +362,7 @@ input, textarea, select {
   font-size: 16px;
   border: 1px solid rgba(0,0,0,0.2);
   padding: 10px;
+  height: 40px;
   margin: 10px auto 10px auto;
   box-sizing: border-box;
   border-radius: 4px;
@@ -631,26 +632,37 @@ input::placeholder {
 
 /** FILTRO */
 
-.filter .title {
-  width: 50%;
+.menu-action .title {
+  width: auto;
 }
 
-.filter .action {
-  width: 50%;
+.menu-action .action {
+  width: auto;
 }
 
-.filter .action form {
+.menu-action .action form {
   display: flex;
   justify-content: flex-end;
 }
 
-.filter .action input {
+.menu-action .action input {
   width: auto;
   margin: 0;
   border-radius: 4px 0 0 4px;
 }
 
-.filter .action button[type="submit"] {
+.menu-action .action button[type="submit"] {
   border-radius: 0 4px 4px 0;
   outline: none;
+}
+
+/* ACTION */
+
+.details .action {
+  border: 0px solid black;
+}
+
+.details .action a {
+  width: 130px;
+  height: 40px;
 }
