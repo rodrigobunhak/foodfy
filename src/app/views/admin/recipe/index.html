@@ -11,12 +11,13 @@
         <div class="action">
           <form action="/admin/recipes" method="GET">
             <input 
-                type="text" 
-                name="filter" 
-                placeholder="Nome"
-                value={{filter}}
+            type="text" 
+            name="filter" 
+            placeholder="Nome"
+            value={{filter}}
             >
             <button type="submit">Filtrar</button>
+            <a class="button-new" href="/admin/recipes/create">Nova Receita</a>
           </form>
         </div>
       </div>

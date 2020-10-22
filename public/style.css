@@ -375,7 +375,8 @@ input::placeholder {
 
 .details button[type="submit"],
 .details button.delete_button,
-.details button.fat_button {
+.details button.fat_button,
+.details .action .button-new  {
   padding: 10px 20px;
   background-color: var(--main-color);
   color: var(--font-color);
@@ -389,6 +390,16 @@ input::placeholder {
 
 .details button.delete_button {
   background-color: #DC4747;
+}
+
+.details .action .button-new {
+  margin-left: 5px;
+  font-size: 14px;
+  font-weight: bold;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .details .container_button {
