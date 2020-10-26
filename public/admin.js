@@ -39,3 +39,56 @@ document
 document
   .querySelector(".add-passo")
   .addEventListener("click", addPasso);
+
+
+
+const PhotosUpload = {
+  uploadLimit: 5,
+  
+  // 1º passo
+  // Fazer a leitura dos arquivos enviados pelo input
+  // Conferir a quantidade enviada com o limite informado
+  handleFileInput(event) {
+    const { files: fileList } = event.target
+    const { uploadLimit } = PhotosUpload
+
+    if (fileList.length > uploadLimit) {
+      alert(`Envie no máximo ${uploadLimit} fotos`)
+      event.preventDefault()
+      return
+    }
+
+    // 2º passo
+    // Transforma a lista em um array
+    // Faz a leitura de cada item do array executando uma funcao
+    Array.from(fileList).forEach(file => {
+      
+      // Constructor do JS que permite ler arquivos
+      const reader = new FileReader()
+
+      reader.onload = () => {
+        // Constructor que criar a tag <img>
+        const image = new Image()
+        image.src = String(reader.result)
+
+        // Criar elemento icon
+        const icon = document.createElement('i')
+        icon.classList.add('material-icons')
+        icon.textContent = 'delete'
+
+        // Criar elemento div
+        const div = document.createElement('div')
+        div.classList.add('photo')
+
+        div.onclick = () => alert('remover photo')
+
+        div.appendChild(image)
+        div.appendChild(icon)
+
+        document.querySelector('#photos-preview').appendChild(div)
+      }
+
+      reader.readAsDataURL(file)
+    })
+  }
+}

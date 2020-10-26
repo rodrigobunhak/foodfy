@@ -10,9 +10,10 @@
         name="photos" 
         multiple
         accept="image/*"
+        onchange="PhotosUpload.handleFileInput(event)"
       >
       <div>
-      <i class="material-icons">add</i>
+        <i class="material-icons">add</i>
       </div>
     </div>
     <div id="photos-preview">
@@ -22,18 +23,7 @@
           class="material-icons"
         >delete</i>
       </div>
-      <div class="photo" id="01">
-        <img src="https://images.unsplash.com/photo-1562525882-d9dabe507593?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60" alt="">
-        <i
-          class="material-icons"
-        >delete</i>
-      </div>
-      <div class="photo" id="01">
-        <img src="https://images.unsplash.com/photo-1562525882-d9dabe507593?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60" alt="">
-        <i
-          class="material-icons"
-        >delete</i>
-      </div>
+
       <input type="hidden" name="removed_files">
     </div>
   </div>

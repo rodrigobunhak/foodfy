@@ -703,6 +703,7 @@ input::placeholder {
 
 form .item #container-photos {
   display: flex;
+  margin: 10px 0;
 }
 
 form .item #photos-upload {
