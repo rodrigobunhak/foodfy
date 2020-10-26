@@ -44,19 +44,14 @@ document
 
 const PhotosUpload = {
   uploadLimit: 5,
-  
+  preview: document.querySelector('#photos-preview'),
   // 1º passo
   // Fazer a leitura dos arquivos enviados pelo input
   // Conferir a quantidade enviada com o limite informado
   handleFileInput(event) {
     const { files: fileList } = event.target
-    const { uploadLimit } = PhotosUpload
 
-    if (fileList.length > uploadLimit) {
-      alert(`Envie no máximo ${uploadLimit} fotos`)
-      event.preventDefault()
-      return
-    }
+    if (PhotosUpload.hasLimit(event)) return
 
     // 2º passo
     // Transforma a lista em um array
@@ -76,19 +71,36 @@ const PhotosUpload = {
         icon.classList.add('material-icons')
         icon.textContent = 'delete'
 
-        // Criar elemento div
-        const div = document.createElement('div')
-        div.classList.add('photo')
+        const div = PhotosUpload.getContainer(image, icon)
 
-        div.onclick = () => alert('remover photo')
-
-        div.appendChild(image)
-        div.appendChild(icon)
-
-        document.querySelector('#photos-preview').appendChild(div)
+        PhotosUpload.preview.appendChild(div)
       }
 
       reader.readAsDataURL(file)
     })
+  },
+  getContainer(image, icon) {
+    // Criar elemento div
+    const div = document.createElement('div')
+    div.classList.add('photo')
+
+    div.onclick = () => alert('remover photo')
+
+    div.appendChild(image)
+    div.appendChild(icon)
+
+    return div
+  },
+  hasLimit(event) {
+    const { uploadLimit } = PhotosUpload
+    const { files: fileList} = event.target
+
+    if (fileList.length > uploadLimit) {
+      alert(`Envie no máximo ${uploadLimit} fotos`)
+      event.preventDefault()
+      return true
+    }
+
+    return false
   }
 }
