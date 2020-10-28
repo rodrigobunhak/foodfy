@@ -64,15 +64,12 @@ module.exports = {
       return File.create({...file})
     })
 
-    await Promise.all(filesPromise).then((values) => console.log(values))
-    
-    
-    // const recipeFilesPromise = filesPromise.Promise.result.rows.map((result, index) => {
-    //   RecipeFiles.create(recipeId, result[index])
-    // })
-
-    // await Promise.all(recipeFilesPromise)
-    
+    await Promise.all(filesPromise).then((values) => {
+      const recipeFilesPromise = values.map(value => {
+        RecipeFiles.create(recipeId, value.rows[0].id)
+      })
+      Promise.all(recipeFilesPromise)
+    })
     
 
     return res.redirect(`/admin/recipes/${recipeId}`)
