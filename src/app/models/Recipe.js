@@ -15,36 +15,36 @@ module.exports = {
     })
 
   },  
-  create(data, callback) {
+  create(data) {
 
-    const query = `
+    try {
+      const query = `
       INSERT INTO recipes (
         title,
         chef_id,
-        image,
         ingredients,
         preparation,
         information,
         created_at
-      ) VALUES ($1, $2, $3, $4, $5, $6, $7)
+      ) VALUES ($1, $2, $3, $4, $5, $6)
       RETURNING id
     `
 
     const values = [
       data.title,
       data.chef,
-      data.image,
       data.ingredients,
       data.preparation,
       data.information,
       date(Date.now()).iso
     ]
 
-    db.query(query, values, function(err, results) {
-      if(err) throw `Database Error: ${err}`
+      return db.query(query, values)
+    }catch(err) {
+      console.error(err)
+    }
 
-      callback(results.rows[0])
-    })
+    
   },
   find(id, callback) {
     db.query(`
@@ -88,16 +88,14 @@ module.exports = {
     UPDATE recipes SET
       title=($1),
       chef_id=($2),
-      image=($3),
-      ingredients=($4),
-      preparation=($5),
-      information=($6)
-    WHERE id = $7
+      ingredients=($3),
+      preparation=($4),
+      information=($5)
+    WHERE id = $6
     `
     const values = [
       data.title,
       data.chef,
-      data.image,
       data.ingredients,
       data.preparation,
       data.information,

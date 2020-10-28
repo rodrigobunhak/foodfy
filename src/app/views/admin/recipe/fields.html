@@ -19,7 +19,7 @@
     <div id="photos-preview">
       
 
-      <input type="hidden" name="removed_files">
+      <input type="hidden" name="removed_files" value="0">
     </div>
   </div>
 </div>
@@ -51,19 +51,6 @@
 
       {% endfor %}
     </select>
-  </div>
-</div>
-
-<div class="item">
-  <div><h3>Imagem da receita</h3></div>
-  <div>
-    <input 
-      type="url" 
-      name="image" 
-      placeholder="http://"
-      value="{{ recipe.image }}"
-      class="input-default"
-    >
   </div>
 </div>
 

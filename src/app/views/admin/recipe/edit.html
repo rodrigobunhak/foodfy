@@ -18,7 +18,7 @@
         </div>
       </div>
       
-      <form method="POST" action="/admin/recipes?_method=PUT" id="update-form">
+      <form method="POST" action="/admin/recipes?_method=PUT" id="update-form" enctype="multipart/form-data">
         {% include 'admin/recipe/fields.html' %}
         <input type="hidden" name="id" value="{{recipe.id}}">
       </form>
