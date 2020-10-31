@@ -17,5 +17,9 @@ module.exports = {
     ]
 
     return db.query(query, values)
+  },
+  delete(fileId) {
+
+    return db.query(`DELETE FROM recipe_files WHERE file_id = $1`, [fileId])
   }
 }

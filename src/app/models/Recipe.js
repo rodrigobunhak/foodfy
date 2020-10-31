@@ -4,16 +4,12 @@ const db = require('../../config/db');
 module.exports = {
   all(callback) {
     
-    db.query(`
+    return db.query(`
     SELECT recipes.*, chefs.name AS chef_name
     FROM recipes
     LEFT JOIN chefs ON (recipes.chef_id = chefs.id) 
-    ORDER BY title ASC`, function(err, results){
-      if(err) throw `Database Error: ${err}`;
-
-      callback(results.rows);
-    })
-
+    ORDER BY title ASC`)
+    
   },  
   create(data) {
 
@@ -114,5 +110,14 @@ module.exports = {
 
       callback()
     })
+  },
+  files(id) {
+    return db.query(`
+      SELECT recipe_files.*, files.path
+      FROM recipe_files
+      LEFT JOIN files ON (recipe_files.file_id = files.id)
+      WHERE recipe_id = $1
+      ORDER BY file_id ASC
+    `, [id])
   }
 }
