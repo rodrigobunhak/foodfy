@@ -64,6 +64,7 @@ module.exports = {
       }
     }
 
+    
     if (req.files.length == 0) {
       return res.send('Please, send at least one image')
     }
@@ -122,6 +123,7 @@ module.exports = {
     }
 
     if (req.files.length != 0) {
+      
       // Promise Array
       const filesPromise = req.files.map(file => {
         return File.create({...file})

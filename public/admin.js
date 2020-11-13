@@ -1,44 +1,44 @@
-const cards = document.querySelectorAll(".card.admin a")
+// const cards = document.querySelectorAll(".card.admin a")
 
 
-for(let i = 0; i < cards.length; i++){
-  cards[i].addEventListener("click", function(){
-    window.location.href = `/admin/recipes/${i}`
-  })
-}
+// for(let i = 0; i < cards.length; i++){
+//   cards[i].addEventListener("click", function(){
+//     window.location.href = `/admin/recipes/${i}`
+//   })
+// }
 
 
-function addIngredient() {
-  const ingredients = document.querySelector(".ingredients");
-  const fieldContainer = document.querySelectorAll(".ingredient");
+// function addIngredient() {
+//   const ingredients = document.querySelector(".ingredients");
+//   const fieldContainer = document.querySelectorAll(".ingredient");
 
-  const newField = fieldContainer[fieldContainer.length - 1].cloneNode(true);
+//   const newField = fieldContainer[fieldContainer.length - 1].cloneNode(true);
 
-  if (newField.children[0].value == "") return false
+//   if (newField.children[0].value == "") return false
 
-  newField.children[0].value = "";
-  ingredients.appendChild(newField);
-}
+//   newField.children[0].value = "";
+//   ingredients.appendChild(newField);
+// }
 
-function addPasso() {
-  const passos = document.querySelector(".passos");
-  const fieldContainer = document.querySelectorAll(".passo");
+// function addPasso() {
+//   const passos = document.querySelector(".passos");
+//   const fieldContainer = document.querySelectorAll(".passo");
 
-  const newField = fieldContainer[fieldContainer.length - 1].cloneNode(true);
+//   const newField = fieldContainer[fieldContainer.length - 1].cloneNode(true);
 
-  if (newField.children[0].value == "") return false
+//   if (newField.children[0].value == "") return false
 
-  newField.children[0].value = "";
-  passos.appendChild(newField);
-}
+//   newField.children[0].value = "";
+//   passos.appendChild(newField);
+// }
 
-document
-  .querySelector(".add-ingredient")
-  .addEventListener("click", addIngredient);
+// document
+//   .querySelector(".add-ingredient")
+//   .addEventListener("click", addIngredient);
 
-document
-  .querySelector(".add-passo")
-  .addEventListener("click", addPasso);
+// document
+//   .querySelector(".add-passo")
+//   .addEventListener("click", addPasso);
 
 
 
@@ -153,4 +153,19 @@ const PhotosUpload = {
 
     photoDiv.remove()
   }
+}
+
+const ImageGallery = {
+  imagecontainer: document.querySelector('.container_image > img'),
+  previews: document.querySelectorAll('.gallery-preview img'),
+  setImage(e) {
+    const { target } = e
+
+    ImageGallery.previews.forEach(preview => preview.classList.remove('active'))
+
+    target.classList.add('active')
+
+    ImageGallery.imagecontainer.src = target.src
+  },
+
 }

@@ -17,17 +17,28 @@
   
       <div class="recipe">
 
-        <div class="container_image">
-          <img src="{{files[0].src}}" alt="prato">
+        
+        <div class="gallery">
+          <div class="container_image">
+            <img src="{{files[0].src}}" alt="prato">
+          </div>
+          <div class="gallery-preview">
+            {% if files %}
+              {% for image in files %}
+                <img 
+                  src="{{image.src}}" 
+                  alt=""
+                  {% if loop.index0 == 0 %}
+                    class="active"
+                  {% endif %}
+                  onclick="ImageGallery.setImage(event)"
+                >
+              {% endfor %}
+  
+            {% endif %}
+          </div>
         </div>
-        <div class="lightbox">
-          {% if files %}
-            {% for image in files %}
-              <img class="lighbox-img" src="{{image.src}}" alt="">
-            {% endfor %}
 
-          {% endif %}
-        </div>
 
         
       

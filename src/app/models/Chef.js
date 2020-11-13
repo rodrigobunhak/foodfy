@@ -4,42 +4,37 @@ const db = require('../../config/db');
 module.exports = {
   all(callback) {
 
-    db.query(`
-    SELECT chefs.*, count(recipes) AS total_recipes 
+    return db.query(`
+      SELECT chefs.*, count(recipes) AS total_recipes 
       FROM chefs
       LEFT JOIN recipes ON (recipes.chef_id = chefs.id)
       GROUP BY chefs.id
       ORDER BY chefs.name ASC
-    `
-    , function(err, results) {
-      if(err) throw `Database Error: ${err}`
-
-      callback(results.rows)
-    })
+    `)
 
   },
-  create(data, callback) {
+  create(data, fileId) {
     
-    const query = `
-      INSERT INTO chefs (
-        name,
-        avatar_url,
-        created_at
-      ) VALUES ($1, $2, $3)
-      RETURNING id
+    try {
+      const query = `
+        INSERT INTO chefs (
+          name,
+          file_id,
+          created_at
+        ) VALUES ($1, $2, $3)
+        RETURNING id
     `
 
-    const values = [
-      data.name,
-      data.avatar_url,
-      date(Date.now()).iso
-    ]
+      const values = [
+        data.name,
+        fileId,
+        date(Date.now()).iso
+      ]
 
-    db.query(query, values, function(err, results) {
-      if(err) throw `Database Error: ${err}`
-
-      callback(results.rows[0])
-    })
+      return db.query(query, values)
+    }catch(err) {
+      console.error(err)
+    }
   },
   find(id, callback) {
     db.query(`
@@ -62,26 +57,26 @@ module.exports = {
       }
     )
   },
-  update(data, callback) {
+  update(data, fileId) {
 
-    const query = `
-    UPDATE chefs SET
-      name=($1),
-      avatar_url=($2)
-    WHERE id = $3
-    `
+    try {
+      const query = `
+      UPDATE chefs SET
+        name=($1),
+        file_id=($2)
+      WHERE id = $3
+      `
 
-    const values = [
-      data.name,
-      data.avatar_url,
-      data.id
-    ]
+      const values = [
+        data.name,
+        fileId,
+        data.id
+      ]
 
-    db.query(query, values, function(err, results) {
-      if(err) throw `Database Error: ${err}`
-
-      callback()
-    })
+      return db.query(query, values)
+    }catch(err) {
+      console.error(err)
+    }
 
   },
   delete(id, callback) {
@@ -90,5 +85,13 @@ module.exports = {
     
       callback()
     })
+  },
+  file(id) {
+    return db.query(`
+      SELECT *
+      FROM files
+      LEFT JOIN chefs ON (chefs.file_id = files.id)
+      WHERE chefs.id = $1
+    `, [id])
   }
 }
