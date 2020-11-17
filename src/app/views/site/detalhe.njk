@@ -1,44 +1,14 @@
-{% extends "admin/layout.html" %}
+{% extends "site/layout.njk" %}
 
 {% block content %}
 
-    <section class="details">
-
-      <div class="content-head">
-        <div class="title">
-          <h1>Receita: {{ recipe.title }}</h1>
-        </div>
-        <div class="action">
-          <button class="fat_button">
-            <a href="/admin/recipes/{{ recipe.id }}/edit" type="submit">Editar receita</a>
-          </button>
-        </div>
-      </div>
+<section class="details">
   
       <div class="recipe">
 
-        
-        <div class="gallery">
-          <div class="container_image">
-            <img src="{{files[0].src}}" alt="prato">
-          </div>
-          <div class="gallery-preview">
-            {% if files %}
-              {% for image in files %}
-                <img 
-                  src="{{image.src}}" 
-                  alt=""
-                  {% if loop.index0 == 0 %}
-                    class="active"
-                  {% endif %}
-                  onclick="ImageGallery.setImage(event)"
-                >
-              {% endfor %}
-  
-            {% endif %}
-          </div>
+        <div class="container_image">
+          <img src="{{recipe.image}}" alt="prato">
         </div>
-
 
         
       
@@ -47,6 +17,7 @@
         
         <div class="sub-title">
           <h2>Ingredientes</h2>
+          <span id="ingredients">ESCONDER</span>
         </div>
         <div class="ingredients">
           <ul class="items">
@@ -58,6 +29,7 @@
       
         <div class="sub-title">
           <h2>Modo de preparo</h2>
+          <span id="preparation">ESCONDER</span>
         </div>
         <div class="preparation">
           <ul class="items">
@@ -69,6 +41,7 @@
       
         <div class="sub-title">
           <h2>Informações adicionais</h2>
+          <span id="information">ESCONDER</span>
         </div>
         <div class="information">
           <p>{{recipe.information}}</p>
@@ -77,5 +50,6 @@
       </div>
       
     </section>
+
 
 {% endblock %}

@@ -1,39 +1,43 @@
-{% extends "site/layout.html" %}
+{% extends "admin/layout.njk" %}
 
 {% block content %}
 
   <section class="details">
 
-    <div class="content-head filter">
+      <div class="content-head menu-action">
         <div class="title">
-          <h1>Receitas</h1>
+          <h1>Gerenciar receitas</h1>
         </div>
         <div class="action">
-          <form action="/recipes" method="GET">
+          <form action="/admin/recipes" method="GET">
             <input 
-                type="text" 
-                name="filter" 
-                placeholder="Nome"
-                value={{filter}}
+            type="text" 
+            name="filter" 
+            placeholder="Nome"
+            value={{filter}}
             >
             <button type="submit">Filtrar</button>
+            <a class="button-new" href="/admin/recipes/create">Nova Receita</a>
+
+
           </form>
         </div>
       </div>
 
-    <section class="list three-column">
+    <section class="list recipe-list">
 
       {% for recipe in recipes %}
-      <div class="item" id="card">
+      <div class="item">
             
         <div class="item_avatar">
           <img src="{{recipe.image}}" alt="recipe image">
         </div>
         <div class="item_info">
-          <div class="recipe" data-id="{{recipe.id}}"></div>
           <h2>{{recipe.title}}</h2>
 
-          <p>Nome do chef{{recipe.chef_name}}</p>
+          <p>por {{recipe.chef_name}}</p>
+
+          <a href="/admin/recipes/{{recipe.id}}">Visualizar</a>
         </div>
             
       </div>
