@@ -7,7 +7,8 @@
 :root {
   --main-color: #f3b414;
   --yellow-light: #ffc42f;
-  --bege-color: #F4F3EE;
+  --bege-color: #f3f3f3;
+  --light-bege-color: #f8f8f8;
   --font-color: #161A10;
   --font-color-suave: #262923;
 }
@@ -18,6 +19,10 @@
   border: 0;
   box-sizing: border-box;
   color: var(--font-color);
+}
+
+html, body {
+  min-height: 100vh;
 }
 
 a {
@@ -102,6 +107,14 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+}
+
+.header .banner .info h1 {
+  font-size: 48px;
+
+  background: linear-gradient(180deg,#1b1b1b, rgb(29, 29, 29));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .header .banner .info .icon {
@@ -338,7 +351,7 @@ main.admin .cards .card__info a {
 .details .item {
   /* padding: 15px 0; */
   margin: 20px 0;
-  border: 1px solid black;
+  border: 0px solid black;
 }
 
 .details h3 {
@@ -372,6 +385,7 @@ input.input-default, textarea, select, input {
   box-sizing: border-box;
   border-radius: 4px;
   font-family: 'Roboto', sans-serif;
+  background: var(--light-bege-color);
 }
 
 
@@ -535,7 +549,7 @@ input::placeholder {
   align-items: center;
   justify-content: space-between;
 
-  border: 1px solid black;
+  border: 0px solid black;
 }
 
 .details .upload-avatar {

@@ -11,12 +11,21 @@
 
 <div class="item">
   <div><h3>Avatar</h3></div>
+
+  {% if chef.image %}
+    <input 
+      type="text" 
+      class="url_avatar"
+      value="{{ chef.image }}" 
+      name="chef_image" 
+    >
+  {% endif %}
+
   <div class="upload-avatar">
     <input 
       type="file" 
       name="avatar"
       accept="image/*"
-      value="{{ chef.avatar_url }}"
     >
     <p>Enviar Avatar</p>
   </div>

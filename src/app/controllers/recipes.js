@@ -153,9 +153,10 @@ module.exports = {
       return res.redirect(`recipes/${req.body.id}`)
     })
   },
-  delete(req, res) {
-    Recipe.delete(req.body.id, function() {
-      return res.redirect(`/admin/recipes`)
-    })
+  async delete(req, res) {
+    
+    Recipe.delete(req.body.id)
+    return res.redirect(`/admin/recipes`)
+    
   }
 }
