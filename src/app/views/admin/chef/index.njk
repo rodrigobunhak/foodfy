@@ -2,38 +2,41 @@
 
 {% block content %}
 
-  <section class="details">
+<section class="content">
 
-    <div class="content-head menu-action">
-      <div class="title">
-        <h2>Gerenciar chefs</h2>
-      </div>
-      <div class="action">
-        
-          <a class="button-new" href="/admin/chefs/create">Novo chef</a>
-
-      </div>
+  <div class="content-header">
+    
+    <div class="content-header-title">
+      <h2>Gerenciar chefs</h2>
     </div>
 
-    <section class="list chef-list">
+    <div class="content-header-menu">
+      <a class="button" href="/admin/chefs/create">Novo chef</a>
+    </div>
 
-        {% for chef in chefs %}
-          <div class="item">
-            
-            <div class="item_avatar">
-              <img src="{{chef.image}}" alt="chef avatar">
-            </div>
-            <div class="item_info">
-              <h2>{{chef.name}}</h2>
+  </div>
 
-              <a href="/admin/chefs/{{chef.id}}">Visualizar</a>
-            </div>
-            
-          </div>
-        {% endfor %}
+  <div class="items">
+  {% for chef in chefs %}
+    
+    <div class="chef">
 
-      </section>
+      <div class="chef-image">
+        <img src="{{chef.image}}" alt="chef image">
+      </div>
 
-  </section>
+      <div class="chef-info">
+
+        <h2>{{chef.name}}</h2>
+        <a href="/admin/chefs/{{chef.id}}">Visualizar</a>
+      
+      </div>
+
+    </div>
+
+  {% endfor %}
+  </div>
+
+</section>
+
 {% endblock %}
-

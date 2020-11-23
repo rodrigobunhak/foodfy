@@ -1,0 +1,78 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Sriracha&display=swap');
+
+:root {
+    --yellow-dark: #e9ac11;
+    --yellow-light: #f5c039;
+    --white-color: #f3f3f3;
+    --light-white-color: #ffffff;
+    --font-color: #1a1a1a;
+    --font-color-suave: #272727;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    list-style-type: none;
+    border: none;
+}
+
+html,
+body {
+    min-height: 100vh;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    background: var(--white-color);
+    display: flex;
+    flex-direction: column;
+}
+
+.content {
+    width: 90%;
+    max-width: 1160px;
+    margin: 0 auto;
+}
+
+.content .content-header {
+
+    height: 60px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    
+    margin: 20px 0;
+
+    border-bottom: 1px solid #dbdbdb;
+}
+
+.content .content-header .content-header-title {
+    font-size: 18px;
+}
+
+.content .content-header .content-header-menu {
+    display: flex;
+    gap: 5px;
+}
+
+/* Button stantard */
+
+.button {
+    
+    padding: 10px;
+    border-radius: 4px;
+
+    background: var(--yellow-light);
+    color: var(--font-color-suave);
+    font-weight: bold;
+
+    min-width: 130px;
+
+    display: flex;
+    justify-content: center;
+}
