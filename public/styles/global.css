@@ -35,6 +35,7 @@ body {
 .content {
     width: 90%;
     max-width: 1160px;
+    min-height: 65vh;
     margin: 0 auto;
 }
 
@@ -69,10 +70,61 @@ body {
 
     background: var(--yellow-light);
     color: var(--font-color-suave);
+
     font-weight: bold;
 
     min-width: 130px;
 
     display: flex;
+    align-items: center;
     justify-content: center;
+
+    font-size: 12px;
+
+    text-transform: uppercase;
+}
+
+.button a {
+    color: var(--font-color-suave);
+}
+
+/* Form stantard */
+
+.form {
+    max-width: 700px;
+}
+
+.form .item h3 {
+    margin: 10px 0;
+}
+
+.form .item input.input-default,
+.form .item textarea,
+.form .item select,
+.form .item input {
+    width: 100%;
+    outline: none;
+    color: #555;
+    font-size: 16px;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    padding: 10px;
+    height: 40px;
+    box-sizing: border-box;
+    border-radius: 4px;
+    font-family: 'Roboto', sans-serif;
+    background: var(--light-white-color);
+}
+
+.form .item input::placeholder {
+    font-size: 16px;
+    font-weight: normal;
+}
+
+/* Items (listing) */
+
+.items {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    column-gap: 15px;
+    row-gap: 15px;
 }

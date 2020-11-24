@@ -2,58 +2,69 @@
 
 {% block content %}
 
-    <section class="details">
+<section class="content">
 
-      <div class="content-head">
-        <div class="title">
+  <div class="content-header">
+    
+    <div class="content-header-title">
+      <h2>Detalhe chef</h2>
+    </div>
+
+    <div class="content-header-menu">
+      <button class="button">
+        <a href="/admin/chefs/{{ chef.id }}/edit">Editar chef</a>
+      </button>
+    </div>
+
+  </div>
+
+  <div class="content-chef">
+
+    <img src="{{chef.image}}" alt="chef">
+
+    <h1>{{chef.name}}</h1>
+
+    <p>
+      {{chef.total_recipes}}
+      {% if chef.total_recipes > 1 %}
+      receitas
+      {% else %}
+      receita
+      {% endif %}
+    </p>
+
+  </div>
+
+  <div class="content-recipe">
+
+    <div class="title">
+      <h2>Receitas</h2>
+    </div>
+
+    <div class="items items-recipe"> {# recipe-list #}
+    {% for recipe in recipes %}
+
+      <div class="recipe">
+
+        <div class="recipe-image"> {# item_avatar #}
+          <img src="{{recipe.image}}" alt="recipe image">
+        </div>
+
+        <div class="recipe-info"> {# item_info #}
           
+          <h2>{{recipe.title}}</h2>
+          <p>por {{recipe.chef_name}}</p>
+          <a href="/admin/recipes/{{recipe.id}}">Visualizar</a>
+        
         </div>
-        <div class="action">
-          <button class="fat_button">
-            <a href="/admin/chefs/{{ chef.id }}/edit" type="submit">Editar chef</a>
-          </button>
-        </div>
+
       </div>
+    
+    {% endfor %}
+    </div>
 
-      <div class="content-chef">
-        <div class="avatar">
-          <img src="{{chef.image}}" alt="chef">
-        </div>
-        <div class="name">
-          <h1>{{chef.name}}</h1>
-        </div>
-        <div class="observation">
-          <p>{{chef.total_recipes}} receitas</p>
-        </div>
-      </div>
+  </div>
 
-      <div class="content-recipe">
-        <div class="title">
-          <h2>Receitas</h2>
-        </div>
-
-        <section class="list recipe-list">
-
-          {% for recipe in recipes %}
-            <div class="item">
-
-              <div class="item_avatar">
-                <img src="{{recipe.image}}" alt="recipe image">
-              </div>
-              <div class="item_info">
-                <h2>{{recipe.title}}</h2>
-
-                <p>por {{recipe.chef_name}}</p>
-
-                <a href="/admin/recipes/{{recipe.id}}">Visualizar</a>
-              </div>
-
-            </div>
-          {% endfor %}
-
-        </section>
-      </div>
-
-    </section>
+</section>
 
 {% endblock %}

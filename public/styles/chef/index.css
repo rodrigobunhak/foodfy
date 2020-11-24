@@ -1,11 +1,8 @@
-.items {
-    display: grid;
+.items-chef {
     grid-template-columns: 1fr 1fr 1fr 1fr;
-    column-gap: 15px;
-    row-gap: 15px;
 }
 
-.items .chef {
+.items-chef .chef {
     display: flex;
     border-left: 3px solid var(--yellow-dark);
     background: white;
@@ -13,28 +10,28 @@
     padding: 10px 0 10px 0;
 }
 
-.items .chef .chef-image {
+.items-chef .chef .chef-image {
     display: flex;
     align-items: center;
     margin: 0 0 0 0;
     padding-left: 10px;
 }
 
-.items .chef .chef-image img {
+.items-chef .chef .chef-image img {
     width: 65px;
     height: 65px;
     object-fit: cover;
     border-radius: 50%;
 }
 
-.items .chef .chef-info {
+.items-chef .chef .chef-info {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     padding: 10px 5px 10px 10px;
 }
 
-.items .chef .chef-info h2 {
+.items-chef .chef .chef-info h2 {
     font-size: 14px;
     font-weight: normal;
     font-weight: bold;
@@ -42,7 +39,7 @@
     line-height: 16px;
 }
 
-.items .chef .chef-info a {
+.items-chef .chef .chef-info a {
     font-size: 12px;
     font-weight: bold;
     color: var(--yellow-dark);

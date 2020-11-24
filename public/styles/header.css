@@ -6,6 +6,8 @@
     display: flex;
     flex-direction: column;
     background-image: linear-gradient(165deg, var(--yellow-dark), var(--yellow-light));
+
+    min-height: 25vh;
 }
 
 .header .menu {

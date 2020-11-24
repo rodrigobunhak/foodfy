@@ -2,20 +2,26 @@
 
 {% block content %}
 
-    <section class="details">
-      <div class="details-header">
-        <h2>Criando chef</h2>
-        <button type="submit" form="create-form">Salvar chef</button>
-      </div>
-      
-
-      <form action="/admin/chefs" method="POST" id="create-form" enctype="multipart/form-data">
-      
-      {% include 'admin/chef/fields.njk' %}
+<section class="content form">
   
+  <div class="content-header">
+    
+    <div class="content-header-title">
+      <h2>Criando chef</h2>
+    </div>
 
-      </form>
+    <div class="content-header-menu">
+      <button class="button" type="submit" form="create-form">Salvar chef</button>
+    </div>
+
+  </div>
+
+  <form action="/admin/chefs" method="POST" id="create-form" enctype="multipart/form-data">
+
+    {% include 'admin/chef/fields.njk' %}
+
+  </form>
       
-    </section>
+</section>
 
 {% endblock %}
