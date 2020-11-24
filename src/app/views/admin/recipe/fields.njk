@@ -2,21 +2,26 @@
   <div>
     <h3>Imagens da receita</h3>
   </div>
+
   <div id="container-photos">
-    <div id="photos-upload">
-      <input 
-        id="photos-input"
-        type="file" 
-        name="photos" 
-        multiple
-        accept="image/*"
-        onchange="PhotosUpload.handleFileInput(event)"
-      >
-      <div>
-        <i class="material-icons">add</i>
-      </div>
-    </div>
+
     <div id="photos-preview">
+
+      <div id="photos-upload">
+        <input 
+          id="photos-input"
+          type="file" 
+          name="photos" 
+          multiple
+          accept="image/*"
+          onchange="PhotosUpload.handleFileInput(event)"
+        >
+        <div>
+          <i class="material-icons">add</i>
+        </div>
+      </div>
+
+
       {% if files %}
         {% for image in files %}
           <div class="photo" id="{{image.file_id}}">
@@ -36,6 +41,7 @@
 
       <input type="hidden" name="removed_files">
     </div>
+    
   </div>
 </div>
 
@@ -69,36 +75,40 @@
   </div>
 </div>
 
-<div class="item ingredients">
-  <div><h3>Ingredientes</h3></div>
+<div class="item">
+
+  <h3>Ingredientes</h3>
+
   {% if recipe.ingredients %}
     {% for ingredient in recipe.ingredients %}
-      <div class="ingredient">
+      <div class="item-container"> {# ingredient #}
           <input 
             type="text" 
             name="ingredients[]" 
             value="{{ ingredient }}"
-            class="input-default"
           >
       </div>
     {% endfor %}
     {% else %}
-        <div class="ingredient">
+        <div class="item-container">
           <input 
             type="text" 
             name="ingredients[]"
-            class="input-default"
           >
         </div>
   {% endif %}
-</div>
-<div>
-  <button type="button" class="add-ingredient">Adicionar novo ingrediente</button>
+
+  <button class="button-link" type="button" > Adicionar novo ingrediente </button>
+
 </div>
 
 
-<div class="item passos">
-  <div><h3>Modo de preparo</h3></div>
+
+
+<div class="item">
+  
+  <h3>Modo de preparo</h3>
+  
   {% if recipe.preparation %}
     {% for preparation in recipe.preparation %}
       <div class="passo">
@@ -106,7 +116,6 @@
         type="text" 
         name="preparation[]"
         value="{{ preparation }}"
-        class="input-default"
       >
       </div>
     {% endfor %}
@@ -115,14 +124,14 @@
       <input 
         type="text" 
         name="preparation[]"
-        class="input-default"
       >
       </div>
   {% endif %}
+
+  <button class="button-link" type="button">Adicionar novo passo</button>
+
 </div>
-<div>
-  <button type="button" class="add-passo">Adicionar novo passo</button>
-</div>
+
 
 <div class="item">
   <div><h3>Informações adicionais</h3></div>

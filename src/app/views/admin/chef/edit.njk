@@ -2,30 +2,34 @@
 
 {% block content %}
 
-    <section class="details">
+<section class="content form">
 
-      <div class="content-head">
-        <div class="title">
-          <h1>Editando Chef</h1>
-        </div>
-        <div class="action">
-          
-           <button class="delete_button" form="delete-form">Deletar</button>
-           <button type="submit" form="update-form">Salvar</button>
-         
-        </div>
-      </div>
-      
-      <form method="POST" action="/admin/chefs?_method=PUT" id="update-form" enctype="multipart/form-data">
-        {% include 'admin/chef/fields.njk' %}
-        <input type="hidden" name="id" value="{{chef.id}}">
-      </form>
+  <div class="content-header">
 
-      <form method="POST" action="/admin/chefs?_method=DELETE" id="delete-form">
-        <input type="hidden" name="id" value="{{chef.id}}">
-      </form>
+    <div class="content-header-title">
+      <h1>Editando Chef</h1>
+    </div>
+
+    <div class="content-header-menu">
       
+        <button class="button button-delete" form="delete-form">Deletar</button>
+        <button class="button" type="submit" form="update-form">Salvar</button>
       
-    </section>
+    </div>
+
+  </div>
+  
+  <form method="POST" action="/admin/chefs?_method=PUT" id="update-form" enctype="multipart/form-data">
+    
+    {% include 'admin/chef/fields.njk' %}
+    <input type="hidden" name="id" value="{{chef.id}}">
+
+  </form>
+
+  <form method="POST" action="/admin/chefs?_method=DELETE" id="delete-form">
+    <input type="hidden" name="id" value="{{chef.id}}">
+  </form>
+      
+</section>
 
 {% endblock %}

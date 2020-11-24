@@ -22,6 +22,7 @@ module.exports = {
       return fileSrc
 
     }
+    
 
     const chefsPromise = chefs.map(async chef => {
       chef.image = await getImage(chef.id)

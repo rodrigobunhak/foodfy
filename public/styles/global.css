@@ -87,9 +87,21 @@ p, h1, h2, h3 h4, h5, h6 {
     font-size: 12px;
 
     text-transform: uppercase;
+
+    cursor: pointer;
 }
 
 .button a {
+    color: var(--font-color-suave);
+}
+
+.button-delete {
+    background: #e0e0e0;
+    color: #9b9b9b;
+}
+
+.button-delete:hover {
+    background: #DC4747;
     color: var(--font-color-suave);
 }
 
