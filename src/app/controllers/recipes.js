@@ -31,6 +31,7 @@ module.exports = {
 
   },
   create(req, res) {
+    
 
     Recipe.chefSelectOptions(function(options) {
       return res.render('admin/recipe/create',{ chefOptions: options })

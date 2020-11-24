@@ -7,7 +7,8 @@
     --white-color: #f3f3f3;
     --light-white-color: #ffffff;
     --font-color: #1a1a1a;
-    --font-color-suave: #272727;
+    --font-color-suave: #292929;
+    --font-color-grey: #666666;
 }
 
 * {
@@ -30,6 +31,10 @@ body {
     background: var(--white-color);
     display: flex;
     flex-direction: column;
+}
+
+p, h1, h2, h3 h4, h5, h6 {
+    color: var(--font-color-suave);
 }
 
 .content {

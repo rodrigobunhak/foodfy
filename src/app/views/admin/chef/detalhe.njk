@@ -25,11 +25,12 @@
     <h1>{{chef.name}}</h1>
 
     <p>
-      {{chef.total_recipes}}
       {% if chef.total_recipes > 1 %}
-      receitas
+        {{chef.total_recipes}} receitas
+      {% elif chef.total_recipes == 0 %}
+        nenhuma receita cadastrada
       {% else %}
-      receita
+        {{chef.total_recipes}} receita
       {% endif %}
     </p>
 
