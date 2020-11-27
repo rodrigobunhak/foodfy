@@ -2,26 +2,30 @@
 
 {% block content %}
 
-    <section class="details">
+<section class="content">
 
-      <div class="content-head">
-        <div class="title">
-          <h1>Receita: {{ recipe.title }}</h1>
-        </div>
-        <div class="action">
-          <button class="fat_button">
-            <a href="/admin/recipes/{{ recipe.id }}/edit" type="submit">Editar receita</a>
-          </button>
-        </div>
+    <div class="content-header">
+
+      <div class="content-header-title">
+        <h2>{{ recipe.title }}</h2>
       </div>
-  
-      <div class="recipe">
 
-        
+      <div class="content-header-menu">
+        <button class="button">
+          <a href="/admin/recipes/{{ recipe.id }}/edit">Editar receita</a>
+        </button>
+      </div>
+
+    </div>
+  
+    <div class="content-recipe1">
+
         <div class="gallery">
-          <div class="container_image">
+
+          <div class="main-image"> {# container_image #}
             <img src="{{files[0].src}}" alt="prato">
           </div>
+          
           <div class="gallery-preview">
             {% if files %}
               {% for image in files %}
@@ -37,6 +41,7 @@
   
             {% endif %}
           </div>
+
         </div>
 
 
@@ -74,8 +79,8 @@
           <p>{{recipe.information}}</p>
         </div>
       
-      </div>
+    </div>
       
-    </section>
+</section>
 
 {% endblock %}
