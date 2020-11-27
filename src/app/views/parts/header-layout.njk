@@ -1,3 +1,4 @@
+{% block header %}
 <header class="header">
 
   <div class="menu">
@@ -10,21 +11,29 @@
       <a href="/">FoodFy</a>
     </div>
 
+    {% block nav %}
     <nav>
-      <a href="/admin/recipes">Receitas</a>
-      <a href="/admin/chefs">Chefs</a>
+      <a href="#">Link</a>
+      <a href="#">Link</a>
     </nav>
+    {% endblock nav %}
 
   </div>
 
   <div class="banner">
 
+      {% block title %}
       <div class="title">
-        <h1>Administração</h1>
+        <h1>Title</h1>
       </div>
+      {% endblock title %}
+
+      {% block subtitle %}
       <div class="subtitle">
-        <p>Todo cuidado é pouco.</p>
+        <p>Subtitle</p>
       </div>
+      {% endblock subtitle %}
+
       <div class="icon">
         <img src="/assets/knife.png" alt="logo">
       </div>
@@ -32,3 +41,4 @@
   </div>
 
 </header>
+{% endblock header %}

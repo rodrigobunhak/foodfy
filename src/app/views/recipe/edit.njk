@@ -1,13 +1,13 @@
-{% extends "admin/layout.njk" %}
+{% extends "layout.njk" %}
 
 {% block content %}
 
 <section class="content form">
 
   <div class="content-header">
-
+    
     <div class="content-header-title">
-      <h1>Editando Chef</h1>
+      <h1>Editando Receita</h1>
     </div>
 
     <div class="content-header-menu">
@@ -19,17 +19,17 @@
 
   </div>
   
-  <form method="POST" action="/admin/chefs?_method=PUT" id="update-form" enctype="multipart/form-data">
+  <form method="POST" action="/recipes?_method=PUT" id="update-form" enctype="multipart/form-data">
     
-    {% include 'admin/chef/fields.njk' %}
-    <input type="hidden" name="id" value="{{chef.id}}">
+    {% include 'recipe/fields.njk' %}
+    <input type="hidden" name="id" value="{{recipe.id}}">
 
   </form>
 
-  <form method="POST" action="/admin/chefs?_method=DELETE" id="delete-form">
-    <input type="hidden" name="id" value="{{chef.id}}">
+  <form method="POST" action="/recipes?_method=DELETE" id="delete-form">
+    <input type="hidden" name="id" value="{{recipe.id}}">
   </form>
-      
+  
 </section>
 
 {% endblock %}

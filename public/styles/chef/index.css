@@ -1,5 +1,5 @@
 .items-chef {
-    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr;
 }
 
 .items-chef .chef {
@@ -32,9 +32,9 @@
 }
 
 .items-chef .chef .chef-info h2 {
-    font-size: 14px;
+    font-size: 24px;
     font-weight: normal;
-    font-weight: bold;
+    font-weight: lighter;
     color: var(--font-color);
     line-height: 16px;
 }

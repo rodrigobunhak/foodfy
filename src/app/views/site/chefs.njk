@@ -2,32 +2,37 @@
 
 {% block content %}
 
-  <section class="details">
+<section class="content">
 
-    <div class="title">
-      <h2>Chefs</h2>
+    <div class="content-header">
+
+      <div class="content-header-title">
+        <h2>Chefs</h2>
+      </div>
+
     </div>
 
-    <section class="list chef-list">
+    <div class="items items-chef">
 
       {% for chef in chefs %}
-      <div class="item" id="card">
+      <div class="chef">
             
-        <div class="item_avatar">
-          <img src="{{chef.avatar_url}}" alt="chef image">
+        <div class="chef-image">
+          <img src="{{chef.image}}" alt="chef image">
         </div>
-        <div class="item_info">
-          <div class="chef" data-id="{{chef.id}}"></div>
-          <h2>{{chef.name}}</h2>
 
+        <div class="chef-info">
+
+          <h2>{{chef.name}}</h2>
           <p>{{chef.total_recipes}} receitas</p>
+
         </div>
             
       </div>
       {% endfor %}
 
-    </section>
+    </div>
 
-  </section>
+</section>
 {% endblock %}
 

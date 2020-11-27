@@ -1,4 +1,4 @@
-{% extends "admin/layout.njk" %}
+{% extends "layout.njk" %}
 
 {% block content %}
 
@@ -12,7 +12,7 @@
 
         <div class="content-header-menu"> {# action #}
 
-          <form action="/admin/recipes" method="GET">
+          <form action="/recipes" method="GET">
             <input 
             type="text" 
             name="filter" 
@@ -24,7 +24,7 @@
 
             
           <button class="button">
-            <a href="/admin/recipes/create">Nova Receita</a> {# button-new #}
+            <a href="/recipes/create">Nova Receita</a> {# button-new #}
           </button>
             
           
@@ -50,13 +50,13 @@
 
             <h2>{{recipe.title}}</h2>
             <p>{{recipe.chef_name}}</p>
-            <a href="/admin/recipes/{{recipe.id}}">Visualizar</a>
+            <a href="/recipes/{{recipe.id}}">Visualizar</a>
           
           </div>
               
         </div>
 
-        {% endfor %}
+      {% endfor %}
       </div>
     
     </div>

@@ -10,7 +10,7 @@ module.exports = {
     const chefs = results.rows
 
     // verifica se tem algum chef, caso nao tenha imprime a pagina vazia
-    if (!chefs) return res.render('admin/chefs/index')
+    if (!chefs) return res.render('chefs/index')
     
     // procura arquivo com o ID do chef e retorna o path
     async function getImage(chefId) {
@@ -32,11 +32,11 @@ module.exports = {
 
     const allChefs = await Promise.all(chefsPromise)
 
-    return res.render('admin/chef/index', {chefs: allChefs})
+    return res.render('chef/index', {chefs: allChefs})
 
   },
   create(req, res) {
-    return res.render('admin/chef/create');
+    return res.render('chef/create');
   },
   async show(req, res) { // It's most organized
 
@@ -71,7 +71,7 @@ module.exports = {
     await Promise.all(recipesPromise)
 
 
-    return res.render('admin/chef/detalhe', { chef, recipes })
+    return res.render('chef/detalhe', { chef, recipes })
 
   },
   async post(req, res) {
@@ -92,7 +92,7 @@ module.exports = {
     const chefId = results.rows[0].id
 
 
-    return res.redirect(`/admin/chefs/${chefId}`)
+    return res.redirect(`/chefs/${chefId}`)
 
   },
   async edit(req, res) {
@@ -107,7 +107,7 @@ module.exports = {
 
     chef.image = `${req.protocol}://${req.headers.host}${chefImage.path.replace("public", "")}`
 
-    return res.render('admin/chef/edit', {chef})
+    return res.render('chef/edit', {chef})
 
   },
   async put(req, res) {
@@ -126,7 +126,7 @@ module.exports = {
 
       await Chef.update(req.body, fileId)
 
-      return res.redirect(`/admin/chefs/${req.body.id}`)
+      return res.redirect(`/chefs/${req.body.id}`)
     } else {
       // get image
       let results = await Chef.file(req.body.id)
@@ -134,7 +134,7 @@ module.exports = {
 
       await Chef.update(req.body, fileId)
 
-      return res.redirect(`/admin/chefs/${req.body.id}`)
+      return res.redirect(`/chefs/${req.body.id}`)
       
     }
 
@@ -148,7 +148,7 @@ module.exports = {
 
     if(chef.total_recipes == 0) {
       Chef.delete(chef.id)
-      return res.redirect(`/admin/chefs`)
+      return res.redirect(`/chefs`)
     } else {
         return res.send("Chef not deleted, there are recipes linked")
     }

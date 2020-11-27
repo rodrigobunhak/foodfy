@@ -2,13 +2,16 @@
 
 {% block content %}
 
-  <section class="details">
+  <section class="content">
 
-    <div class="content-head filter">
-        <div class="title">
+    <div class="content-header">
+
+        <div class="content-header-title">
           <h1>Receitas</h1>
         </div>
-        <div class="action">
+
+        <div class="content-header-menu">
+
           <form action="/recipes" method="GET">
             <input 
                 type="text" 
@@ -16,30 +19,33 @@
                 placeholder="Nome"
                 value={{filter}}
             >
-            <button type="submit">Filtrar</button>
+            <button class="button" type="submit">Filtrar</button>
           </form>
         </div>
       </div>
 
-    <section class="list three-column">
+    <div class="content-recipe">
 
+      <div class="items items-recipe">
       {% for recipe in recipes %}
-      <div class="item" id="card">
-            
-        <div class="item_avatar">
-          <img src="{{recipe.image}}" alt="recipe image">
-        </div>
-        <div class="item_info">
-          <div class="recipe" data-id="{{recipe.id}}"></div>
-          <h2>{{recipe.title}}</h2>
+        <div class="recipe">
+              
+          <div class="recipe-image">
+            <img src="{{recipe.image}}" alt="recipe image">
+          </div>
 
-          <p>Nome do chef{{recipe.chef_name}}</p>
+          <div class="recipe-info">
+
+            <h2>{{recipe.title}}</h2>
+              <p>{{recipe.chef_name}}</p>
+              <a href="/site/recipes/{{recipe.id}}">Visualizar</a>
+          </div>
+              
         </div>
-            
-      </div>
       {% endfor %}
+      </div>
 
-    </section>
+    </div>
 
   </section>
 {% endblock %}

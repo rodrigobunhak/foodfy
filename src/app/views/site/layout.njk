@@ -4,54 +4,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Foodfy</title>
-    <link rel="stylesheet" href="/style.css">
+    
+    {% include "parts/styles.njk" %}
+
 </head>
 <body>
-  <header class="header">
-    <div class="menu">
-      <div class="logo">
-        <img src="/assets/logo.png" alt="logo">
-      </div>
-      <div class="name">
-        <h1><a href="/">FoodFy</a></h1>
-      </div>
-      <div class="action">
-        <ul>
-          <li><a href="/about">Sobre</a></li>
-          <li><a href="/recipes">Receitas</a></li>
-          <li><a href="/chefs">Chefs</a></li>
-          <li><a href="/admin/recipes">Admin</a></li>
-        </ul>
-      </div>
-    </div>
-    <div class="banner">
-      <div class="info">
-        <div class="title">
-          <h1>As melhores receitas</h1>
-        </div>
-        <div class="subtitle">
-          <p>Aprenda a construir os melhores pratos
-        com receitas criadas por profissionais
-        do mundo inteiro.</p>
-        </div>
-        <div class="icon">
-          <img src="/assets/knife.png" alt="logo">
-        </div> 
-      </div>
-    </div>
-  </header>
 
-  <main>
+  {% include "parts/header-site.njk" %}
 
-    {% block content %}
+  {% block content %}
+    
+  {% endblock content %}
 
-    {% endblock %}
-  </main>
+  {% include "parts/footer.njk" %}
 
-  <footer>
-    <p>Todos os direitos reservados receitas Foodfy</p>
-  </footer>
   <script src="/script.js"></script>
+  
 </body>
 </html>
 

@@ -1,4 +1,4 @@
-{% extends "admin/layout.njk" %}
+{% extends "layout.njk" %}
 
 {% block content %}
 
@@ -16,9 +16,9 @@
 
   </div>
 
-  <form action="/admin/recipes" method="POST" id="create-form" enctype="multipart/form-data">
+  <form action="/recipes" method="POST" id="create-form" enctype="multipart/form-data">
   
-  {% include 'admin/recipe/fields.njk' %}
+  {% include 'recipe/fields.njk' %}
 
   </form>
   

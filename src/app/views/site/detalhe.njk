@@ -2,13 +2,42 @@
 
 {% block content %}
 
-<section class="details">
-  
-      <div class="recipe">
+<section class="content">
 
-        <div class="container_image">
-          <img src="{{recipe.image}}" alt="prato">
+    <div class="content-header">
+
+      <div class="content-header-title">
+        <h2>{{ recipe.title }}</h2>
+      </div>
+
+    </div>
+  
+    <div class="content-recipe1">
+
+        <div class="gallery">
+
+          <div class="main-image"> {# container_image #}
+            <img src="{{files[0].src}}" alt="prato">
+          </div>
+          
+          <div class="gallery-preview">
+            {% if files %}
+              {% for image in files %}
+                <img 
+                  src="{{image.src}}" 
+                  alt=""
+                  {% if loop.index0 == 0 %}
+                    class="active"
+                  {% endif %}
+                  onclick="ImageGallery.setImage(event)"
+                >
+              {% endfor %}
+  
+            {% endif %}
+          </div>
+
         </div>
+
 
         
       
@@ -17,7 +46,6 @@
         
         <div class="sub-title">
           <h2>Ingredientes</h2>
-          <span id="ingredients">ESCONDER</span>
         </div>
         <div class="ingredients">
           <ul class="items">
@@ -29,7 +57,6 @@
       
         <div class="sub-title">
           <h2>Modo de preparo</h2>
-          <span id="preparation">ESCONDER</span>
         </div>
         <div class="preparation">
           <ul class="items">
@@ -41,15 +68,13 @@
       
         <div class="sub-title">
           <h2>Informações adicionais</h2>
-          <span id="information">ESCONDER</span>
         </div>
         <div class="information">
           <p>{{recipe.information}}</p>
         </div>
       
-      </div>
+    </div>
       
-    </section>
-
+</section>
 
 {% endblock %}
