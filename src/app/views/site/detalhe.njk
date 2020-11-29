@@ -12,7 +12,7 @@
 
     </div>
   
-    <div class="content-recipe1">
+    <div class="content-recipe1" id="recipe">
 
         <div class="gallery">
 
@@ -37,19 +37,17 @@
           </div>
 
         </div>
-
-
-        
       
         <h1>{{recipe.title}}</h1>
         <h3>por {{recipe.chef_name}}</h3>
         
         <div class="sub-title">
           <h2>Ingredientes</h2>
-          <span id="ingredients">ESCONDER</span>
+          <span id="button-ingredients">esconder</span>
         </div>
-        <div class="ingredients">
-          <ul class="items">
+
+        <div class="content-recipe1-info" id="ingredients">
+          <ul>
             {% for ingredient in recipe.ingredients %}
               <li>{{ingredient}}</li>
             {% endfor %}
@@ -58,10 +56,10 @@
       
         <div class="sub-title">
           <h2>Modo de preparo</h2>
-          <span id="preparation">ESCONDER</span>
+          <span id="button-preparation">esconder</span>
         </div>
-        <div class="preparation">
-          <ul class="items">
+        <div class="content-recipe1-info" id="preparation">
+          <ul>
             {% for step in recipe.preparation %}
               <li>{{step}}</li>
             {% endfor %}
@@ -70,9 +68,9 @@
       
         <div class="sub-title">
           <h2>Informações adicionais</h2>
-          <span id="information">ESCONDER</span>
+          <span id="button-information">esconder</span>
         </div>
-        <div class="information">
+        <div class="content-recipe1-info" id="information">
           <p>{{recipe.information}}</p>
         </div>
       

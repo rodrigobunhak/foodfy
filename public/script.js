@@ -1,22 +1,13 @@
-const recipe = document.querySelector(".content-recipe1")
+const recipe = document.querySelector("#recipe")
 
+const ingredientsElement = document.querySelector("#ingredients")
+const ingredientsButton = document.querySelector("#button-ingredients")
 
-const ingredientsElement = document.querySelector("div.ingredients")
-const ingredientsButton = document.querySelector("span#ingredients")
+const preparationElement = document.querySelector("#preparation")
+const preparationButton = document.querySelector("#button-preparation")
 
-const preparationElement = document.querySelector("div.preparation")
-const preparationButton = document.querySelector("span#preparation")
-
-const informationElement = document.querySelector("div.information")
-const informationButton = document.querySelector("span#information")
-
-
-// for(let i = 0; i < cards.length; i++){
-//   cards[i].addEventListener("click", function(){
-//     window.location.href = `/recipes/` + recipe[i].dataset.id
-//     console.log(recipe[i].dataset.id)
-//   })
-// }
+const informationElement = document.querySelector("#information")
+const informationButton = document.querySelector("#button-information")
 
 if(recipe){
 
@@ -27,28 +18,33 @@ if(recipe){
   informationButton.addEventListener("click", () => changeStatus(informationElement, informationButton))
   
   function changeStatus(element, button) {
-    if(button.textContent === "ESCONDER"){
-      button.textContent = "MOSTRAR"
+    if(button.textContent === "esconder"){
+      button.textContent = "mostrar"
       element.classList.add("invisible")
     } else {
-      button.textContent = "ESCONDER"
+      button.textContent = "esconder"
       element.classList.remove("invisible")
     }
   }
 }
 
+// set bold to selected item 
 const currentPage = location.pathname
-const menuItems = document.querySelectorAll(".menu a")
+const navItems = document.querySelectorAll("#navigation a")
 
-for(item of menuItems) {
+for(item of navItems) {
 
-  //! Corrigir a classe active quando está com o detalhe da receita aberto
-  //
-  if(currentPage.includes(item.getAttribute("href"))) {
+  if(currentPage == item.getAttribute("href")) {
     item.classList.add("active")
-
   }
 }
+
+
+
+
+
+
+
 
 
 
@@ -97,6 +93,8 @@ const PhotosUpload = {
     })
 
     PhotosUpload.input.files = PhotosUpload.getAllFiles()
+
+    // console.log(PhotosUpload.input.files)
   },
   hasLimit(event) {
     const { uploadLimit, input, preview } = PhotosUpload
@@ -144,6 +142,9 @@ const PhotosUpload = {
     return div
   },
   removePhoto(event) {
+
+    console.log('cheguei aqui!')
+
     const photoDiv = event.target.parentNode
     const photosArray = Array.from(PhotosUpload.preview.children)
     const index = photosArray.indexOf(photoDiv)
@@ -152,6 +153,8 @@ const PhotosUpload = {
     PhotosUpload.input.files = PhotosUpload.getAllFiles()
 
     photoDiv.remove()
+
+    console.log(PhotosUpload.files)
   },
   removeOldPhoto(event) {
     const photoDiv = event.target.parentNode
@@ -168,7 +171,7 @@ const PhotosUpload = {
 }
 
 const ImageGallery = {
-  imagecontainer: document.querySelector('.container_image > img'),
+  imagecontainer: document.querySelector('.main-image > img'),
   previews: document.querySelectorAll('.gallery-preview img'),
   setImage(e) {
     const { target } = e

@@ -40,7 +40,7 @@ p, h1, h2, h3 h4, h5, h6 {
 .content {
     width: 90%;
     max-width: 1160px;
-    min-height: 65vh;
+    min-height: 60vh;
     margin: 0 auto;
 }
 
