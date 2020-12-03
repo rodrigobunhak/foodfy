@@ -25,7 +25,6 @@ routes.put("/chefs", multer.single("avatar"), chefs.put);
 routes.delete("/chefs", chefs.delete);
 
 
-
 routes.get("/", site.index)
 routes.get("/site/about", site.about)
 routes.get("/site/recipes", site.recipes)

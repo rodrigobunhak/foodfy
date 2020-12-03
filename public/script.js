@@ -34,8 +34,10 @@ const navItems = document.querySelectorAll("#navigation a")
 
 for(item of navItems) {
 
-  if(currentPage == item.getAttribute("href")) {
+  if(currentPage.includes(item.getAttribute("href"))) {
     item.classList.add("active")
+
+    break
   }
 }
 
