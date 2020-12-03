@@ -147,8 +147,12 @@ module.exports = {
 
 
     if(chef.total_recipes == 0) {
-      Chef.delete(chef.id)
+      await Chef.delete(chef.id)
+      
+      await File.delete(chef.file_id)
+      
       return res.redirect(`/chefs`)
+
     } else {
         return res.send("Chef not deleted, there are recipes linked")
     }
