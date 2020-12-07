@@ -52,7 +52,7 @@ for(item of navItems) {
 
 /** arquivo admin */
 
-const PhotosUploadTeste = {
+const PhotosUpload = {
   input: "",
   uploadLimit: 5,
   preview: document.querySelector('#photos-preview'),
@@ -135,6 +135,7 @@ const PhotosUploadTeste = {
     // Criar elemento div
     const div = document.createElement('div')
     div.classList.add('photo')
+    div.classList.add('new-file')
 
     div.onclick = PhotosUpload.removePhoto
 
@@ -148,7 +149,7 @@ const PhotosUploadTeste = {
     console.log('cheguei aqui!')
 
     const photoDiv = event.target.parentNode
-    const photosArray = Array.from(PhotosUpload.preview.children)
+    const photosArray = Array.from(PhotosUpload.preview.querySelectorAll('.new-file'))
     const index = photosArray.indexOf(photoDiv)
 
     PhotosUpload.files.splice(index, 1)
@@ -156,7 +157,6 @@ const PhotosUploadTeste = {
 
     photoDiv.remove()
 
-    console.log(PhotosUpload.files)
   },
   removeOldPhoto(event) {
     const photoDiv = event.target.parentNode
@@ -172,7 +172,7 @@ const PhotosUploadTeste = {
   }
 }
 
-const PhotosUpload = {
+const PhotosUploadteste = {
 
   input: "",
   preview: document.querySelector('#photos-preview1'),

@@ -21,18 +21,6 @@
 
     <div id="photos-preview">
 
-      <div class="photo" id="{{image.file_id}}">
-        <img src="https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80" alt="{{image.name}}">
-        <i 
-          class="material-icons"
-          onclick="PhotosUpload.removeOldPhoto(event)"
-        >
-        delete
-        </i>
-
-      </div>
-
-
       {% if files %}
         {% for image in files %}
           <div class="photo" id="{{image.file_id}}">
@@ -49,10 +37,10 @@
 
       {% endif %}
       
-
-      <input type="hidden" name="removed_files">
     </div>
     
+    <input type="hidden" name="removed_files">
+
   </div>
 
 </div>

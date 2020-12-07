@@ -5,6 +5,7 @@ form .item #photos-upload {
   border: 1px solid rgba(0, 0, 0, .18);
   border-radius: 5px;
 
+  height: 110px;
 }
 
 form .item #photos-upload div {
@@ -34,20 +35,24 @@ form .item #photos-upload i {
 form .item .container-photos {
   display: grid;
   grid-template-columns: 1fr 5fr;
-  gap: 8px;
+  gap: 5px;
 
-  height: 110px;
+  /* height: 100px; */
 
-  background-color: khaki;
+  /* background-color: khaki; */
 }
 
 form .item .container-photos #photos-preview {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  gap: 5px;
+  
   height: 110px;
 }
 
 form .item .container-photos #photos-preview img {
   width: 100%;
-  height: 100%;
+  height: 110px;
   object-fit: cover;
   border-radius: 5px;
 }
