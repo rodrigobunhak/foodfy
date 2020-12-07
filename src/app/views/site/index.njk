@@ -1,0 +1,42 @@
+{% extends "site/layout.njk" %}
+
+{% block content %}
+
+<section class="content">
+
+  <div class="content-header">
+
+    <div class="content-header-title">
+      <h2>Mais acessadas</h2>
+    </div>
+
+  </div>
+
+  <div class="content-recipe">
+
+    <div class="items items-recipe">
+      {% for recipe in recipes %}
+        
+        <div class="recipe">
+              
+          <div class="recipe-image">
+            <img src="{{recipe.image}}" alt="recipe image">
+          </div>
+
+          <div class="recipe-info">
+
+            <h2>{{recipe.title}}</h2>
+            <p>{{recipe.chef_name}}</p>
+            <a href="/site/recipes/{{recipe.id}}">Visualizar</a>
+          
+          </div>
+              
+        </div>
+
+      {% endfor %}
+      </div>
+
+  </div>
+
+  </section>
+{% endblock %}

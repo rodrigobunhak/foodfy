@@ -1,0 +1,38 @@
+{% extends "site/layout.njk" %}
+
+{% block content %}
+
+<section class="content">
+
+    <div class="content-header">
+
+      <div class="content-header-title">
+        <h2>Chefs</h2>
+      </div>
+
+    </div>
+
+    <div class="items items-chef">
+
+      {% for chef in chefs %}
+      <div class="chef">
+            
+        <div class="chef-image">
+          <img src="{{chef.image}}" alt="chef image">
+        </div>
+
+        <div class="chef-info">
+
+          <h2>{{chef.name}}</h2>
+          <p>{{chef.total_recipes}} receitas</p>
+
+        </div>
+            
+      </div>
+      {% endfor %}
+
+    </div>
+
+</section>
+{% endblock %}
+

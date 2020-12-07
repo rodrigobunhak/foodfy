@@ -1,0 +1,83 @@
+@import 'global.css';
+
+/* style header component */
+
+.header {
+    display: flex;
+    flex-direction: column;
+    /* background-image: linear-gradient(165deg, var(--yellow-dark), var(--yellow-light)); */
+    background: rgb(253,187,45);
+    background: linear-gradient(103deg, rgba(253,187,45,1) 0%, rgba(255,209,84,1) 22%, rgba(253,187,45,1) 100%);
+
+    min-height: 25vh;
+}
+
+.header .menu {
+    display: flex;
+    flex-direction: row;
+    align-items: baseline;
+}
+
+.header .menu .logo {
+    padding: 0 0 0 30px;
+}
+
+.header .menu .logo img {
+    width: 50px;
+}
+
+.header .menu .name {
+    padding: 0 15px;
+}
+
+.header .menu .name a {
+    font-family: 'Sriracha', cursive;
+    font-size: 42px;
+    color: var(--font-color);
+}
+
+nav {
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+nav a {
+    color: var(--font-color);
+    text-decoration: none;
+    color: var(--font-color);
+    display: flex;
+    justify-content: center;
+    min-width: 70px;
+}
+
+nav a.active {
+    font-weight: bold;
+}
+
+nav a:hover {
+    font-weight: bold;
+}
+
+.header .banner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 25px 0;
+}
+
+.header .banner h1 {
+    font-size: 48px;
+    background: linear-gradient(180deg, #1b1b1b, rgb(29, 29, 29));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.header .banner .icon {
+    margin-top: 15px;
+}
+
+.header .banner .icon img {
+    width: 50px;
+}

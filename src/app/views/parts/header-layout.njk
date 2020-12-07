@@ -1,0 +1,44 @@
+{% block header %}
+<header class="header">
+
+  <div class="menu">
+
+    <div class="logo">
+      <img src="/assets/logo.png" alt="logo">
+    </div>
+
+    <div class="name">
+      <a href="/">FoodFy</a>
+    </div>
+
+    <nav id="navigation">
+    {% block nav %}
+      <a href="#">Link</a>
+      <a href="#">Link</a>
+    {% endblock nav %}
+    </nav>
+
+  </div>
+
+  <div class="banner">
+
+      {% block title %}
+      <div class="title">
+        <h1>Title</h1>
+      </div>
+      {% endblock title %}
+
+      {% block subtitle %}
+      <div class="subtitle">
+        <p>Subtitle</p>
+      </div>
+      {% endblock subtitle %}
+
+      <div class="icon">
+        <img src="/assets/knife.png" alt="logo">
+      </div>
+
+  </div>
+
+</header>
+{% endblock header %}

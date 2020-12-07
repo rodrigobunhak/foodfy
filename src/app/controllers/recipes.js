@@ -9,7 +9,7 @@ module.exports = {
     let results = await Recipe.all()
     const recipes = results.rows
 
-    if (!recipes) return res.render('admin/recipe/index')
+    if (!recipes) return res.render('recipe/index')
 
     async function getImage(recipeId) {
       let results = await Recipe.files(recipeId)
@@ -27,13 +27,14 @@ module.exports = {
 
     const allRecipes = await Promise.all(recipesPromise)
 
-    return res.render("admin/recipe/index", {recipes: allRecipes})
+    return res.render("recipe/index", {recipes: allRecipes})
 
   },
   create(req, res) {
+    
 
     Recipe.chefSelectOptions(function(options) {
-      return res.render('admin/recipe/create',{ chefOptions: options })
+      return res.render('recipe/create',{ chefOptions: options })
     })
 
   },
@@ -50,7 +51,7 @@ module.exports = {
         src: `${req.protocol}://${req.headers.host}${file.path.replace("public", "")}`
       }))
 
-      return res.render('admin/recipe/detalhe', { recipe, files })
+      return res.render('recipe/detalhe', { recipe, files })
     })
 
   },
@@ -64,6 +65,7 @@ module.exports = {
       }
     }
 
+    
     if (req.files.length == 0) {
       return res.send('Please, send at least one image')
     }
@@ -84,7 +86,7 @@ module.exports = {
     })
     
 
-    return res.redirect(`/admin/recipes/${recipeId}`)
+    return res.redirect(`recipes/${recipeId}`)
 
 
   },
@@ -103,7 +105,7 @@ module.exports = {
           src: `${req.protocol}://${req.headers.host}${file.path.replace("public", "")}`
         }))
 
-        return res.render('admin/recipe/edit',{ recipe, chefOptions: options, files })
+        return res.render('recipe/edit',{ recipe, chefOptions: options, files })
       })
     })
 
@@ -122,6 +124,7 @@ module.exports = {
     }
 
     if (req.files.length != 0) {
+      
       // Promise Array
       const filesPromise = req.files.map(file => {
         return File.create({...file})
@@ -151,9 +154,10 @@ module.exports = {
       return res.redirect(`recipes/${req.body.id}`)
     })
   },
-  delete(req, res) {
-    Recipe.delete(req.body.id, function() {
-      return res.redirect(`/admin/recipes`)
-    })
+  async delete(req, res) {
+    
+    Recipe.delete(req.body.id)
+    return res.redirect(`recipes`)
+    
   }
 }

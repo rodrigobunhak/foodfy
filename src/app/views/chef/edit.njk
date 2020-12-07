@@ -1,0 +1,35 @@
+{% extends "layout.njk" %}
+
+{% block content %}
+
+<section class="content form">
+
+  <div class="content-header">
+
+    <div class="content-header-title">
+      <h1>Editando Chef</h1>
+    </div>
+
+    <div class="content-header-menu">
+      
+        <button class="button button-delete" form="delete-form">Deletar</button>
+        <button class="button" type="submit" form="update-form">Salvar</button>
+      
+    </div>
+
+  </div>
+  
+  <form method="POST" action="/chefs?_method=PUT" id="update-form" enctype="multipart/form-data">
+    
+    {% include 'chef/fields.njk' %}
+    <input type="hidden" name="id" value="{{chef.id}}">
+
+  </form>
+
+  <form method="POST" action="/chefs?_method=DELETE" id="delete-form">
+    <input type="hidden" name="id" value="{{chef.id}}">
+  </form>
+      
+</section>
+
+{% endblock %}

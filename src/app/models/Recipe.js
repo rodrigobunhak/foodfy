@@ -20,9 +20,8 @@ module.exports = {
         chef_id,
         ingredients,
         preparation,
-        information,
-        created_at
-      ) VALUES ($1, $2, $3, $4, $5, $6)
+        information
+      ) VALUES ($1, $2, $3, $4, $5)
       RETURNING id
     `
 
@@ -31,8 +30,7 @@ module.exports = {
       data.chef,
       data.ingredients,
       data.preparation,
-      data.information,
-      date(Date.now()).iso
+      data.information
     ]
 
       return db.query(query, values)
@@ -104,12 +102,8 @@ module.exports = {
       callback()
     })
   },
-  delete(id, callback) {
-    db.query(`DELETE FROM recipes WHERE id = $1`, [id], function(err, results) {
-      if(err) throw `Database Error: ${err}`
-
-      callback()
-    })
+  delete(id) {
+    return db.query(`DELETE FROM recipes WHERE id = $1`, [id])
   },
   files(id) {
     return db.query(`

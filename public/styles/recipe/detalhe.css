@@ -1,0 +1,116 @@
+.gallery .gallery-preview {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-bottom: 1px solid rgba(177, 177, 177, 0.2);
+}
+
+.gallery .gallery-preview img {
+    width: 60px;
+    height: 60px;
+    margin: 10px 5px;
+    border-radius: 3px;
+    cursor: pointer;
+    opacity: .3;
+    transition: 400ms;
+    object-fit: cover;
+}
+
+.gallery .gallery-preview img:hover,
+.gallery .gallery-preview img.active {
+    opacity: 1;
+}
+
+.main-image {
+    width: 100%;
+    height: 300px;
+    background-color: brown;
+}
+
+.main-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+
+
+
+
+.content-recipe1 h1 {
+    color: var(--font-color);
+}
+
+.content-recipe1  {
+    margin-top: 25px;
+}
+
+.content-recipe1 img {
+    border-radius: 7px;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.content-recipe1 h1 {
+    font-family: Roboto;
+    font-size: 36px;
+    color: var(--font-color);
+    margin-top: 50px;
+    text-align: center;
+}
+
+.content-recipe1 h3 {
+    font-family: Roboto;
+    font-size: 20px;
+    font-weight: normal;
+    color: var(--font-color);
+    margin-top: 4px;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.content-recipe1 .sub-title {
+    display: flex;
+    justify-content: left;
+    align-items: baseline;
+    gap: 10px;
+
+    padding: 10px 0;
+}
+
+.content-recipe1 .sub-title h2 {
+    display: inline-block;
+    
+    font-family: Roboto;
+    font-weight: bold;
+    font-size: 24px;
+    color: var(--font-color);
+    
+}
+
+.content-recipe1 .sub-title span {
+    font-size: 12px;
+    color: #aaaaaa;
+    cursor: pointer;
+    text-transform: uppercase;
+}
+
+.content-recipe1 .content-recipe1-info {
+    padding-left: 20px;
+    font-size: 18px;
+    color: var(--font-color-grey);
+    line-height: 28px;
+
+    margin-bottom: 20px;
+}
+
+.content-recipe1 .content-recipe1-info p {
+    color: var(--font-color-grey);
+}
+
+.content-recipe1 .content-recipe1-info .invisible {
+    display: none;
+}
