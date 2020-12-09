@@ -86,4 +86,10 @@ form .item .container-photos #photos-preview .photo:hover i {
 .button-link {
   color: var(--yellow-dark);
   margin: 5px 0;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+form .item-container input {
+  margin-bottom: 5px;
 }

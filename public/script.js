@@ -161,7 +161,7 @@ const PhotosUpload = {
       // return true    
 
     console.log(PhotosUpload.files)
-    return true
+    
 
     PhotosUpload.files.splice(index, 1)
     PhotosUpload.input.files = PhotosUpload.getAllFiles()
@@ -183,118 +183,6 @@ const PhotosUpload = {
   }
 }
 
-const PhotosUploadteste = {
-
-  input: "",
-  preview: document.querySelector('#photos-preview1'),
-  uploadLimit: 5,
-  files: [],
-
-  handleFileInput(event) {
-
-    const { files: fileList } = event.target
-    PhotosUpload.input = event.target
-
-    if (PhotosUpload.hasLimit(event)) return
-
-    Array.from(fileList).forEach(file => {
-
-      PhotosUpload.files.push(file)
-
-      const reader = new FileReader()
-
-      reader.onload = () => {
-
-        const image = new Image()
-        image.src = String(reader.result)
-
-        const div = PhotosUpload.getContainer(image)
-
-        PhotosUpload.preview.appendChild(div)
-
-      }
-
-      reader.readAsDataURL(file)
-
-    })
-
-    PhotosUpload.input.files = PhotosUpload.getAllFiles()
-
-
-  },
-  hasLimit(event) {
-
-    const { uploadLimit, input: fileList } = PhotosUpload
-
-    if (fileList.length > uploadLimit) {
-      alert(`Envie no máximo ${uploadLimit} fotos`)
-
-      event.preventDefault()
-
-      return true
-    }
-
-    console.log(PhotosUpload.preview)
-    return false
-
-    
-
-  },
-  getAllFiles() {
-
-    const dataTransfer = new ClipboardEvent("").clipboardData || new DataTransfer()
-
-    PhotosUpload.files.forEach(file => dataTransfer.items.add(file))
-
-    return dataTransfer.files
-
-  },
-  getContainer(image) {
-
-    const div = document.createElement('div')
-
-    div.classList.add('photo')
-
-    div.onclick = PhotosUpload.removePhoto
-
-    div.appendChild(image)
-
-    div.appendChild(PhotosUpload.getRemoveButton())
-
-    return div
-  },
-  getRemoveButton() {
-
-    const button = document.createElement('i')
-
-    button.classList.add('material-icons')
-
-    button.innerHTML = "delete"
-
-    return button
-
-  },
-  removePhoto(event) {
-
-    const photoDiv = event.target.parentNode // tag i . div class photo
-    console.log(photoDiv)
-    const photosArray = Array.from(PhotosUpload.preview.children)
-
-    console.log(photosArray)
-
-
-    const index = photosArray.indexOf(photoDiv)
-
-    
-
-    PhotosUpload.files.splice(index, 1)
-    PhotosUpload.input.files = PhotosUpload.getAllFiles()
-
-    photoDiv.remove();
-
-  }
-}
-
 
 
 
@@ -311,4 +199,40 @@ const ImageGallery = {
     ImageGallery.imagecontainer.src = target.src
   },
 
+}
+
+
+
+function addIngredient(event) {
+  const container = event.target.parentNode.querySelector("#ingredients")
+  const fields = event.target.parentNode.querySelectorAll("#ingredient");
+  const newField = fields[fields.length - 1].cloneNode(true);
+  
+  if (newField.value == "") return false
+
+  newField.value = ""
+
+  console.log(container)
+
+  container.appendChild(newField);
+
+  return true
+  
+}
+
+function addPreparation(event) {
+  const container = event.target.parentNode.querySelector("#preparations")
+  const fields = event.target.parentNode.querySelectorAll("#preparation");
+  const newField = fields[fields.length - 1].cloneNode(true);
+  
+  if (newField.value == "") return false
+
+  newField.value = ""
+
+  console.log(container)
+
+  container.appendChild(newField);
+
+  return true
+  
 }
