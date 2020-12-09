@@ -2,21 +2,32 @@
 
 {% block content %}
 
-<section class="content">
+  <section class="content">
 
-  <div class="content-header">
+    <div class="content-header">
 
-    <div class="content-header-title">
-      <h2>Últimas Acessadas</h2>
-    </div>
+        <div class="content-header-title">
+          <h1>Receitas</h1>
+        </div>
 
-  </div>
+        <div class="content-header-menu">
 
-  <div class="content-recipe">
+          <form action="/recipes/search" method="GET">
+            <input 
+                type="text" 
+                name="filter" 
+                placeholder="Nome"
+                value={{filter}}
+            >
+            <button class="button" type="submit">Filtrar</button>
+          </form>
+        </div>
+      </div>
 
-    <div class="items items-recipe">
+    <div class="content-recipe">
+
+      <div class="items items-recipe">
       {% for recipe in recipes %}
-        
         <div class="recipe">
               
           <div class="recipe-image">
@@ -26,17 +37,15 @@
           <div class="recipe-info">
 
             <h2>{{recipe.title}}</h2>
-            <p>{{recipe.chef_name}}</p>
-            <a href="/site/recipes/{{recipe.id}}">Visualizar</a>
-          
+              <p>{{recipe.chef_name}}</p>
+              <a href="/site/recipes/{{recipe.id}}">Visualizar</a>
           </div>
               
         </div>
-
       {% endfor %}
       </div>
 
-  </div>
+    </div>
 
   </section>
 {% endblock %}

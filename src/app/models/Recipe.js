@@ -113,5 +113,25 @@ module.exports = {
       WHERE recipe_id = $1
       ORDER BY file_id ASC
     `, [id])
+  },
+  search(params) {
+
+    const { filter } = params
+
+    let query = "",
+    filterQuery = `WHERE`
+
+    filterQuery = `
+      ${filterQuery}
+      recipes.title ilike '%${filter}%'
+    `
+    query = `
+      SELECT recipes.*, chefs.name AS chef_name
+      FROM recipes
+      LEFT JOIN chefs ON (recipes.chef_id = chefs.id)
+      ${filterQuery}
+    `
+
+    return db.query(query)
   }
 }
