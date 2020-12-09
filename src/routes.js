@@ -6,6 +6,15 @@ const recipes = require('./app/controllers/recipes');
 const chefs = require('./app/controllers/chefs');
 const site = require('./app/controllers/site');
 
+const HomeController = require('./app/controllers/HomeController');
+const SearchController = require('./app/controllers/SearchController');
+
+// HOME PAGE - LAST ADDED
+routes.get("/", HomeController.index)
+
+// SEARCH
+routes.get("/recipes/search", SearchController.index)
+
 // RECIPES
 routes.get("/recipes", recipes.index);
 routes.get("/recipes/create", recipes.create); 
@@ -25,7 +34,8 @@ routes.put("/chefs", multer.single("avatar"), chefs.put);
 routes.delete("/chefs", chefs.delete);
 
 
-routes.get("/", site.index)
+
+
 routes.get("/site/about", site.about)
 routes.get("/site/recipes", site.recipes)
 routes.get("/site/chefs", site.chefs)

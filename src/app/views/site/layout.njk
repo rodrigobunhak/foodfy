@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% import "parts/header.njk" as header %}
     <title>Foodfy</title>
     
     {% include "parts/styles.njk" %}
@@ -10,7 +11,7 @@
 </head>
 <body>
 
-  {% include "parts/header-site.njk" %}
+  {{header.content("default")}}
 
   {% block content %}
     

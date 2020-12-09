@@ -2,7 +2,7 @@ const { date } = require('../../lib/utils');
 const db = require('../../config/db');
 
 module.exports = {
-  all(callback) {
+  all() {
     
     return db.query(`
     SELECT recipes.*, chefs.name AS chef_name

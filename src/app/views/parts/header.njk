@@ -1,0 +1,66 @@
+{% macro content(type) %}
+
+<header class="header">
+
+  <div class="menu">
+
+    <div class="logo">
+      <img src="/assets/logo.png" alt="logo">
+    </div>
+
+    <div class="name">
+      <a href="/">FoodFy</a>
+    </div>
+
+    <nav id="navigation">
+    {% if type == 'default' %}
+      <a href="/site/about">Sobre</a>
+      <a href="/site/recipes">Receitas</a>
+      <a href="/site/chefs">Chefs</a>
+      <a href="/recipes">Admin</a>
+    {% endif %}
+
+    {% if type == 'admin' %}
+      <a href="/recipes">Receitas</a>
+      <a href="/chefs">Chefs</a>
+    {% endif %}
+    </nav>
+
+  </div>
+
+  <div class="banner">
+
+      {% if type == 'default' %}
+        <div class="title">
+          <h1>As melhores receitas</h1>
+        </div>
+      {% endif %}
+
+      {% if type == 'admin' %}
+        <div class="title">
+          <h1>Administração</h1>
+        </div>
+      {% endif %}
+
+      {% if type == 'default' %}
+        <div class="subtitle">
+          <p>Aprenda a construir os melhores pratos
+          com receitas criadas por profissionais
+          do mundo inteiro.</p>
+        </div>
+      {% endif %}
+
+      {% if type == 'admin' %}
+        <div class="subtitle">
+          <p>Todo cuidado é pouco.</p>
+        </div>
+      {% endif %}
+
+      <div class="icon">
+        <img src="/assets/knife.png" alt="logo">
+      </div>
+
+  </div>
+
+</header>
+{% endmacro %}

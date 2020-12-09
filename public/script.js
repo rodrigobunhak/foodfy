@@ -146,11 +146,22 @@ const PhotosUpload = {
   },
   removePhoto(event) {
 
-    console.log('cheguei aqui!')
-
     const photoDiv = event.target.parentNode
+      // console.log(photoDiv)
+      // return true
+
+
     const photosArray = Array.from(PhotosUpload.preview.querySelectorAll('.new-file'))
+      // console.log(photosArray)
+      // return true
+
+
     const index = photosArray.indexOf(photoDiv)
+      // console.log(index)
+      // return true    
+
+    console.log(PhotosUpload.files)
+    return true
 
     PhotosUpload.files.splice(index, 1)
     PhotosUpload.input.files = PhotosUpload.getAllFiles()
