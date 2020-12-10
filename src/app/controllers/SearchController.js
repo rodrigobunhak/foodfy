@@ -18,6 +18,7 @@ module.exports = {
       const recipes = results.rows
 
       async function getImage(recipeId) {
+
         let results = await Recipe.files(recipeId)
         const files = results.rows.map(file => {
           return `${req.protocol}://${req.headers.host}${file.path.replace("public", "")}`.replace(/\\/g, "/")
