@@ -11,21 +11,39 @@
 }
 
 .login .b {
-  background-color: rgb(236, 236, 236);
+  background-color: rgb(247, 247, 247);
   /* height: 100vh; */
   flex: 1;
-  
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 
 /* Form */
 form {
   width: 80%;
-  max-width: 600px;
-  background-color: lightcoral;
+  max-width: 500px;
+
+  padding: 15px;
+
   margin: 0 auto;
   display: flex;
   flex-direction: column;
   /* justify-content: center; */
-  margin-top: 150px;
+  /* margin-top: 150px; */
+  gap: 10px;
+}
+
+.login .b form input {
+  padding: 13px;
+  width: 100%;
+  background-color: rgb(238, 238, 238);
+  font-size: 18px;
+  outline: none;
+}
+
+.login .b form input::placeholder {
+  color: rgb(199, 199, 199);
+  font-weight: lighter;
 }
