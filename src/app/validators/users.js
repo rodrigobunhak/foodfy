@@ -15,7 +15,10 @@ async function post(req, res, next) {
   const { email, password, passwordRepeat } = req.body
   const user = await User.findOne({ where: { email }})
 
-  if (user) return res.send('User exists')
+  if (user) return res.render('user/register', {
+    user: req.body,
+    error: 'Usuário já cadastrado.'
+  })
 
   //check if password match
   if (password != passwordRepeat)
