@@ -21,7 +21,7 @@
 
 
 /* Form */
-form {
+.login .b .content {
   width: 80%;
   max-width: 500px;
 
@@ -32,18 +32,38 @@ form {
   flex-direction: column;
   /* justify-content: center; */
   /* margin-top: 150px; */
-  gap: 10px;
+  min-height: auto;
+
+  border: 1px solid rgb(221, 221, 221);
 }
 
-.login .b form input {
+.login .b .content button {
+  width: 100%;
+}
+
+.login .b .content h1 {
+  text-align: center;
+  margin: 15px 0;
+}
+
+.login .b .content .item {
+  margin: 10px 0;
+}
+
+.login .b .content input {
   padding: 13px;
   width: 100%;
   background-color: rgb(238, 238, 238);
   font-size: 18px;
   outline: none;
+  margin: 5px 0;
+  font-size: 14px;
 }
 
-.login .b form input::placeholder {
-  color: rgb(199, 199, 199);
-  font-weight: lighter;
+.login .b .content input::placeholder {
+  color: rgb(146, 146, 146);
+  font-weight: normal;
+  font-size: 14px;
 }
+
+
