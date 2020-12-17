@@ -2,16 +2,17 @@ const User = require('../models/User')
 
 async function post(req, res, next) {
 
-  //check if has all fields
   const keys = Object.keys(req.body)
 
   for (key of keys) {
     if (req.body[key] == "") {
-      return res.send('Please, fill all fields!')
+      return res.render('user/register', {
+        user: req.body,
+        error: 'Existem campos obrigatórios sem preenchimento.'
+      })
     }
   }
 
-  //check if user exists [email]
   const { email, password, passwordRepeat } = req.body
   const user = await User.findOne({ where: { email }})
 
@@ -20,9 +21,11 @@ async function post(req, res, next) {
     error: 'Usuário já cadastrado.'
   })
 
-  //check if password match
   if (password != passwordRepeat)
-    return res.send('Password Mismatch')
+    return res.render('user/register', {
+      user: req.body,
+      error: 'Senhas não conferem.'
+    })
 
   next()
 }
