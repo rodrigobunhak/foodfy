@@ -40,7 +40,9 @@ module.exports = {
         passwordHash
       ]
 
-      return db.query(query, values)
+      const result = await db.query(query, values)
+      return result.rows[0]
+
     }catch(err) {
       console.error(err)
     }
