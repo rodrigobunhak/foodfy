@@ -4,8 +4,12 @@ module.exports = {
   registerForm(req, res) {
     return res.render("user/register")
   },
-  show(req, res) {
-    return res.send('ok, cadastrado!')
+  async show(req, res) {
+
+    const { user } = req
+
+    return res.render('user/index', {user})
+    
   },
   async post(req, res) {
     
@@ -14,5 +18,28 @@ module.exports = {
     req.session.userId = userId
 
     return res.redirect('/users')
+  },
+  async update(req, res) {
+
+    try {
+      
+      let { name, email } = req.body
+
+      await User.update(user.id, {
+        name,
+        email
+      })
+
+      return res.render("user/index", {
+        sucess: "Conta atualizada com sucesso!"
+      })
+
+    } catch (error) {
+      console.log(error)
+      return res.render("user/index", {
+        error: "Algum erro aconteceu!"
+      })
+    }
+
   }
 }

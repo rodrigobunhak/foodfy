@@ -3,9 +3,12 @@ const { hash } = require('bcryptjs')
 
 module.exports = {
   async findOne(filters) {
-    let query = `SELECT * FROM users`
+    
+    try {
+      
+      let query = `SELECT * FROM users`
 
-    Object.keys(filters).map(key => {
+      Object.keys(filters).map(key => {
       
       query = `${query}
       ${key}
@@ -15,10 +18,15 @@ module.exports = {
         query = `${query} ${field} = '${filters[key][field]}'`
       })
 
-    })
+      })
 
-    const results = await db.query(query)
-    return results.rows[0]
+      const results = await db.query(query)
+      return results.rows[0]
+
+    } catch (error) {
+      console.error(error)
+    }
+
   },
   async create(data) {
 
@@ -41,7 +49,7 @@ module.exports = {
       ]
 
       const result = await db.query(query, values)
-      return result.rows[0]
+      return result.rows[0].id
 
     }catch(err) {
       console.error(err)
