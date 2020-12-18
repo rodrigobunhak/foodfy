@@ -36,6 +36,7 @@ async function post(req, res, next) {
       error: 'Senhas não conferem.'
     })
 
+    
   next()
 }
 
@@ -57,9 +58,12 @@ async function show(req, res, next) {
 async function update(req, res, next) {
 
   const fillAllFields = checkAllFields(req.body)
+
   if(fillAllFields) {
     return res.render("user/index", fillAllFields)
   }
+
+
 
   const { id, password } = req.body
 
@@ -79,6 +83,7 @@ async function update(req, res, next) {
 
   req.user = user
 
+  next()
 }
 
 module.exports = {

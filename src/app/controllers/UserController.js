@@ -23,6 +23,7 @@ module.exports = {
 
     try {
       
+      const { user } = req
       let { name, email } = req.body
 
       await User.update(user.id, {
@@ -31,7 +32,8 @@ module.exports = {
       })
 
       return res.render("user/index", {
-        sucess: "Conta atualizada com sucesso!"
+        user: req.body,
+        success: "Conta atualizada com sucesso!"
       })
 
     } catch (error) {
