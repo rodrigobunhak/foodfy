@@ -1,4 +1,4 @@
-{% macro content(type) %}
+{% macro content(type, user) %}
 
 <header class="header">
 
@@ -24,6 +24,13 @@
       <a href="/recipes">Receitas</a>
       <a href="/chefs">Chefs</a>
     {% endif %}
+
+    {% if user %}
+      <form action="/users/logout" method="POST">
+        <button type="submit">Sair</button>
+      </form>
+    {% endif %}
+
     </nav>
 
   </div>

@@ -8,7 +8,7 @@ module.exports = {
 
     const { user } = req
 
-    return res.render('user/index', {user})
+    return res.render('user/index', { user })
     
   },
   async post(req, res) {
