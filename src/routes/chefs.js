@@ -2,18 +2,20 @@ const express = require('express');
 const routes = express.Router();
 const multer = require('../app/middlewares/multer')
 
-const chefs = require('../app/controllers/chefs');
+const ChefsController = require('../app/controllers/ChefsController');
 
 const { verifyAdmin } = require('../app/middlewares/session')
 
-// CHEFS
-routes.get("/", chefs.index);
-routes.get("/create", verifyAdmin, chefs.create);
-routes.get("/:id", chefs.show);
-routes.get("/:id/edit", chefs.edit);
-routes.post("/", multer.single("avatar"), chefs.post);
-routes.put("/", multer.single("avatar"), chefs.put);
-routes.delete("/", chefs.delete);
+// admin
+routes.get("/create", verifyAdmin, ChefsController.create);
+routes.get("/:id/edit", verifyAdmin, ChefsController.edit);
+routes.post("/", verifyAdmin, multer.single("avatar"), ChefsController.post);
+routes.put("/", verifyAdmin, multer.single("avatar"), ChefsController.put);
+routes.delete("/", verifyAdmin, ChefsController.delete);
+
+
+routes.get("/", ChefsController.index);
+routes.get("/:id", ChefsController.show);
 
 
 

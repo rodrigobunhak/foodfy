@@ -6,8 +6,9 @@ async function verifyAdmin(req, res, next) {
 
   const user = await User.findOne({where: {id}})
 
-  if(user.is_admin == false)
-    return res.redirect('/')
+  if(user.is_admin == false) {
+    return res.send('Access Denied')
+  }
   
   next()
 }
