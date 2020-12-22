@@ -15,7 +15,7 @@
 
     {% include "parts/messages.njk" %}
 
-    {{header.content("admin", user )}}
+    {{header.content("admin", session.userId )}}
 
     {% block content %}
     
