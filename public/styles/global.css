@@ -133,6 +133,10 @@ p, h1, h2, h3 h4, h5, h6 {
     background: var(--light-white-color);
 }
 
+.form .item textarea {
+    height: auto;
+}
+
 .form .item input::placeholder {
     font-size: 16px;
     font-weight: normal;

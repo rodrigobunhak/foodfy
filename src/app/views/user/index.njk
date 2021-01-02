@@ -1,0 +1,35 @@
+{% extends "layout.njk" %}
+
+{% block content %}
+
+<section class="user content form">
+
+  <div class="content-header">
+
+    <div class="content-header-title">
+      <h1>Detalhes</h1>
+    </div>
+
+    <div class="content-header-menu">
+      
+        <button class="button button-delete" form="delete-form">Deletar</button>
+        <button class="button" type="submit" form="update-form">Salvar</button>
+      
+    </div>
+
+  </div>
+  
+  <form method="POST" action="/users?_method=PUT" id="update-form">
+    
+    {% include 'user/fields.njk' %}
+    <input type="hidden" name="id" value="{{user.id}}">
+
+  </form>
+
+  <form method="POST" action="/users?_method=DELETE" id="delete-form">
+    <input type="hidden" name="id" value="{{user.id}}">
+  </form>
+      
+</section>
+
+{% endblock %}

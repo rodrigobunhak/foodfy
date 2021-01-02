@@ -2,13 +2,13 @@ const { date } = require('../../lib/utils');
 const db = require('../../config/db');
 
 module.exports = {
-  all(callback) {
+  all() {
     
     return db.query(`
     SELECT recipes.*, chefs.name AS chef_name
     FROM recipes
     LEFT JOIN chefs ON (recipes.chef_id = chefs.id) 
-    ORDER BY title ASC`)
+    ORDER BY created_at DESC`)
     
   },  
   create(data) {
@@ -113,5 +113,26 @@ module.exports = {
       WHERE recipe_id = $1
       ORDER BY file_id ASC
     `, [id])
+  },
+  search(params) {
+
+    const { filter } = params
+
+    let query = "",
+    filterQuery = `WHERE`
+
+    filterQuery = `
+      ${filterQuery}
+      recipes.title ilike '%${filter}%'
+    `
+    query = `
+      SELECT recipes.*, chefs.name AS chef_name
+      FROM recipes
+      LEFT JOIN chefs ON (recipes.chef_id = chefs.id)
+      ${filterQuery}
+      ORDER BY updated_at DESC
+    `
+
+    return db.query(query)
   }
 }

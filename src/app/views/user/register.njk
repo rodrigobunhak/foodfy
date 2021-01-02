@@ -1,0 +1,36 @@
+{% extends "user/layout-login.njk" %}
+
+{% block content %}
+
+
+<section class="login">
+  
+  <div class="a">
+    
+    
+
+  </div>
+
+  <div class="b">
+
+    <div class="content">
+
+      <h1>Registre-se</h1>
+
+      <form action="/users/register" method="POST" >
+
+        {% include 'user/fields.njk' %}
+
+        <button class="button" type="submit">Salvar</button>
+
+      </form>
+
+      
+
+    </div>
+    
+  </div>
+      
+</section>
+
+{% endblock %}

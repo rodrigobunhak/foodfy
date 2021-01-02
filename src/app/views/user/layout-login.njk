@@ -3,7 +3,6 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    {% import "parts/header.njk" as header %}
     {% block head %}
       <title>Foodfy</title>
     {% endblock head %}
@@ -12,17 +11,12 @@
 
   </head>
   <body>
-
     {% include "parts/messages.njk" %}
-
-    {{header.content("admin", session.userId )}}
 
     {% block content %}
     
     {% endblock content %}
 
-    {% include "parts/footer.njk" %}
-
-    <script src="/script.js"></script>
+  <script src="/script.js"></script>
   </body>
 </html>
