@@ -1,6 +1,18 @@
 const User = require('../models/User')
 
 module.exports = {
+  async list(req, res) {
+
+    const users = await User.all()
+
+    return res.render('user/list', { users })
+
+  },
+  formCreate(req, res) {
+
+    return res.render('user/form-create')
+
+  },
   registerForm(req, res) {
     return res.render("user/register")
   },
@@ -8,14 +20,15 @@ module.exports = {
 
     const { user } = req
 
-    return res.render('user/index', { user })
+    return res.render('user/show', { user })
     
   },
   async post(req, res) {
-    
+
     const userId = await User.create(req.body)
 
     req.session.userId = userId
+    
 
     return res.redirect('/users')
   },

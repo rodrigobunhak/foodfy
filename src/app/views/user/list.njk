@@ -1,0 +1,51 @@
+{% extends "layout.njk" %}
+
+{% block content %}
+
+  <section class="content">
+
+      <div class="content-header"> {# content-head menu-action #}
+
+        <div class="content-header-title"> {# title #}
+          <h2>Gerenciar usuários</h2>
+        </div>
+
+        <div class="content-header-menu"> {# action #}
+
+            
+          <button class="button">
+            <a href="/users/formcreate">Novo Usuário</a> {# button-new #}
+          </button>
+  
+
+        </div>
+
+      </div>
+
+
+    <div class="content-user">
+
+      {# <section class="list recipe-list"> #}
+      <div class="items items-user">
+      {% for user in users %}
+        
+        <div class="user">
+
+          <div class="user-info">
+
+            <h2>{{user.name}}</h2>
+            <p>{{user.email}}</p>
+            <a href="/users/{{user.id}}">Visualizar</a>
+          
+          </div>
+              
+        </div>
+
+      {% endfor %}
+      </div>
+    
+    </div>
+
+  </section>
+{% endblock %}
+

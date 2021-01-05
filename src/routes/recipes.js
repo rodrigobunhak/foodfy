@@ -5,12 +5,13 @@ const multer = require('../app/middlewares/multer')
 const RecipesController = require('../app/controllers/RecipesController');
 const SearchController = require('../app/controllers/SearchController');
 
+const { verifyAdmin } = require('../app/middlewares/session')
 
 // SEARCH
 routes.get("/search", SearchController.index)
 
 // RECIPES
-routes.get("/", RecipesController.index);
+routes.get("/", verifyAdmin, RecipesController.index);
 routes.get("/create", RecipesController.create); 
 routes.get("/:id", RecipesController.show);
 routes.get("/:id/edit", RecipesController.edit);
