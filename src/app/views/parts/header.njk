@@ -13,25 +13,35 @@
     </div>
 
     <nav id="navigation">
-    {% if type == 'default' %}
-      <a href="/site/about">Sobre</a>
-      <a href="/site/recipes">Receitas</a>
-      <a href="/site/chefs">Chefs</a>
-      <a href="/recipes">Admin</a>
-    {% endif %}
+      <div class="navigation-main">
+        {% if type == 'default' %}
+          <a href="/site/about">Sobre</a>
+          <a href="/site/recipes">Receitas</a>
+          <a href="/site/chefs">Chefs</a>
+          <a href="/recipes">Admin</a>
+        {% endif %}
 
-    {% if type == 'admin' %}
-      <a href="/recipes">Receitas</a>
-      <a href="/chefs">Chefs</a>
-    {% endif %}
+        {% if type == 'admin' %}
+          <a href="/recipes">Receitas</a>
+          <a href="/chefs">Chefs</a>
+          <a href="/users">Usuários</a>
+        {% endif %}
+      </div>
 
-    {% if user %}
-      <form action="/users/logout" method="POST">
-        <button type="submit">Sair</button>
-      </form>
-    {% endif %}
+      <div class="navigation-session">
+        {% if not user %}
+          <a href="/users/login">Entrar</a>
+        {% endif %}
+
+        {% if user %}
+          <form action="/users/logout" method="POST">
+            <button type="submit">Sair</button>
+          </form>
+        {% endif %}
+      </div>
 
     </nav>
+
 
   </div>
 

@@ -14,7 +14,7 @@ routes.put("/", verifyAdmin, multer.single("avatar"), ChefsController.put);
 routes.delete("/", verifyAdmin, ChefsController.delete);
 
 
-routes.get("/", ChefsController.index);
+routes.get("/", verifyAdmin, ChefsController.index);
 routes.get("/:id", ChefsController.show);
 
 
