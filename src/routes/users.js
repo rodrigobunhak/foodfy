@@ -22,7 +22,7 @@ routes.post('/password-reset', SessionValidator.reset, SessionController.reset)
 
 // // user register UserController
 routes.get('/register', UserController.registerForm)
-routes.post('/register', UserValidator.post, UserController.post)
+routes.post('/register', UserValidator.post, UserController.register)
 
 routes.get('/show', UserValidator.show, UserController.show)
 routes.put('/', UserValidator.update, UserController.update)
@@ -36,7 +36,9 @@ routes.put('/', UserValidator.update, UserController.update)
 routes.get('/', verifyAdmin, UserController.list) //Mostrar a lista de usuários cadastrados
 routes.get('/create', verifyAdmin, UserController.formCreate) // Exibe formulário de cadastro do usuário
 routes.post('/', verifyAdmin, UserController.post) //Cadastrar um usuário
-// routes.put('/admin/users', UserController.put) // Editar um usuário
+// routes.put('/users', verifyAdmin, UserController.put) // Editar um usuário
 // routes.delete('/admin/users', UserController.delete) // Deletar um usuário
+routes.get("/:id/edit", verifyAdmin, UserController.edit);
+
 
 module.exports = routes

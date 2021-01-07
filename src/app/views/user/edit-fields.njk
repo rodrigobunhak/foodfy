@@ -32,7 +32,8 @@
           Comum
         </option>
 
-        <option value="true">
+        <option value="true"
+          {% if user.is_admin == true %} selected {% endif %}>
           Administrador
         </option>
 

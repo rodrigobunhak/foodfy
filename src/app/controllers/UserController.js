@@ -27,10 +27,17 @@ module.exports = {
 
     const userId = await User.create(req.body)
 
+    return res.redirect('/users')
+
+  },
+  async register(req, res) {
+
+    const userId = await User.register(req.body)
+
     req.session.userId = userId
     
+    return res.redirect('/')
 
-    return res.redirect('/users')
   },
   async update(req, res) {
 
@@ -55,6 +62,17 @@ module.exports = {
         error: "Algum erro aconteceu!"
       })
     }
+
+  },
+  async edit(req, res) {
+
+    const id = req.params.id
+
+    let user = await User.findOne({where: {id}})
+
+    return res.render('user/edit', {user})
+
+    
 
   }
 }

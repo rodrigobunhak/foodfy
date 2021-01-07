@@ -20,7 +20,7 @@ module.exports = {
 
   },
   async findOne(filters) {
-    
+
     try {
       
       let query = `SELECT * FROM users`
@@ -45,7 +45,7 @@ module.exports = {
     }
 
   },
-  async create(data) {
+  async register(data) {
 
     try {
       const query = `
@@ -63,6 +63,38 @@ module.exports = {
         data.name,
         data.email,
         passwordHash
+      ]
+
+      const result = await db.query(query, values)
+      return result.rows[0].id
+
+    }catch(err) {
+      console.error(err)
+    }
+
+  },
+  async create(data) {
+
+    try {
+      const query = `
+        INSERT INTO users (
+          name,
+          email,
+          is_admin,
+          password
+        ) VALUES ($1, $2, $3, $4)
+        RETURNING id
+    `
+    // //hash of password
+    // const passwordHash = await hash(data.password, 8)
+
+    
+
+      const values = [
+        data.name,
+        data.email,
+        data.is_admin,
+        data.password || '123'
       ]
 
       const result = await db.query(query, values)
