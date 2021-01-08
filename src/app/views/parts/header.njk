@@ -18,9 +18,10 @@
           <a href="/site/about">Sobre</a>
           <a href="/site/recipes">Receitas</a>
           <a href="/site/chefs">Chefs</a>
-          <a href="/recipes">Admin</a>
+          {{user}}
+          <a href="/recipes">Cadastros</a>
         {% endif %}
-
+{{user}}
         {% if type == 'admin' %}
           <a href="/recipes">Receitas</a>
           <a href="/chefs">Chefs</a>

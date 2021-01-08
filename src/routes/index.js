@@ -8,7 +8,6 @@ const recipes = require('./recipes')
 const chefs = require('./chefs')
 const users = require('./users')
 
-
 // HOME PAGE - LAST ADDED
 routes.get("/", HomeController.index)
 

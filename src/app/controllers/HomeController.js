@@ -3,6 +3,9 @@ const Recipe = require('../models/Recipe');
 module.exports = {
   async index(req, res) {
 
+    console.log(req.session)
+    
+
     let results = await Recipe.all()
     const recipes = results.rows
 
