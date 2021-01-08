@@ -15,13 +15,12 @@
     <nav id="navigation">
       <div class="navigation-main">
         {% if type == 'default' %}
-          <a href="/site/about">Sobre</a>
-          <a href="/site/recipes">Receitas</a>
-          <a href="/site/chefs">Chefs</a>
-          {{user}}
+          <a href="/home/about">Sobre</a>
+          <a href="/home/recipes">Receitas</a>
+          <a href="/home/chefs">Chefs</a>
           <a href="/recipes">Cadastros</a>
         {% endif %}
-{{user}}
+
         {% if type == 'admin' %}
           <a href="/recipes">Receitas</a>
           <a href="/chefs">Chefs</a>
