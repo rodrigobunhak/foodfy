@@ -1,7 +1,6 @@
 const express = require('express');
 const routes = express.Router();
 
-const site = require('../app/controllers/site');
 const HomeController = require('../app/controllers/HomeController');
 
 const home = require('./home')

@@ -1,0 +1,48 @@
+.container-login {
+    display: flex;
+    height: 100vh;
+}
+
+div.container-login .container-login-banner {
+    flex: 1;
+    background: linear-gradient(103deg, rgba(253,187,45,1) 0%, rgba(255,209,84,1) 22%, rgba(253,187,45,1) 100%);
+}
+
+div.container-login .container-login-content {
+    flex: 1;
+    background-color: rgb(247, 247, 247);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.container-login-content .box{
+    width: 80%;
+    max-width: 500px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.container-login-content .box .title {
+    background-color: bisque;
+    text-align: center;
+}
+
+.container-login-content .box .title h1 {
+    color: rgb(253,187,45);
+}
+
+.container-login-content .box .field {
+    background-color: rgb(197, 120, 26);
+}
+
+.container-login-content .box .button {
+    background-color: rgb(149, 185, 47);
+}
+
+.container-login-content .box .link {
+    background-color: rgb(61, 170, 221);
+}
+
+

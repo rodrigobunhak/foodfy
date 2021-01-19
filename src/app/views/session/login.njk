@@ -1,46 +1,31 @@
-{% extends "user/layout-login.njk" %}
+{% extends "layouts/login.njk" %}
 
-{% block content %}
+{% block title %}
 
+  <h1>Login</h1>
 
-<section class="login">
-  
-  <div class="a">
-    
-    
+{% endblock %}
 
-  </div>
+{% block field %}
 
-  <div class="b">
+  <form action="/users/login" method="POST" >
 
-    <div class="content">
+  {% include 'session/fields.njk' %}
 
-      <h1>Login</h1>
+  </form>
 
-      <form action="/users/login" method="POST" >
+{% endblock %}
 
-        {% include 'session/fields.njk' %}
-        <button class="button" type="submit">Entrar</button>
+{% block button %}
 
-        <div class="footer">
-          <ul>
-            <li>
-              <a href="/users/register">Registre-se</a>
-            </li>
-             <li>
-              <a href="/users/forgot-password">Recuperar senha</a>
-            </li>
-          </ul>
-        </div>
+  <button class="button" type="submit">Entrar</button>
 
-      </form>
+{% endblock %}
 
-      
+{% block link %}
 
-    </div>
-    
-  </div>
-      
-</section>
+  <a href="/users/register">Registre-se</a>
+
+  <a href="/users/forgot-password">Recuperar senha</a>
 
 {% endblock %}

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% block head %}
+      <title>Foodfy</title>
+    {% endblock head %}
+
+    {% include "parts/styles.njk" %}
+
+  </head>
+  <body>
+    {% include "parts/messages.njk" %}
+
+    <div class="container-login">
+
+      <div class="container-login-banner">
+
+      </div>
+
+      <div class="container-login-content">
+
+        <div class="box">
+          <div class="title">
+          {% block title %}
+        
+          {% endblock title %}
+          </div>
+
+          <div class="field">
+            {% block field %}
+          
+            {% endblock field %}
+          </div>
+
+          <div class="button">
+            {% block button %}
+          
+            {% endblock button %}
+          </div>
+
+          <div class="link">
+            {% block link %}
+          
+            {% endblock link %}
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+
+  <script src="/script.js"></script>
+  </body>
+</html>
