@@ -8,7 +8,7 @@
 
 {% block field %}
 
-  <form action="/users/login" method="POST" >
+  <form action="/users/login" method="POST" id="form-login">
 
   {% include 'session/fields.njk' %}
 
@@ -16,9 +16,9 @@
 
 {% endblock %}
 
-{% block button %}
+{% block buttons %}
 
-  <button class="button" type="submit">Entrar</button>
+  <button class="button" type="submit" form="form-login">Entrar</button>
 
 {% endblock %}
 
