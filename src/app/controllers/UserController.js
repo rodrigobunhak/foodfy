@@ -1,24 +1,29 @@
 const User = require('../models/User')
 
 module.exports = {
-  async list(req, res) {
+  async index(req, res) {
 
     const users = await User.all()
 
-    return res.render('user/list', { users })
+    return res.render('user/index', { users })
 
   },
-  formCreate(req, res) {
+  create(req, res) {
 
-    return res.render('user/form-create')
+    return res.render('user/create')
 
   },
-  registerForm(req, res) {
-    return res.render("user/register")
-  },
+  // registerForm(req, res) {
+  //   return res.render("user/register")
+  // },
   async show(req, res) {
 
-    const { user } = req
+    const id = req.params.id
+
+    user = await User.findOne({where: {id}})
+    
+    // check if user exist
+    if (!user) return res.send("User not found!")
 
     return res.render('user/show', { user })
     
@@ -30,35 +35,34 @@ module.exports = {
     return res.redirect('/users')
 
   },
-  async register(req, res) {
+  // async register(req, res) {
 
-    const userId = await User.register(req.body)
+  //   const userId = await User.register(req.body)
 
-    req.session.userId = userId
+  //   req.session.userId = userId
     
-    return res.redirect('/')
+  //   return res.redirect('/')
 
-  },
-  async update(req, res) {
+  // },
+  async put(req, res) {
 
     try {
       
-      const { user } = req
-      let { name, email } = req.body
+      const { id, name, email } = req.body
 
-      await User.update(user.id, {
+      await User.update(id, {
         name,
         email
       })
 
-      return res.render("user/index", {
+      return res.render(`user/show`, {
         user: req.body,
         success: "Conta atualizada com sucesso!"
       })
 
     } catch (error) {
       console.log(error)
-      return res.render("user/index", {
+      return res.render(`user/show`, {
         error: "Algum erro aconteceu!"
       })
     }
@@ -73,6 +77,17 @@ module.exports = {
     return res.render('user/edit', {user})
 
     
+
+  },
+  async delete(req, res) {
+
+    const id = req.body.id
+
+    let user = await User.findOne({where: {id}})
+
+    await User.delete(user.id)
+      
+    return res.redirect(`/users`)
 
   }
 }

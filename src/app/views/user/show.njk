@@ -1,35 +1,29 @@
-{% extends "layouts/login.njk" %}
+{% extends "layouts/admin.njk" %}
 
 {% block content %}
 
-<section class="user content form">
+<section class="content">
 
   <div class="content-header">
-
+    
     <div class="content-header-title">
-      <h1>Detalhes</h1>
+      <h2>Detalhe usuário</h2>
     </div>
 
     <div class="content-header-menu">
-      
-        <button class="button button-delete" form="delete-form">Deletar</button>
-        <button class="button" type="submit" form="update-form">Salvar</button>
-      
+      <button class="button">
+        <a href="/users/{{ user.id }}/edit">Editar usuário</a>
+      </button>
     </div>
 
   </div>
-  
-  <form method="POST" action="/users?_method=PUT" id="update-form">
-    
-    {% include 'user/fields.njk' %}
-    <input type="hidden" name="id" value="{{user.id}}">
 
-  </form>
+  <div class="content-user">
 
-  <form method="POST" action="/users?_method=DELETE" id="delete-form">
-    <input type="hidden" name="id" value="{{user.id}}">
-  </form>
-      
+    <h1>{{user.name}}</h1>
+
+  </div>
+
 </section>
 
 {% endblock %}

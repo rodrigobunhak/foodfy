@@ -126,5 +126,10 @@ module.exports = {
     await db.query(query)
     return
 
-  }
+  },
+  async delete(id) {
+    await db.query(`DELETE FROM users WHERE id = $1`, [id])
+
+    return
+  },
 }

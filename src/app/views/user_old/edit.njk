@@ -1,0 +1,27 @@
+{% extends "layout.njk" %}
+
+{% block content %}
+
+<section class="content form">
+  
+  <div class="content-header">
+    
+    <div class="content-header-title">
+      <h2>Editar Usuário</h2>
+    </div>
+
+    <div class="content-header-menu">
+      <button class="button" type="submit" form="create-form">Salvar usuário</button>
+    </div>
+
+  </div>
+
+  <form action="/users" method="POST" id="create-form">
+
+    {% include 'user/edit-fields.njk' %}
+
+  </form>
+      
+</section>
+
+{% endblock %}

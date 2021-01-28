@@ -1,11 +1,9 @@
-
 <div class="item">
-  <div>Nome complete</div>
+  <div><h3>Nome</h3></div>
   <div>
     <input 
       type="text" 
       name="name"
-      placeholder="Digite seu nome completo"
       value="{{ user.name }}"
     >
   </div>
@@ -17,35 +15,7 @@
     <input 
       type="text" 
       name="email"
-      placeholder="Digite seu email"
       value="{{ user.email }}"
-      onblur="Validade.apply(this, 'isEmail')"
     >
   </div>
 </div>
-
-<div class="item">
-  <div>Senha</div>
-  <div>
-    <input 
-      type="password" 
-      name="password"
-      placeholder="Digite sua senha"
-    >
-  </div>
-</div>
-
-{% if not user.id %}
-
-<div class="item">
-  <div>Repetir Senha</div>
-  <div>
-    <input 
-      type="password" 
-      name="passwordRepeat"
-      placeholder="Repita sua senha"
-    >
-  </div>
-</div>
-
-{% endif %}
