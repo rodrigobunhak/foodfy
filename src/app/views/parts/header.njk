@@ -30,11 +30,11 @@
 
       <div class="navigation-session">
         {% if not user %}
-          <a href="/users/login">Entrar</a>
+          <a href="/session/login">Entrar</a>
         {% endif %}
 
         {% if user %}
-          <form action="/users/logout" method="POST">
+          <form action="/session/logout" method="POST">
             <button type="submit">Sair</button>
           </form>
         {% endif %}

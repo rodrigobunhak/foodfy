@@ -7,6 +7,7 @@ const home = require('./home')
 const recipes = require('./recipes')
 const chefs = require('./chefs')
 const users = require('./users')
+const session = require('./session')
 
 // HOME PAGE - LAST ADDED
 routes.get("/", HomeController.index)
@@ -15,6 +16,7 @@ routes.use('/home', home)
 routes.use('/recipes', recipes)
 routes.use('/chefs', chefs)
 routes.use('/users', users)
+routes.use('/session', session)
 
 
 

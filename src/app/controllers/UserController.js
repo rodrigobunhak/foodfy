@@ -13,9 +13,6 @@ module.exports = {
     return res.render('user/create')
 
   },
-  // registerForm(req, res) {
-  //   return res.render("user/register")
-  // },
   async show(req, res) {
 
     const id = req.params.id
@@ -35,15 +32,6 @@ module.exports = {
     return res.redirect('/users')
 
   },
-  // async register(req, res) {
-
-  //   const userId = await User.register(req.body)
-
-  //   req.session.userId = userId
-    
-  //   return res.redirect('/')
-
-  // },
   async put(req, res) {
 
     try {

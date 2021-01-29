@@ -8,7 +8,7 @@
 
 {% block field %}
 
-  <form action="/session/login" method="POST" id="form-login">
+  <form action="/users/login" method="POST" id="form-login">
 
   {% include 'session/fields.njk' %}
 
@@ -24,8 +24,8 @@
 
 {% block link %}
 
-  <a href="/session/register">Registre-se</a>
+  <a href="/users/register">Registre-se</a>
 
-  <a href="/session/password-forgot">Recuperar senha</a>
+  <a href="/users/forgot-password">Recuperar senha</a>
 
 {% endblock %}

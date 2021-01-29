@@ -6,7 +6,16 @@ const mailer = require('../../lib/mailer')
 
 module.exports = {
   loginForm(req, res) {
-    return res.render("session/login")
+    return res.render("session/login", {login: true})
+  },
+  registerForm(req, res) {
+    return res.render("session/register", {register: true})
+  },
+  passwordForgotForm(req, res) {
+    return res.render("session/password-forgot")
+  },
+  passwordResetForm(req, res) {
+    return res.render("session/password-reset", {token: req.query.token, passwordReset: true})
   },
   login(req, res) {
 
@@ -15,15 +24,21 @@ module.exports = {
     return res.redirect("/")
 
   },
+  async register(req, res) {
+
+    const userId = await User.register(req.body)
+
+    req.session.userId = userId
+    
+    return res.redirect('/')
+
+  },
   logout(req, res) {
     
       req.session.destroy()
   
-      return res.redirect("/")
+      return res.render("session/login", {login: true})
 
-  },
-  forgotForm(req, res) {
-    return res.render("session/forgot-password")
   },
   async forgot(req, res) {
       const user = req.user
@@ -49,7 +64,7 @@ module.exports = {
           html: `<h2>Perdeu a chave?</h2>
           <p>Não se preocupe, clique no link abaixo para resuperar sua senha</p>
           <p>
-            <a href="http://localhost:3000/users/password-reset?token=${token}" target="_blank">
+            <a href="http://localhost:3000/session/password-reset?token=${token}" target="_blank">
             RECUPERAR SENHA
             </a>
           </p>
@@ -57,18 +72,15 @@ module.exports = {
         })
 
         // notification user about token
-        return res.render("session/forgot-password", {
+        return res.render("session/password-forgot", {
           success: "Verifique seu email para resetar sua senha!"
         })
       } catch (error) {
         console.error(error)
-        return res.render("session/forgot-password", {
+        return res.render("session/password-forgot", {
           error: "Ocorreu um erro no envio do email, tente novamente."
         })
       }
-  },
-  resetForm(req, res) {
-    return res.render("session/password-reset", {token: req.query.token})
   },
   async reset(req, res) {
 
@@ -90,7 +102,8 @@ module.exports = {
       // alert user that your password has been updated
       return res.render("session/login", {
         user: req.body,
-        success: "Senha atualizada! Faça o seu login."
+        success: "Senha atualizada! Faça o seu login.",
+        login: true
       })
 
     } catch (error) {

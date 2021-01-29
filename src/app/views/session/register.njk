@@ -2,13 +2,13 @@
 
 {% block title %}
 
-  <h1>Nova senha</h1>
+  <h1>Registre-se</h1>
 
 {% endblock %}
 
 {% block field %}
 
-  <form action="/session/password-reset" method="POST" id="form-reset">
+  <form action="/session/register" method="POST" id="form-register">
 
     {% include 'session/fields.njk' %}
 
@@ -18,7 +18,7 @@
 
 {% block buttons %}
 
-  <button class="button" type="submit" form="form-reset">Nova senha</button>
+  <button class="button" type="submit" form="form-register">Salvar</button>
 
 {% endblock %}
 
