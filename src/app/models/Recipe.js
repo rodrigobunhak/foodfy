@@ -11,22 +11,24 @@ module.exports = {
     ORDER BY created_at DESC`)
     
   },  
-  create(data) {
+  create(data, user) {
 
     try {
       const query = `
       INSERT INTO recipes (
         title,
+        user_id,
         chef_id,
         ingredients,
         preparation,
         information
-      ) VALUES ($1, $2, $3, $4, $5)
+      ) VALUES ($1, $2, $3, $4, $5, $6)
       RETURNING id
     `
 
     const values = [
       data.title,
+      data.user,
       data.chef,
       data.ingredients,
       data.preparation,
@@ -76,31 +78,35 @@ module.exports = {
       callback(results.rows)
     })
   },
-  update(data, callback) {
+  update(data) {
 
-    const query = `
-    UPDATE recipes SET
-      title=($1),
-      chef_id=($2),
-      ingredients=($3),
-      preparation=($4),
-      information=($5)
-    WHERE id = $6
-    `
-    const values = [
-      data.title,
-      data.chef,
-      data.ingredients,
-      data.preparation,
-      data.information,
-      data.id
-    ]
+    try {
+      const query = `
+      UPDATE recipes SET
+        title=($1),
+        user_id=($2),
+        chef_id=($3),
+        ingredients=($4),
+        preparation=($5),
+        information=($6)
+      WHERE id = $7
+      `
+      const values = [
+        data.title,
+        data.user,
+        data.chef,
+        data.ingredients,
+        data.preparation,
+        data.information,
+        data.id
+      ]
 
-    db.query(query, values, function(err, results) {
-      if(err) throw `Database Error: ${err}`
+      return db.query(query, values)
 
-      callback()
-    })
+    } catch (error) {
+      console.error(err)
+    }
+
   },
   delete(id) {
     return db.query(`DELETE FROM recipes WHERE id = $1`, [id])

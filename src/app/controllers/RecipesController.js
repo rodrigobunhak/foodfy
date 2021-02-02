@@ -65,12 +65,22 @@ module.exports = {
       }
     }
 
+    const {removedFiles, title, chef, ingredients, preparation, information} = req.body
+    const recipe = {
+      removed_files: removedFiles,
+      title,
+      user: req.session.userId,
+      chef,
+      ingredients,
+      preparation,
+      information
+    }
     
     if (req.files.length == 0) {
       return res.send('Please, send at least one image')
     }
 
-    const results = await Recipe.create(req.body)
+    const results = await Recipe.create(recipe)
     const recipeId = results.rows[0].id
 
     // Promise Array
@@ -123,6 +133,18 @@ module.exports = {
       }
     }
 
+    const {removedFiles, title, chef, ingredients, preparation, information, id} = req.body
+    const recipe = {
+      removed_files: removedFiles,
+      title,
+      user: req.session.userId,
+      chef,
+      ingredients,
+      preparation,
+      information,
+      id,
+    }
+
     if (req.files.length != 0) {
       
       // Promise Array
@@ -138,6 +160,8 @@ module.exports = {
       })
     }
 
+
+
     if (req.body.removed_files) {
       const removedFiles = req.body.removed_files.split(",")
       const lastIndex = removedFiles.length - 1
@@ -150,9 +174,10 @@ module.exports = {
       
     }
 
-    Recipe.update(req.body, function() {
-      return res.redirect(`recipes/${req.body.id}`)
-    })
+    await Recipe.update(recipe)
+
+    return res.redirect(`/recipes/${recipe.id}`)
+
   },
   async delete(req, res) {
     
