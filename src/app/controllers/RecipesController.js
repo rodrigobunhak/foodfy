@@ -180,8 +180,22 @@ module.exports = {
 
   },
   async delete(req, res) {
+
+    const result = await Recipe.files(req.body.id)
+    const recipeFiles = result.rows
+
+    const removedRecipeFilesPromise = recipeFiles.map(file => {
+      RecipeFiles.delete(file.id)
+    })
+
+    const removedFilesPromise = recipeFiles.map(file => {
+      File.delete(file.file_id)
+    })
+
+    await Promise.all([removedRecipeFilesPromise, removedFilesPromise])
     
-    Recipe.delete(req.body.id)
+    await Recipe.delete(req.body.id)
+    
     return res.redirect(`recipes`)
     
   }
