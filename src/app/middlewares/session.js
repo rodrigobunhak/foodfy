@@ -6,10 +6,20 @@ async function verifyAdmin(req, res, next) {
   
   const user = await User.findOne({where: {id}})
   
-  if(!user) return res.send('Access Denied, user not autenticad')
+  if(!user) {
+
+    const message = `Acesso negado! <br> Usuário não autenticado. <br> =/ `
+
+    return res.render('access-denied/access-denied', {message})
+
+  }
 
   if(user.is_admin != true) {
-    return res.send('Access Denied')
+    // return res.send('Access Denied')
+
+    const message = 'Acesso negado! <br> Somente usuários administradores. <br> =/'
+
+    return res.render('access-denied/access-denied', {message})
   }
   
   next()
