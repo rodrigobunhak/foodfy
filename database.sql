@@ -87,3 +87,17 @@ ALTER TABLE "recipe_files" ADD FOREIGN KEY ("recipe_id") REFERENCES "recipes" ("
 ALTER TABLE "recipe_files" ADD FOREIGN KEY ("file_id") REFERENCES "files" ("id") ON DELETE CASCADE;
 
 ALTER TABLE "recipes" ADD FOREIGN KEY ("user_id") REFERENCES "users" ("id") ON DELETE CASCADE;
+
+-- create initial user
+-- senha: admin
+INSERT INTO users (
+	name,
+  email,
+  password,
+  is_admin
+) VALUES (
+  'Admin',
+  'admin@admin.com',
+  '$2a$08$jvf6nS4uQXADXzwmjVJAGulFL3YAqYZQUKIikqjTsayLN.SiOYB76',
+  true
+)

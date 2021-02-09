@@ -137,6 +137,37 @@ p, h1, h2, h3 h4, h5, h6 {
     height: auto;
 }
 
+.form .item input[type='radio'] {
+    height: auto;
+    width: auto;
+}
+
+input[type='radio'] {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+  
+    border-radius: 50%;
+    width: 16px;
+    height: 16px;
+  
+    border: 1px solid #999;
+    transition: 0.2s all linear;
+    margin-right: 5px;
+  
+    position: relative;
+    top: 4px;
+  }
+  
+input[type='radio']:checked {
+    /* border: 1px solid black; */
+    background-color: var(--yellow-dark);
+}
+
+label {
+    margin-right: 20px;
+}
+
 .form .item input::placeholder {
     font-size: 16px;
     font-weight: normal;

@@ -29,6 +29,8 @@ module.exports = {
 
     const userId = await User.create(req.body)
 
+    console.log(req.body)
+
     return res.redirect('/users')
 
   },

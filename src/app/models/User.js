@@ -80,21 +80,19 @@ module.exports = {
         INSERT INTO users (
           name,
           email,
-          is_admin,
-          password
+          password,
+          is_admin
         ) VALUES ($1, $2, $3, $4)
         RETURNING id
     `
-    // //hash of password
-    // const passwordHash = await hash(data.password, 8)
-
-    
+      // //hash of password
+      const passwordHash = await hash(data.password, 8)
 
       const values = [
         data.name,
         data.email,
-        data.is_admin,
-        data.password || '123'
+        passwordHash,
+        data.isAdmin,
       ]
 
       const result = await db.query(query, values)
