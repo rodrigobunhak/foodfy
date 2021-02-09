@@ -3,6 +3,12 @@
   flex-direction: column;
 }
 
+.content-recipe span {
+  font-size: 28px;
+  color: var(--font-color-grey-light);
+  font-weight: 300;
+}
+
 .content-recipe .title {
   margin: 20px 0;
   font-size: 18px;

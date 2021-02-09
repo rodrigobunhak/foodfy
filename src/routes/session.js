@@ -1,26 +1,24 @@
 const express = require('express');
 const routes = express.Router();
 
+// controllers
 const SessionController = require('../app/controllers/SessionController')
-const UserController = require('../app/controllers/UserController')
 
+// validators
 const UserValidator = require('../app/validators/users')
 const SessionValidator = require('../app/validators/session')
 
-const { verifyAdmin } = require('../app/middlewares/session')
+routes.get('/login', SessionController.loginForm) // ok
+routes.get('/register', SessionController.registerForm) // ok
+routes.get('/password-forgot', SessionController.passwordForgotForm) // ok
+routes.get('/password-reset', SessionController.passwordResetForm) // ok
 
-// // // login/logout
-routes.get('/login', SessionController.loginForm)
-routes.get('/register', SessionController.registerForm)
-routes.get('/password-forgot', SessionController.passwordForgotForm)
-routes.get('/password-reset', SessionController.passwordResetForm)
+routes.post('/login',SessionValidator.login, SessionController.login) // ok
+routes.post('/logout', SessionController.logout) // ok
 
-routes.post('/login',SessionValidator.login, SessionController.login)
-routes.post('/logout', SessionController.logout)
+routes.post('/register', UserValidator.post, SessionController.register) // ok
 
-routes.post('/register', UserValidator.post, SessionController.register)
-
-routes.post('/password-forgot', SessionValidator.forgot, SessionController.forgot)
-routes.post('/password-reset', SessionValidator.reset, SessionController.reset)
+routes.post('/password-forgot', SessionValidator.forgot, SessionController.forgot) // ok
+routes.post('/password-reset', SessionValidator.reset, SessionController.reset) // ok
 
 module.exports = routes

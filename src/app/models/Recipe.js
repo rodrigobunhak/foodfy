@@ -54,6 +54,7 @@ module.exports = {
       }
     )
   },
+  
   findBy(filter, callback) {
     
     db.query(`

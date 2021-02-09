@@ -1,9 +1,21 @@
 const express = require('express');
 const routes = express.Router();
 
+// middlewares
+const { verifyAdmin } = require('../app/middlewares/session')
+
+// controllers
 const UserController = require('../app/controllers/UserController')
 
-const { verifyAdmin } = require('../app/middlewares/session')
+// Rotas que o administrador irá acessar para gerenciar usuários
+routes.get('/', verifyAdmin, UserController.index) // ok
+routes.get('/create', verifyAdmin, UserController.create) // ok
+routes.get('/:id', verifyAdmin, UserController.show) // ok
+routes.get('/:id/edit', verifyAdmin, UserController.edit) // ok
+
+routes.post('/', verifyAdmin, UserController.post) // ok
+routes.put('/', verifyAdmin, UserController.put) // ok
+routes.delete('/', verifyAdmin, UserController.delete) // ok
 
 
 // // Rotas de perfil de um usuário logado
@@ -12,15 +24,7 @@ const { verifyAdmin } = require('../app/middlewares/session')
 
 
 
-// // Rotas que o administrador irá acessar para gerenciar usuários
-routes.get('/create', UserController.create)
-routes.get('/:id/edit', UserController.edit)
-routes.get('/', UserController.index)
-routes.get('/:id', UserController.show)
 
-routes.post('/', UserController.post)
-routes.put('/', UserController.put)
-routes.delete('/', UserController.delete)
 
 
 

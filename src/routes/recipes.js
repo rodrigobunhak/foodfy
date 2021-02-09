@@ -1,22 +1,23 @@
 const express = require('express');
 const routes = express.Router();
-const multer = require('../app/middlewares/multer')
 
+// middlewares
+const multer = require('../app/middlewares/multer')
+const { verifyAdmin } = require('../app/middlewares/session')
+
+// controllers
 const RecipesController = require('../app/controllers/RecipesController');
 const SearchController = require('../app/controllers/SearchController');
 
-const { verifyAdmin } = require('../app/middlewares/session')
+routes.get("/search", SearchController.index) // ok
 
-// SEARCH
-routes.get("/search", SearchController.index)
+routes.get("/", verifyAdmin, RecipesController.index); // ok
+routes.get("/create", verifyAdmin, RecipesController.create); // ok
+routes.get("/:id", verifyAdmin, RecipesController.show); // ok
+routes.get("/:id/edit", verifyAdmin, RecipesController.edit); // ok
 
-// RECIPES
-routes.get("/", verifyAdmin, RecipesController.index);
-routes.get("/create", RecipesController.create); 
-routes.get("/:id", RecipesController.show);
-routes.get("/:id/edit", RecipesController.edit);
-routes.post("/", multer.array("photos", 5), RecipesController.post);
-routes.put("/", multer.array("photos", 5), RecipesController.put);
-routes.delete("/", RecipesController.delete);
+routes.post("/", multer.array("photos", 5), RecipesController.post); // ok
+routes.put("/", multer.array("photos", 5), RecipesController.put); // ok
+routes.delete("/", RecipesController.delete); // ok
 
 module.exports = routes

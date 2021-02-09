@@ -10,12 +10,16 @@ module.exports = {
 
       const { filter } = req.query
 
-      if (!filter) return res.redirect("/site/recipes")
+      if (!filter) return res.redirect("/home/recipes")
 
       params.filter = filter
 
       results = await Recipe.search(params)
       const recipes = results.rows
+
+      const mensagem = `Nenhuma receita encontrada com o termo: ${filter}.`
+
+      if (recipes.length == 0) return res.render('home/recipes', {mensagem, filter})
 
       async function getImage(recipeId) {
 

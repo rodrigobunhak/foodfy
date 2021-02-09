@@ -47,6 +47,9 @@
       id="admin_true"
       name="isAdmin"
       value="true"
+      {% if user.is_admin == true %}
+        checked
+      {% endif %}
     >
     <label for="admin_true">Sim</label>
     <input 
@@ -54,7 +57,9 @@
       id="admin_false"
       name="isAdmin"
       value="false"
-      checked
+      {% if user.is_admin != true %}
+        checked
+      {% endif %}
     >
     <label for="admin_false">Não</label>
 </div>

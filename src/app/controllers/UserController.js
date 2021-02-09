@@ -29,8 +29,6 @@ module.exports = {
 
     const userId = await User.create(req.body)
 
-    console.log(req.body)
-
     return res.redirect('/users')
 
   },
@@ -65,8 +63,6 @@ module.exports = {
     let user = await User.findOne({where: {id}})
 
     return res.render('user/edit', {user})
-
-    
 
   },
   async delete(req, res) {

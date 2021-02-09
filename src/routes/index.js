@@ -9,26 +9,12 @@ const chefs = require('./chefs')
 const users = require('./users')
 const session = require('./session')
 
-// HOME PAGE - LAST ADDED
-routes.get("/", HomeController.index)
+routes.get("/", HomeController.index) // ok
 
-routes.use('/home', home)
-routes.use('/recipes', recipes)
-routes.use('/chefs', chefs)
-routes.use('/users', users)
-routes.use('/session', session)
-
-
-
-
-
-
-
-// routes.get("/site/about", site.about)
-// routes.get("/site/recipes", site.recipes)
-// routes.get("/site/chefs", site.chefs)
-// routes.get("/site/recipes/:id", site.show)
-
-
+routes.use('/home', home) // ok
+routes.use('/recipes', recipes) // ok
+routes.use('/chefs', chefs) // ok
+routes.use('/users', users) // ok 
+routes.use('/session', session) // ok
 
 module.exports = routes

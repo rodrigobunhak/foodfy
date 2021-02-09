@@ -21,6 +21,14 @@
   <div class="content-user">
 
     <h1>{{user.name}}</h1>
+    
+    {% if user.is_admin == true %}
+    Administrador
+    {% endif %}
+
+    <h3>{{user.email}}</h3>
+
+    
 
   </div>
 

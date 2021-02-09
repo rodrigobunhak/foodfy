@@ -1,22 +1,20 @@
 const express = require('express');
 const routes = express.Router();
+
+// middlewares
 const multer = require('../app/middlewares/multer')
-
-const ChefsController = require('../app/controllers/ChefsController');
-
 const { verifyAdmin } = require('../app/middlewares/session')
 
-// admin
-routes.get("/create", verifyAdmin, ChefsController.create);
-routes.get("/:id/edit", verifyAdmin, ChefsController.edit);
-routes.post("/", verifyAdmin, multer.single("avatar"), ChefsController.post);
-routes.put("/", verifyAdmin, multer.single("avatar"), ChefsController.put);
-routes.delete("/", verifyAdmin, ChefsController.delete);
+// controllers
+const ChefsController = require('../app/controllers/ChefsController');
 
+routes.get("/", verifyAdmin, ChefsController.index); // ok
+routes.get("/create", verifyAdmin, ChefsController.create); // ok
+routes.get("/:id", verifyAdmin, ChefsController.show); // ok
+routes.get("/:id/edit", verifyAdmin, ChefsController.edit); // ok
 
-routes.get("/", verifyAdmin, ChefsController.index);
-routes.get("/:id", ChefsController.show);
-
-
+routes.post("/", verifyAdmin, multer.single("avatar"), ChefsController.post); // ok
+routes.put("/", verifyAdmin, multer.single("avatar"), ChefsController.put); // ok
+routes.delete("/", verifyAdmin, ChefsController.delete); // ok
 
 module.exports = routes
