@@ -1,12 +1,15 @@
 {% macro content(type, user) %}
 
+
+{% if type == 'admin' %}
+<header class="header header-admin">
+{% else %}
 <header class="header">
+{% endif %}
 
   <div class="menu">
 
-    <div class="logo">
-      <img src="/assets/logo.png" alt="logo">
-    </div>
+    
 
     <div class="name">
       <a href="/">FoodFy</a>
@@ -47,34 +50,40 @@
 
   <div class="banner">
 
-      {% if type == 'default' %}
+      {# {% if type == 'default' %} #}
         <div class="title">
           <h1>As melhores receitas</h1>
         </div>
-      {% endif %}
+      {# {% endif %} #}
 
-      {% if type == 'admin' %}
+      {# {% if type == 'admin' %}
         <div class="title">
           <h1>Administração</h1>
         </div>
-      {% endif %}
+      {% endif %} #}
 
-      {% if type == 'default' %}
+      {# {% if type == 'default' %} #}
         <div class="subtitle">
           <p>Aprenda a construir os melhores pratos
           com receitas criadas por profissionais
           do mundo inteiro.</p>
         </div>
-      {% endif %}
+      {# {% endif %} #}
 
-      {% if type == 'admin' %}
+      {# {% if type == 'admin' %}
         <div class="subtitle">
           <p>Todo cuidado é pouco.</p>
         </div>
-      {% endif %}
+      {% endif %} #}
+
+     
 
       <div class="icon">
+      {% if type == 'admin' %}
+        <img src="/assets/knife-admin.png" alt="logo">
+      {% else %}
         <img src="/assets/knife.png" alt="logo">
+      {% endif %}
       </div>
 
   </div>
