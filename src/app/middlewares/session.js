@@ -1,4 +1,6 @@
 const User = require('../models/User')
+const Recipe = require('../models/Recipe');
+
 
 async function verifyAdmin(req, res, next) {
 
@@ -14,6 +16,32 @@ async function verifyAdmin(req, res, next) {
     return res.render('access-denied/access-denied-admin', {message})
   }
   
+  next()
+}
+
+async function verifyUserCreator(req, res, next) {
+
+  const id = req.session.userId
+
+  const message = `Acesso negado! <br> Usuário não é o proprietário. <br> =/ `
+  
+  const user = await User.findOne({where: {id}})
+
+  const results = await Recipe.find(req.params.id)
+  const recipe = results.rows[0]
+
+  if(user.is_admin == true) {
+    
+    next()
+
+  }
+
+  if(user.id != recipe.user_id) {
+
+    return res.render('access-denied/access-denied-admin', {message})
+
+  }
+
   next()
 }
 
@@ -38,5 +66,6 @@ async function verifyUserAutenticad(req, res, next) {
 
 module.exports = {
   verifyAdmin,
-  verifyUserAutenticad
+  verifyUserAutenticad,
+  verifyUserCreator
 }

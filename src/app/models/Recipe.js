@@ -42,18 +42,24 @@ module.exports = {
 
     
   },
-  find(id, callback) {
-    db.query(`
+  find(id) {
+    // db.query(`
+    //   SELECT recipes.*, chefs.name AS chef_name, users.name AS user_name
+    //   FROM recipes
+    //   LEFT JOIN chefs ON (recipes.chef_id = chefs.id)
+    //   LEFT JOIN users ON (recipes.user_id = users.id)
+    //   WHERE recipes.id = $1`, [id], function(err, results) {
+    //     if(err) throw `Database Error: ${err}`
+
+    //     callback(results.rows[0])
+    //   }
+    // )
+    return db.query(`
       SELECT recipes.*, chefs.name AS chef_name, users.name AS user_name
       FROM recipes
       LEFT JOIN chefs ON (recipes.chef_id = chefs.id)
       LEFT JOIN users ON (recipes.user_id = users.id)
-      WHERE recipes.id = $1`, [id], function(err, results) {
-        if(err) throw `Database Error: ${err}`
-
-        callback(results.rows[0])
-      }
-    )
+      WHERE recipes.id = $1`, [id])
   },
   
   findBy(filter, callback) {
@@ -73,12 +79,15 @@ module.exports = {
     }
     )
   },
-  chefSelectOptions(callback) {
-    db.query(`SELECT name, id FROM chefs`, function(err, results) {
-      if(err) throw `Database error: ${err}`
+  chefSelectOptions() {
 
-      callback(results.rows)
-    })
+    return db.query(`SELECT name, id FROM chefs`)
+
+    // db.query(`SELECT name, id FROM chefs`, function(err, results) {
+    //   if(err) throw `Database error: ${err}`
+
+    //   callback(results.rows)
+    // })
   },
   update(data) {
 

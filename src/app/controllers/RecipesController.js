@@ -1,7 +1,6 @@
 const Recipe = require('../models/Recipe');
 const File = require('../models/File');
 const RecipeFiles = require('../models/RecipeFiles');
-const { files } = require('../models/Recipe');
 
 module.exports = {
   async index(req, res) {
@@ -30,21 +29,23 @@ module.exports = {
     return res.render("recipe/index", {recipes: allRecipes})
 
   },
-  create(req, res) {
+  async create(req, res) {
     
+    results = await Recipe.chefSelectOptions()
+    const options = results.rows
 
-    Recipe.chefSelectOptions(function(options) {
-      return res.render('recipe/create',{ chefOptions: options })
-    })
+    return res.render('recipe/create',{ chefOptions: options })
 
   },
-  show(req, res) {
+  async show(req, res) {
 
-    Recipe.find(req.params.id, async function(recipe) {
-      if (!recipe) return res.send("Recipe not found!")
+    let results = await Recipe.find(req.params.id)
+    const recipe = results.rows[0]
+    
+    if (!recipe) return res.send("Recipe not found!")
 
       // get images
-      let results = await Recipe.files(recipe.id)
+      results = await Recipe.files(recipe.id)
       let files = results.rows
       files = files.map(file => ({
         ...file,
@@ -52,7 +53,20 @@ module.exports = {
       }))
 
       return res.render('recipe/detalhe', { recipe, files })
-    })
+    
+    // Recipe.find(req.params.id, async function(recipe) {
+    //   if (!recipe) return res.send("Recipe not found!")
+
+    //   // get images
+    //   let results = await Recipe.files(recipe.id)
+    //   let files = results.rows
+    //   files = files.map(file => ({
+    //     ...file,
+    //     src: `${req.protocol}://${req.headers.host}${file.path.replace("public", "")}`
+    //   }))
+
+    //   return res.render('recipe/detalhe', { recipe, files })
+    // })
 
   },
   async post(req, res) {
@@ -102,24 +116,21 @@ module.exports = {
   },
   async edit(req, res) {
 
-    Recipe.find(req.params.id, function(recipe) {
-      if (!recipe) return res.send("Recipe not found!")
+    let results = await Recipe.find(req.params.id)
+    const recipe = results.rows[0]
 
-      Recipe.chefSelectOptions(async function(options) {
+    results = await Recipe.chefSelectOptions()
+    const options = results.rows
 
-        // get images
-        let results = await Recipe.files(recipe.id)
-        let files = results.rows
-        files = files.map(file => ({
-          ...file,
-          src: `${req.protocol}://${req.headers.host}${file.path.replace("public", "")}`
-        }))
+    // get images
+    results = await Recipe.files(recipe.id)
+    let files = results.rows
+    files = files.map(file => ({
+      ...file,
+      src: `${req.protocol}://${req.headers.host}${file.path.replace("public", "")}`
+    }))
 
-        return res.render('recipe/edit',{ recipe, chefOptions: options, files })
-      })
-    })
-
-    
+    return res.render('recipe/edit',{ recipe, chefOptions: options, files })
 
   },
   async put(req, res) {
