@@ -17,23 +17,25 @@
     display: flex;
     flex-direction: row;
     align-items: baseline;
+    margin-top: 10px;
 }
 
-.header .menu .logo {
+/* .header .menu .logo {
     padding: 0 0 0 30px;
-}
+} */
 
-.header .menu .logo img {
+/* .header .menu .logo img {
     width: 50px;
-}
+} */
 
 .header .menu .name {
-    padding: 0 15px;
+    padding: 0 15px 0 40px;
 }
 
 .header .menu .name a {
-    font-family: 'Sriracha', cursive;
-    font-size: 42px;
+    font-family: 'Indie Flower', cursive;
+    font-weight: 900;
+    font-size: 48px;
     color: var(--font-color);
 }
 
@@ -66,17 +68,20 @@ nav a {
 
 .header-admin nav a {
     color: var(--yellow-light);
+
 }
 
 nav a.active,
 nav a:hover {
     font-weight: bold;
+
 }
 
 .header-admin nav a.active,
 .header-admin nav a:hover {
     font-weight: bold;
     color: var(--yellow-light);
+
 }
 
 nav .navigation-session {

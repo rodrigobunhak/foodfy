@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Sriracha&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap');
 
 :root {
     --yellow-dark: #fdbb2d;
@@ -20,6 +21,7 @@
     text-decoration: none;
     list-style-type: none;
     border: none;
+    font-family: 'Roboto', sans-serif;
 }
 
 html,
@@ -73,6 +75,7 @@ p, h1, h2, h3 h4, h5, h6 {
     
     padding: 10px;
     border-radius: 4px;
+    border: 1px solid rgb(218, 168, 5);
 
     background: var(--yellow-light);
     color: var(--font-color-suave);
@@ -93,17 +96,29 @@ p, h1, h2, h3 h4, h5, h6 {
 }
 
 .button a {
-    color: var(--font-color-suave);
+    /* color: var(--font-color-suave); */
+    color: rgb(128, 98, 0);
+    font-weight: 400;
 }
 
 .button-delete {
     background: #e0e0e0;
+    border: 1px solid rgb(209, 209, 209);
+    transition: 300ms;
+}
+
+.button-delete a {
     color: #9b9b9b;
+    transition: 300ms;
 }
 
 .button-delete:hover {
     background: #DC4747;
-    color: var(--font-color-suave);
+    border: 1px solid rgb(185, 36, 36);
+}
+
+.button-delete:hover a {
+    color: rgb(133, 20, 20);
 }
 
 /* Form stantard */
