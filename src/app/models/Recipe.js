@@ -42,24 +42,17 @@ module.exports = {
 
     
   },
-  find(id) {
-    // db.query(`
-    //   SELECT recipes.*, chefs.name AS chef_name, users.name AS user_name
-    //   FROM recipes
-    //   LEFT JOIN chefs ON (recipes.chef_id = chefs.id)
-    //   LEFT JOIN users ON (recipes.user_id = users.id)
-    //   WHERE recipes.id = $1`, [id], function(err, results) {
-    //     if(err) throw `Database Error: ${err}`
+  async find(id) {
 
-    //     callback(results.rows[0])
-    //   }
-    // )
-    return db.query(`
+    const result = await db.query(`
       SELECT recipes.*, chefs.name AS chef_name, users.name AS user_name
       FROM recipes
       LEFT JOIN chefs ON (recipes.chef_id = chefs.id)
       LEFT JOIN users ON (recipes.user_id = users.id)
       WHERE recipes.id = $1`, [id])
+
+    return result.rows[0]
+    
   },
   
   findBy(filter, callback) {

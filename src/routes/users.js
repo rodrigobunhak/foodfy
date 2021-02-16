@@ -5,7 +5,13 @@ const routes = express.Router();
 const { verifyAdmin, verifyUserAutenticad } = require('../app/middlewares/session')
 
 // controllers
-const UserController = require('../app/controllers/UserController')
+const UserController = require('../app/controllers/UserController');
+const ProfileController = require('../app/controllers/ProfileController');
+
+
+// Rotas de perfil de um usuário logado
+routes.get('/profile', verifyUserAutenticad, ProfileController.index) // Mostrar o formulário com dados do usuário logado
+routes.put('/profile', verifyUserAutenticad, ProfileController.put)// Editar o usuário logado
 
 // Rotas que o administrador irá acessar para gerenciar usuários
 routes.get('/', verifyUserAutenticad, verifyAdmin, UserController.index) // ok
@@ -18,9 +24,7 @@ routes.put('/', verifyUserAutenticad, verifyAdmin, UserController.put) // ok
 routes.delete('/', verifyUserAutenticad, verifyAdmin, UserController.delete) // ok
 
 
-// // Rotas de perfil de um usuário logado
-// routes.get('/', verifyAdmin, ProfileController.index) // Mostrar o formulário com dados do usuário logado
-// routes.put('/admin/profile', ProfileController.put)// Editar o usuário logado
+
 
 
 

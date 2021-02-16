@@ -39,9 +39,8 @@ module.exports = {
   },
   async show(req, res) {
 
-    let results = await Recipe.find(req.params.id)
-    const recipe = results.rows[0]
-    
+    const recipe = await Recipe.find(req.params.id)
+
     if (!recipe) return res.send("Recipe not found!")
 
       // get images
@@ -54,20 +53,6 @@ module.exports = {
 
       return res.render('recipe/detalhe', { recipe, files })
     
-    // Recipe.find(req.params.id, async function(recipe) {
-    //   if (!recipe) return res.send("Recipe not found!")
-
-    //   // get images
-    //   let results = await Recipe.files(recipe.id)
-    //   let files = results.rows
-    //   files = files.map(file => ({
-    //     ...file,
-    //     src: `${req.protocol}://${req.headers.host}${file.path.replace("public", "")}`
-    //   }))
-
-    //   return res.render('recipe/detalhe', { recipe, files })
-    // })
-
   },
   async post(req, res) {
 
@@ -116,8 +101,7 @@ module.exports = {
   },
   async edit(req, res) {
 
-    let results = await Recipe.find(req.params.id)
-    const recipe = results.rows[0]
+    const recipe = await Recipe.find(req.params.id)
 
     results = await Recipe.chefSelectOptions()
     const options = results.rows

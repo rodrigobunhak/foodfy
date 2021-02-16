@@ -63,7 +63,7 @@ nav a {
     text-decoration: none;
     display: flex;
     justify-content: center;
-    min-width: 70px;
+    min-width: 80px;
 }
 
 .header-admin nav a {
