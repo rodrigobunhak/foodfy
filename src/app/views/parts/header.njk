@@ -20,7 +20,7 @@
           <a href="/home/about">Sobre</a>
           <a href="/home/recipes">Receitas</a>
           <a href="/home/chefs">Chefs</a>
-          {% if session or session.isAdmin %}
+          {% if session.userId or session.isAdmin %}
             <a href="/recipes">Cadastros</a>
           {% endif %}
         {% endif %}
@@ -37,11 +37,11 @@
       </div>
 
       <div class="navigation-session">
-        {% if not session %}
+        {% if not session.userId %}
           <a href="/session/login">Entrar</a>
         {% endif %}
 
-        {% if session %}
+        {% if session.userId %}
           <form action="/session/logout" method="POST">
             <button type="submit">Sair</button>
           </form>
@@ -54,7 +54,6 @@
   </div>
 
   <div class="banner">
-
 
       <div class="title">
         <h1>As melhores receitas</h1>
