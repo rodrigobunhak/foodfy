@@ -19,7 +19,8 @@ module.exports = {
   },
   login(req, res) {
 
-    req.session.userId = req.user.id
+    req.session.userId = req.user.id;
+    req.session.isAdmin = req.user.is_admin;
 
     return res.redirect("/")
 
@@ -29,6 +30,7 @@ module.exports = {
     const userId = await User.register(req.body)
 
     req.session.userId = userId
+    req.session.isAdmin = req.user.is_admin;
     
     return res.redirect('/')
 

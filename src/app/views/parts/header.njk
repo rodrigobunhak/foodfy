@@ -1,4 +1,4 @@
-{% macro content(type, user) %}
+{% macro content(type, session) %}
 
 
 {% if type == 'admin' %}
@@ -9,35 +9,39 @@
 
   <div class="menu">
 
-    
-
     <div class="name">
       <a href="/">FoodFy</a>
     </div>
 
     <nav id="navigation">
       <div class="navigation-main">
+
         {% if type == 'default' %}
           <a href="/home/about">Sobre</a>
           <a href="/home/recipes">Receitas</a>
           <a href="/home/chefs">Chefs</a>
-          <a href="/recipes">Cadastros</a>
+          {% if session or session.isAdmin %}
+            <a href="/recipes">Cadastros</a>
+          {% endif %}
         {% endif %}
 
         {% if type == 'admin' %}
           <a href="/recipes">Receitas</a>
-          <a href="/chefs">Chefs</a>
-          <a href="/users">Usuários</a>
+          {% if session.isAdmin %}
+            <a href="/chefs">Chefs</a>
+            <a href="/users">Usuários</a>
+          {% endif %}
           <a href="/users/profile">Meu perfil</a>
         {% endif %}
+
       </div>
 
       <div class="navigation-session">
-        {% if not user %}
+        {% if not session %}
           <a href="/session/login">Entrar</a>
         {% endif %}
 
-        {% if user %}
+        {% if session %}
           <form action="/session/logout" method="POST">
             <button type="submit">Sair</button>
           </form>
@@ -51,32 +55,16 @@
 
   <div class="banner">
 
-      {# {% if type == 'default' %} #}
-        <div class="title">
-          <h1>As melhores receitas</h1>
-        </div>
-      {# {% endif %} #}
 
-      {# {% if type == 'admin' %}
-        <div class="title">
-          <h1>Administração</h1>
-        </div>
-      {% endif %} #}
+      <div class="title">
+        <h1>As melhores receitas</h1>
+      </div>
 
-      {# {% if type == 'default' %} #}
-        <div class="subtitle">
-          <p>Aprenda a construir os melhores pratos
-          com receitas criadas por profissionais
-          do mundo inteiro.</p>
-        </div>
-      {# {% endif %} #}
-
-      {# {% if type == 'admin' %}
-        <div class="subtitle">
-          <p>Todo cuidado é pouco.</p>
-        </div>
-      {% endif %} #}
-
+      <div class="subtitle">
+        <p>Aprenda a construir os melhores pratos
+        com receitas criadas por profissionais
+        do mundo inteiro.</p>
+      </div>
      
 
       <div class="icon">

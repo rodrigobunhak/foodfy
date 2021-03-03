@@ -41,7 +41,6 @@ async function verifyUserCreator(req, res, next) {
 
 }
 
-
 async function verifyUserAutenticad(req, res, next) {
 
   const id = req.session.userId
@@ -60,8 +59,6 @@ async function verifyUserAutenticad(req, res, next) {
 
   next()
 }
-
-
 
 module.exports = {
   verifyAdmin,
