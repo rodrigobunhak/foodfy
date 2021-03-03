@@ -94,8 +94,7 @@ module.exports = {
   },
   async show(req, res) {
 
-    let results = await Recipe.find(req.params.id)
-    const recipe = results.rows[0]
+    const recipe = await Recipe.find(req.params.id)
     
     if (!recipe) return res.send("Recipe not found!")
 
