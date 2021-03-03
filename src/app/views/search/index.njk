@@ -1,0 +1,51 @@
+{% extends "layouts/default.njk" %}
+
+{% block content %}
+
+  <section class="content">
+
+    <div class="content-header">
+
+        <div class="content-header-title">
+          <h1>Receitas</h1>
+        </div>
+
+        <div class="content-header-menu">
+
+          <form action="/recipes/search" method="GET">
+            <input 
+                type="text" 
+                name="filter" 
+                placeholder="Nome"
+                value={{filter}}
+            >
+            <button class="button" type="submit">Filtrar</button>
+          </form>
+        </div>
+      </div>
+
+    <div class="content-recipe">
+
+      <div class="items items-recipe">
+      {% for recipe in recipes %}
+        <div class="recipe">
+              
+          <div class="recipe-image">
+            <img src="{{recipe.image}}" alt="recipe image">
+          </div>
+
+          <div class="recipe-info">
+
+            <h2>{{recipe.title}}</h2>
+              <p>{{recipe.chef_name}}</p>
+              <a href="/site/recipes/{{recipe.id}}">Visualizar</a>
+          </div>
+              
+        </div>
+      {% endfor %}
+      </div>
+
+    </div>
+
+  </section>
+{% endblock %}

@@ -1,0 +1,12 @@
+.access-denied {
+  display: flex;
+  justify-content: center;
+}
+
+.access-denied h1 {
+  font-size: 58px;
+  margin-top: 60px;
+  color: var(--font-color-grey-light);
+  font-weight: 200;
+  text-align: center;
+}

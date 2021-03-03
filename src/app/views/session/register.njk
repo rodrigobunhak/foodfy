@@ -1,0 +1,29 @@
+{% extends "layouts/login.njk" %}
+
+{% block title %}
+
+  <h1>Registre-se</h1>
+
+{% endblock %}
+
+{% block field %}
+
+  <form action="/session/register" method="POST" id="form-register">
+
+    {% include 'session/fields.njk' %}
+
+  </form>
+
+{% endblock %}
+
+{% block buttons %}
+
+  <button class="button" type="submit" form="form-register">Salvar</button>
+
+{% endblock %}
+
+{% block link %}
+
+  <a href="/session/login">Cancelar</a>
+
+{% endblock %}

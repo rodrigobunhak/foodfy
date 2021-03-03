@@ -1,4 +1,4 @@
-{% extends "site/layout.njk" %}
+{% extends "layouts/default.njk" %}
 
 {% block content %}
 
@@ -39,7 +39,8 @@
         </div>
       
         <h1>{{recipe.title}}</h1>
-        <h3>por {{recipe.chef_name}}</h3>
+        <h3>Chef {{recipe.chef_name}}</h3>
+        <p>Criado por {{recipe.user_name}}</p>
         
         <div class="sub-title">
           <h2>Ingredientes</h2>

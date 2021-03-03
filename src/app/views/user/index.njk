@@ -1,0 +1,40 @@
+{% extends "layouts/admin.njk" %}
+
+{% block content %}
+
+<section class="content">
+
+  <div class="content-header">
+    
+    <div class="content-header-title">
+      <h2>Gerenciar usuários</h2>
+    </div>
+
+    <div class="content-header-menu">
+      <button class="button">
+        <a href="/users/create">Novo Usuário</a>
+      </button>
+    </div>
+
+  </div>
+
+  <div class="items items-user">
+  {% for user in users %}
+    
+    <div class="user">
+
+      <div class="user-info">
+
+        <h2>{{user.name}}</h2>
+        <a href="/users/{{user.id}}">Visualizar</a>
+      
+      </div>
+
+    </div>
+
+  {% endfor %}
+  </div>
+
+</section>
+
+{% endblock %}

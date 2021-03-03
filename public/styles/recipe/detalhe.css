@@ -58,7 +58,7 @@
     font-family: Roboto;
     font-size: 36px;
     color: var(--font-color);
-    margin-top: 50px;
+    margin-top: 25px;
     text-align: center;
 }
 
@@ -68,6 +68,15 @@
     font-weight: normal;
     color: var(--font-color);
     margin-top: 4px;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.content-recipe1 p {
+    font-family: Roboto;
+    font-size: 12px;
+    font-weight: normal;
+    color: var(--font-color);
     text-align: center;
     margin-bottom: 10px;
 }
@@ -101,6 +110,7 @@
 .content-recipe1 .content-recipe1-info {
     padding-left: 20px;
     font-size: 18px;
+    font-weight: lighter;
     color: var(--font-color-grey);
     line-height: 28px;
 

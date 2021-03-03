@@ -79,26 +79,30 @@
 
   <h3>Ingredientes</h3>
 
-  {% if recipe.ingredients %}
-    {% for ingredient in recipe.ingredients %}
-      <div class="item-container"> {# ingredient #}
-          <input 
-            type="text" 
-            name="ingredients[]" 
-            value="{{ ingredient }}"
-          >
+    {% if recipe.ingredients %}
+      <div class="item-container" id="ingredients"> {# ingredient #}
+        {% for ingredient in recipe.ingredients %}
+    
+              <input 
+                type="text" 
+                name="ingredients[]" 
+                value="{{ ingredient }}"
+                id="ingredient"
+              >
+          
+        {% endfor %}
       </div>
-    {% endfor %}
     {% else %}
-        <div class="item-container">
-          <input 
-            type="text" 
-            name="ingredients[]"
-          >
-        </div>
-  {% endif %}
+      <div class="item-container" id="ingredients"> {# ingredient #}
+        <input 
+          type="text" 
+          name="ingredients[]"
+          id="ingredient"
+        >
+      </div>
+    {% endif %}
 
-  <button class="button-link" type="button" > Adicionar novo ingrediente </button>
+  <button class="button-link" type="button" onclick="addIngredient(event)"> Adicionar novo ingrediente </button>
 
 </div>
 
@@ -106,32 +110,35 @@
 
 
 <div class="item">
-  
-  <h3>Modo de preparo</h3>
-  
-  {% if recipe.preparation %}
-    {% for preparation in recipe.preparation %}
-      <div class="passo">
-      <input 
-        type="text" 
-        name="preparation[]"
-        value="{{ preparation }}"
-      >
-      </div>
-    {% endfor %}
-    {% else %}
-      <div class="passo">
-      <input 
-        type="text" 
-        name="preparation[]"
-      >
-      </div>
-  {% endif %}
 
-  <button class="button-link" type="button">Adicionar novo passo</button>
+  <h3>Modo de preparo</h3>
+
+    {% if recipe.preparation %}
+      <div class="item-container" id="preparations"> {# ingredient #}
+        {% for preparation in recipe.preparation %}
+    
+              <input 
+                type="text" 
+                name="preparation[]" 
+                value="{{ preparation }}"
+                id="preparation"
+              >
+          
+        {% endfor %}
+      </div>
+    {% else %}
+      <div class="item-container" id="preparations"> {# ingredient #}
+        <input 
+          type="text" 
+          name="preparation[]"
+          id="preparation"
+        >
+      </div>
+    {% endif %}
+
+  <button class="button-link" type="button" onclick="addPreparation(event)"> Adicionar novo passo </button>
 
 </div>
-
 
 <div class="item">
   <div><h3>Informações adicionais</h3></div>

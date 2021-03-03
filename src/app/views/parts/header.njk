@@ -1,0 +1,80 @@
+{% macro content(type, session) %}
+
+
+{% if type == 'admin' %}
+<header class="header header-admin">
+{% else %}
+<header class="header">
+{% endif %}
+
+  <div class="menu">
+
+    <div class="name">
+      <a href="/">FoodFy</a>
+    </div>
+
+    <nav id="navigation">
+      <div class="navigation-main">
+
+        {% if type == 'default' %}
+          <a href="/home/about">Sobre</a>
+          <a href="/home/recipes">Receitas</a>
+          <a href="/home/chefs">Chefs</a>
+          {% if session.userId or session.isAdmin %}
+            <a href="/recipes">Cadastros</a>
+          {% endif %}
+        {% endif %}
+
+        {% if type == 'admin' %}
+          <a href="/recipes">Receitas</a>
+          {% if session.isAdmin %}
+            <a href="/chefs">Chefs</a>
+            <a href="/users">Usuários</a>
+          {% endif %}
+          <a href="/users/profile">Meu perfil</a>
+        {% endif %}
+
+      </div>
+
+      <div class="navigation-session">
+        {% if not session.userId %}
+          <a href="/session/login">Entrar</a>
+        {% endif %}
+
+        {% if session.userId %}
+          <form action="/session/logout" method="POST">
+            <button type="submit">Sair</button>
+          </form>
+        {% endif %}
+      </div>
+
+    </nav>
+
+
+  </div>
+
+  <div class="banner">
+
+      <div class="title">
+        <h1>As melhores receitas</h1>
+      </div>
+
+      <div class="subtitle">
+        <p>Aprenda a construir os melhores pratos
+        com receitas criadas por profissionais
+        do mundo inteiro.</p>
+      </div>
+     
+
+      <div class="icon">
+      {% if type == 'admin' %}
+        <img src="/assets/knife-admin.png" alt="logo">
+      {% else %}
+        <img src="/assets/knife.png" alt="logo">
+      {% endif %}
+      </div>
+
+  </div>
+
+</header>
+{% endmacro %}

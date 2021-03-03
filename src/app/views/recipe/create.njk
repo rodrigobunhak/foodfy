@@ -1,4 +1,4 @@
-{% extends "layout.njk" %}
+{% extends "layouts/admin.njk" %}
 
 {% block content %}
 
@@ -11,7 +11,9 @@
     </div>
 
     <div class="content-header-menu">
-      <button class="button" type="submit" form="create-form">Salvar receita</button>
+      <button class="button" type="submit" form="create-form">
+        <a href="#">Salvar receita</a>
+      </button>
     </div>
 
   </div>

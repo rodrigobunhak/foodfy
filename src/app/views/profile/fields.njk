@@ -1,0 +1,66 @@
+<div class="item">
+  <div><h3>Nome</h3></div>
+  <div>
+    <input 
+      type="text" 
+      name="name"
+      value="{{ user.name }}"
+    >
+  </div>
+</div>
+
+<div class="item">
+  <div><h3>E-mail</h3></div>
+  <div>
+    <input 
+      type="text" 
+      name="email"
+      value="{{ user.email }}"
+    >
+  </div>
+</div>
+
+<div class="item">
+  <div><h3>Senha</h3></div>
+    <div>
+      <input 
+        type="password" 
+        name="password"
+      >
+    </div>
+</div>
+
+<div class="item">
+  <div><h3>Repetir Senha</h3></div>
+  <div>
+    <input 
+      type="password" 
+      name="passwordRepeat"
+    >
+  </div>
+</div>
+
+<div class="item">
+  <div><h3>Administrador</h3></div>
+    <input 
+      type="radio"
+      id="admin_true"
+      name="isAdmin"
+      value="true"
+      {% if user.is_admin == true %}
+        checked
+      {% endif %}
+    >
+    <label for="admin_true">Sim</label>
+    <input 
+      type="radio"
+      id="admin_false"
+      name="isAdmin"
+      value="false"
+      {% if user.is_admin != true %}
+        checked
+      {% endif %}
+    >
+    <label for="admin_false">Não</label>
+</div>
+

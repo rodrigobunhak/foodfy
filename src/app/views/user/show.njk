@@ -1,0 +1,37 @@
+{% extends "layouts/admin.njk" %}
+
+{% block content %}
+
+<section class="content">
+
+  <div class="content-header">
+    
+    <div class="content-header-title">
+      <h2>Detalhe usuário</h2>
+    </div>
+
+    <div class="content-header-menu">
+      <button class="button">
+        <a href="/users/{{ user.id }}/edit">Editar usuário</a>
+      </button>
+    </div>
+
+  </div>
+
+  <div class="content-user">
+
+    <h1>{{user.name}}</h1>
+    
+    {% if user.is_admin == true %}
+    Administrador
+    {% endif %}
+
+    <h3>{{user.email}}</h3>
+
+    
+
+  </div>
+
+</section>
+
+{% endblock %}

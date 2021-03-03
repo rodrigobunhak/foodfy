@@ -1,4 +1,4 @@
-{% extends "site/layout.njk" %}
+{% extends "layouts/default.njk" %}
 
 {% block content %}
 
@@ -7,8 +7,9 @@
   <div class="content-header">
 
     <div class="content-header-title">
-      <h2>Mais acessadas</h2>
+      <h2>Últimas Receitas Cadastradas{{user}}</h2>
     </div>
+    
 
   </div>
 
@@ -27,7 +28,7 @@
 
             <h2>{{recipe.title}}</h2>
             <p>{{recipe.chef_name}}</p>
-            <a href="/site/recipes/{{recipe.id}}">Visualizar</a>
+            <a href="/home/recipes/{{recipe.id}}">Visualizar</a>
           
           </div>
               
