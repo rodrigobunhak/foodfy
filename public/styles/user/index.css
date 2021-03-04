@@ -1,0 +1,47 @@
+.items-user {
+  grid-template-columns: 1fr 1fr;
+}
+
+.items-user .user {
+  display: flex;
+  border-left: 3px solid var(--yellow-dark);
+  background: white;
+  border-radius: 2px;
+  padding: 10px 0 10px 0;
+}
+
+.items-user .user .user-image {
+  display: flex;
+  align-items: center;
+  margin: 0 0 0 0;
+  padding-left: 10px;
+}
+
+.items-user .user .user-image img {
+  width: 65px;
+  height: 65px;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.items-user .user .user-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 10px 5px 10px 10px;
+}
+
+.items-user .user .user-info h2 {
+  font-size: 24px;
+  font-weight: normal;
+  font-weight: lighter;
+  color: var(--font-color);
+  line-height: 16px;
+  margin-bottom: 15px;
+}
+
+.items-user .user .user-info a {
+  font-size: 12px;
+  font-weight: bold;
+  color: var(--yellow-dark);
+}
