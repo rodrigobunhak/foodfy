@@ -28,9 +28,10 @@ module.exports = {
   async register(req, res) {
 
     const userId = await User.register(req.body)
+    const user = await User.findOne({where: {id: userId}})
 
-    req.session.userId = userId
-    req.session.isAdmin = req.user.is_admin;
+    req.session.userId = user.id;
+    req.session.isAdmin = user.is_admin;
     
     return res.redirect('/')
 

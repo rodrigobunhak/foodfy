@@ -19,23 +19,24 @@ async function post(req, res, next) {
 
   const fillAllFields = checkAllFields(req.body)
   if(fillAllFields) {
-    return res.render("user/register", fillAllFields)
+    return res.render("session/register", fillAllFields)
   }
 
   const { email, password, passwordRepeat } = req.body
   const user = await User.findOne({ where: { email }})
 
-  if (user) return res.render('user/register', {
+  if (user) return res.render('session/register', {
     user: req.body,
     error: 'Usuário já cadastrado.'
   })
 
   if (password != passwordRepeat)
-    return res.render('user/register', {
+    return res.render('session/register', {
       user: req.body,
       error: 'Senhas não conferem.'
     })
 
+  req.user = user;
     
   next()
 }
