@@ -23,8 +23,10 @@ module.exports = {
       email
     })
 
+    user = await User.findOne({where: {id}})
+
     return res.render(`profile/edit`, {
-      user: req.body,
+      user,
       success: "Conta atualizada com sucesso!"
     })
 

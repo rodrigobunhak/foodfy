@@ -20,7 +20,7 @@
   </div>
 </div>
 
-<div class="item">
+{# <div class="item">
   <div><h3>Senha</h3></div>
     <div>
       <input 
@@ -38,9 +38,9 @@
       name="passwordRepeat"
     >
   </div>
-</div>
+</div> #}
 
-<div class="item">
+<div class="item disabled">
   <div><h3>Administrador</h3></div>
     <input 
       type="radio"
@@ -50,6 +50,7 @@
       {% if user.is_admin == true %}
         checked
       {% endif %}
+      disabled   
     >
     <label for="admin_true">Sim</label>
     <input 
@@ -60,7 +61,9 @@
       {% if user.is_admin != true %}
         checked
       {% endif %}
+      disabled
     >
     <label for="admin_false">Não</label>
 </div>
+
 
