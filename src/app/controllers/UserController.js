@@ -37,8 +37,6 @@ module.exports = {
     const user = req.body;
     user.password = temporaryPassword
 
-    console.log(user)
-
     const userId = await User.create(user)
 
     await mailer.sendMail({
@@ -60,7 +58,7 @@ module.exports = {
       `,
     })
 
-    return res.redirect('/users', {
+    return res.render('user/index', {
       success: "E-mail enviado ao usuário com os dados de acesso!"
     })
 
