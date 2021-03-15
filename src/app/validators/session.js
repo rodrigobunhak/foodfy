@@ -13,8 +13,18 @@ async function login(req, res, next) {
     login: true
   })
 
-  const passed = await compare(password, user.password)
+  if (user.first_access) {
 
+    if(user.password === password) {
+      return res.render("session/password-reset", {
+        user: req.body,
+        passwordReset: true
+      })
+    }
+  }
+
+  const passed = await compare(password, user.password)
+  
   if (!passed) return res.render("session/login", {
     user: req.body,
     error: "Senha incorreta.",
@@ -59,39 +69,44 @@ async function reset(req, res, next) {
     passwordReset: true
   })
 
+  
   // verify password match
   if (password != passwordRepeat)
-    return res.render('session/password-reset', {
-      user: req.body,
-      token,
-      error: 'Senhas não conferem.',
-      passwordReset: true
-    })
+  return res.render('session/password-reset', {
+    user: req.body,
+    token,
+    error: 'Senhas não conferem.',
+    passwordReset: true
+  })
 
-  // verify if token is correct
-  if (token != user.reset_token)
-    return res.render('session/password-reset', {
-      user: req.body,
-      token,
-      error: 'Token inválido! Solicite uma nova recuperação de senha.',
-      passwordReset: true
-    })
+  if (!user.first_access) {
+    
+    // verify if token is correct
+    if (token != user.reset_token)
+      return res.render('session/password-reset', {
+        user: req.body,
+        token,
+        error: 'Token inválido! Solicite uma nova recuperação de senha.',
+        passwordReset: true
+      })
+  
+    // verify if token already experired
+    let now = new Date()
+    now = now.setHours(now.getHours())
+  
+    if (now > user.reset_token_expires) {
+      return res.render('session/password-reset', {
+        user: req.body,
+        token,
+        error: 'Token expirado! Solicite uma nova recuperação de senha.',
+        passwordReset: true
+      })
+    }
+  }
+  
+  req.user = user
 
-  // verify if token already experired
-  let now = new Date()
-  now = now.setHours(now.getHours())
-
-  if (now > user.reset_token_expires)
-    return res.render('session/password-reset', {
-      user: req.body,
-      token,
-      error: 'Token expirado! Solicite uma nova recuperação de senha.',
-      passwordReset: true
-    })
-
-    req.user = user
-
-    next()
+  next()
 }
 
 module.exports = {

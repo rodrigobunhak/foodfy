@@ -81,18 +81,20 @@ module.exports = {
           name,
           email,
           password,
-          is_admin
-        ) VALUES ($1, $2, $3, $4)
+          is_admin,
+          first_access
+        ) VALUES ($1, $2, $3, $4, $5)
         RETURNING id
     `
       // //hash of password
-      const passwordHash = await hash(data.password, 8)
+      // const passwordHash = await hash(data.password, 8)
 
       const values = [
         data.name,
         data.email,
-        passwordHash,
+        data.password,
         data.isAdmin,
+        true
       ]
 
       const result = await db.query(query, values)

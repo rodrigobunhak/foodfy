@@ -1,3 +1,7 @@
+const crypto = require('crypto')
+
+const mailer = require('../../lib/mailer')
+
 const User = require('../models/User')
 
 module.exports = {
@@ -27,9 +31,38 @@ module.exports = {
   },
   async post(req, res) {
 
-    const userId = await User.create(req.body)
+    // create temporary password
+    const temporaryPassword = crypto.randomBytes(6).toString("hex");
 
-    return res.redirect('/users')
+    const user = req.body;
+    user.password = temporaryPassword
+
+    console.log(user)
+
+    const userId = await User.create(user)
+
+    await mailer.sendMail({
+      to: user.email,
+      from: 'no-replay@foodyfy.com.br',
+      subject: 'Novo acesso',
+      html: `<h2>Seja bem vindo ao FooFy!</h2>
+      <p>Segue abaixo os dados para o seu primeiro acesso</p>
+      <p>
+        <a href="http://localhost:3000/session/login" target="_blank">
+        FoodFy
+        </a>
+
+        <p>
+          <strong>E-mail:</strong> ${user.email}
+          <strong>Senha Temporária:</strong> ${user.password} 
+        </p>
+      </p>
+      `,
+    })
+
+    return res.redirect('/users', {
+      success: "E-mail enviado ao usuário com os dados de acesso!"
+    })
 
   },
   async put(req, res) {

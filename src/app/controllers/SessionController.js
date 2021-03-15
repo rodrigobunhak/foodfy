@@ -100,6 +100,7 @@ module.exports = {
         password: newPassword,
         reset_token: "",
         reset_token_expires: "",
+        first_access: false
       })
 
       // alert user that your password has been updated
