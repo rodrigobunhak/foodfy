@@ -9,15 +9,15 @@ const { verifyAdmin, verifyUserAutenticad, verifyUserCreator } = require('../app
 const RecipesController = require('../app/controllers/RecipesController');
 const SearchController = require('../app/controllers/SearchController');
 
-routes.get("/search", SearchController.index) // ok
+routes.get("/search", SearchController.index)
 
-routes.get("/", verifyUserAutenticad, RecipesController.index); // ok
-routes.get("/create", verifyUserAutenticad, RecipesController.create); // ok
-routes.get("/:id", verifyUserAutenticad, RecipesController.show); // ok
-routes.get("/:id/edit", verifyUserAutenticad, verifyUserCreator, RecipesController.edit); // ok
+routes.get("/", verifyUserAutenticad, RecipesController.index);
+routes.get("/create", verifyUserAutenticad, RecipesController.create);
+routes.get("/:id", verifyUserAutenticad, RecipesController.show);
+routes.get("/:id/edit", verifyUserAutenticad, verifyUserCreator, RecipesController.edit);
 
-routes.post("/", multer.array("photos", 5), RecipesController.post); // ok
-routes.put("/", multer.array("photos", 5), RecipesController.put); // ok
-routes.delete("/", verifyUserAutenticad, verifyAdmin, RecipesController.delete); // ok
+routes.post("/", multer.array("photos", 5), RecipesController.post);
+routes.put("/", multer.array("photos", 5), RecipesController.put);
+routes.delete("/", verifyUserAutenticad, verifyAdmin, RecipesController.delete);
 
 module.exports = routes

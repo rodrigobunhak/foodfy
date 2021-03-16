@@ -34,13 +34,15 @@ module.exports = {
       console.error(err)
     }
   },
-  find(id) {
-    return db.query(`
+  async find(id) {
+    const result = await db.query(`
       SELECT chefs.*, count(recipes) AS total_recipes 
       FROM chefs
       LEFT JOIN recipes ON (recipes.chef_id = chefs.id)
       GROUP BY chefs.id
       HAVING chefs.id = $1`, [id])
+
+    return result.rows[0]
   },
   findRecipes(id) {
     return db.query(`

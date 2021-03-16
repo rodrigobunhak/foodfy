@@ -78,11 +78,21 @@ module.exports = {
 
     const keys = Object.keys(req.body)
     const file = req.file
+    const data = req.body
 
     for (key of keys) {
       if (req.body[key] == "" && key != "chef_image") {
-        return res.send('Please, fill all fields!')
+        return res.render('chef/create', {
+          error: `Por favor, preencha todos os campos.`
+        })
       }
+    }
+
+    if(!req.file) {
+      return res.render('chef/create', {
+        error: `Por favor, selecione uma imagem, campo obrigatório.`,
+        chef: data
+      })
     }
 
     const result = await File.create(file)
@@ -91,15 +101,23 @@ module.exports = {
     const results = await Chef.create(req.body, fileId)
     const chefId = results.rows[0].id
 
+    const chef = await Chef.find(chefId)
 
-    return res.redirect(`/chefs/${chefId}`)
+    //get image chef
+    const resultsFile = await Chef.file(chefId)
+    const chefImage = resultsFile.rows[0]
+
+    chef.image = `${req.protocol}://${req.headers.host}${chefImage.path.replace("public", "")}`
+
+    return res.render(`chef/detalhe`, {
+      success: `Usuário criado com sucesso!`,
+      chef
+    })
 
   },
   async edit(req, res) {
 
-    let results = await Chef.find(req.params.id)
-
-    const chef = results.rows[0]
+    const chef = await Chef.find(req.params.id)
 
     //get image chef
     results = await Chef.file(chef.id)

@@ -72,9 +72,11 @@ module.exports = {
     }
     )
   },
-  chefSelectOptions() {
+  async chefSelectOptions() {
 
-    return db.query(`SELECT name, id FROM chefs`)
+    const result = await db.query(`SELECT name, id FROM chefs`)
+
+    return result.rows
 
     // db.query(`SELECT name, id FROM chefs`, function(err, results) {
     //   if(err) throw `Database error: ${err}`

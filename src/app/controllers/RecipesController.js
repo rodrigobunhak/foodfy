@@ -31,10 +31,9 @@ module.exports = {
   },
   async create(req, res) {
     
-    results = await Recipe.chefSelectOptions()
-    const options = results.rows
+    const chefOptions = await Recipe.chefSelectOptions()
 
-    return res.render('recipe/create',{ chefOptions: options })
+    return res.render('recipe/create',{ chefOptions })
 
   },
   async show(req, res) {
@@ -56,15 +55,10 @@ module.exports = {
   },
   async post(req, res) {
 
-    const keys = Object.keys(req.body)
-
-    for (key of keys) {
-      if (req.body[key] == "" && key != "removed_files") {
-        return res.send('Please, fill all fields!')
-      }
-    }
+    const chefOptions = await Recipe.chefSelectOptions()
 
     const {removedFiles, title, chef, ingredients, preparation, information} = req.body
+
     const recipe = {
       removed_files: removedFiles,
       title,
@@ -74,9 +68,25 @@ module.exports = {
       preparation,
       information
     }
+
+    const keys = Object.keys(req.body)
+
+    for (key of keys) {
+      if (req.body[key] == "" && key != "removed_files") {
+        return res.render('recipe/create', {
+          error: `Por favor, preencha todos os campos.`,
+          chefOptions,
+          recipe
+        })
+      }
+    }
     
     if (req.files.length == 0) {
-      return res.send('Please, send at least one image')
+      return res.render('recipe/create', {
+        error: `Por favor, envie pelo menos uma imagem.`,
+        chefOptions,
+        recipe
+      })
     }
 
     const results = await Recipe.create(recipe)
@@ -94,17 +104,28 @@ module.exports = {
       Promise.all(recipeFilesPromise)
     })
     
+    const createdRecipe = await Recipe.find(recipeId)
 
-    return res.redirect(`recipes/${recipeId}`)
+    // get images
+    let myResults = await Recipe.files(recipeId)
+    let files = myResults.rows
+    files = files.map(file => ({
+      ...file,
+      src: `${req.protocol}://${req.headers.host}${file.path.replace("public", "")}`
+    }))
 
+    return res.render(`recipe/detalhe`, { 
+      success: `Receita criada com sucesso!`,
+      recipe: createdRecipe,
+      files,  
+    })
 
   },
   async edit(req, res) {
 
     const recipe = await Recipe.find(req.params.id)
 
-    results = await Recipe.chefSelectOptions()
-    const options = results.rows
+    const options = await Recipe.chefSelectOptions()
 
     // get images
     results = await Recipe.files(recipe.id)
