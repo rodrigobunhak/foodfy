@@ -142,24 +142,41 @@ module.exports = {
 
     const keys = Object.keys(req.body)
     const recipeId = req.body.id
-
-    for (key of keys) {
-      if (req.body[key] == "" && key != "removed_files") {
-        return res.send('Please, fill all fields!')
-      }
-    }
-
+    const options = await Recipe.chefSelectOptions()
+    
     const {removedFiles, title, chef, ingredients, preparation, information, id} = req.body
+    
     const recipe = {
       removed_files: removedFiles,
       title,
       user: req.session.userId,
-      chef,
+      chef_id: parseInt(chef),
       ingredients,
       preparation,
       information,
       id,
     }
+
+    // get images
+    results = await Recipe.files(recipe.id)
+    let files = results.rows
+    files = files.map(file => ({
+      ...file,
+      src: `${req.protocol}://${req.headers.host}${file.path.replace("public", "")}`
+    }))
+
+    for (key of keys) {
+      if (req.body[key] == "" && key != "removed_files") {
+        // return res.send('Please, fill all fields!')
+        return res.render('recipe/edit', {
+          recipe,
+          chefOptions: options,
+          error: `Por favor, preencha todos os campos.`,
+          files
+        })
+      }
+    }
+
 
     if (req.files.length != 0) {
       
@@ -192,7 +209,21 @@ module.exports = {
 
     await Recipe.update(recipe)
 
-    return res.redirect(`/recipes/${recipe.id}`)
+    const updatedRecipe = await Recipe.find(recipeId)
+
+    // get images
+    let myResults = await Recipe.files(recipeId)
+    let updatedfiles = myResults.rows
+    updatedfilesfiles = files.map(file => ({
+      ...file,
+      src: `${req.protocol}://${req.headers.host}${file.path.replace("public", "")}`
+    }))
+
+    return res.render(`recipe/detalhe`, { 
+      success: `Receita salva com sucesso!`,
+      recipe: updatedRecipe,
+      files,  
+    })
 
   },
   async delete(req, res) {
