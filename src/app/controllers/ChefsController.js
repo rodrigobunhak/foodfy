@@ -41,9 +41,7 @@ module.exports = {
   async show(req, res) { // It's most organized
 
     // search chef
-    let results = await Chef.find(req.params.id)
-    const chef = results.rows[0]
-    
+    const chef = await Chef.find(req.params.id)
 
     // check if chef exist
     if (!chef) return res.send("Chef not found!")
@@ -152,17 +150,48 @@ module.exports = {
 
       await Chef.update(req.body, fileId)
 
-      return res.redirect(`/chefs/${req.body.id}`)
+      
+
+
+
+      // search chef
+      const chef = await Chef.find(req.body.id)
+      // check if chef exist
+      if (!chef) return res.send("Chef not found!")
+
+      //get image chef
+      results = await Chef.file(chef.id)
+      const chefImage = results.rows[0]
+
+      chef.image = `${req.protocol}://${req.headers.host}${chefImage.path.replace("public", "")}`
+
+      // search recipes of chef
+      results = await Chef.findRecipes(req.body.id)
+      let recipes = results.rows
+
+
+      // add image on each recipe
+      const recipesPromise = recipes.map(async (recipe, index) => {
+        results = await Recipe.files(recipe.id)
+        const recipeImage = results.rows[0].path
+        recipes[index].image = `${req.protocol}://${req.headers.host}${recipeImage.replace("public", "")}`
+      })
+
+      await Promise.all(recipesPromise)
+
+
+      return res.render('chef/detalhe', { 
+        success: `Chef atualizado com sucesso.`,
+        chef,
+        recipes,
+      })
       
     }
 
   },
   async delete(req, res) {
 
-    let results = await Chef.find(req.body.id)
-  
-    const chef = results.rows[0]
-
+    const chef = await Chef.find(req.body.id)
 
     if(chef.total_recipes == 0) {
       await Chef.delete(chef.id)
