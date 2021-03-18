@@ -49,12 +49,12 @@ module.exports = {
 
   //   return result.rows[0]
   // },
-  async findRecipes(id) {
-    const results =  db.query(`
+  async findRecipes(chefId) {
+    const results = await db.query(`
       SELECT recipes.*, chefs.name AS chef_name
       FROM recipes
       LEFT JOIN chefs ON (recipes.chef_id = chefs.id)
-      WHERE chefs.id = $1`, [id])
+      WHERE chefs.id = $1`, [chefId])
     
     return results.rows
   },
