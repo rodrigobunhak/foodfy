@@ -85,7 +85,7 @@ module.exports = {
   // },
   async getOneFile(chefId) {
     const results = await db.query(`
-      SELECT *
+      SELECT files.id, files.path, chefs.id as chef_id
       FROM files
       LEFT JOIN chefs ON (chefs.file_id = files.id)
       WHERE chefs.id = $1

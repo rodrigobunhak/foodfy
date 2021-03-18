@@ -46,13 +46,14 @@ module.exports = {
     return res.render('chef/detalhe', { chef, recipes })
 
   },
-  async post(req, res) {
+  async post(req, res) { // Done!
 
     try {
       
       const keys = Object.keys(req.body)
       
-      const data = req.body
+      const { name } = req.body
+      const { filename, path } = req.file
   
       for (key of keys) {
         if (req.body[key] == "" && key != "chef_image") {
@@ -65,55 +66,49 @@ module.exports = {
       if(!req.file) {
         return res.render('chef/create', {
           error: `Por favor, selecione uma imagem, campo obrigatório.`,
-          chef: data
+          chef: req.body
         })
       }
 
-      const { filename, path } = req.file
-      const fileCreated = await File.create({
+      const fileId = await File.create({
         name: filename,
         path
       })
 
-      console.log(fileCreated)
-      return true
-
-      // const chefCreated = await Chef.create(req.body, fileCreated.id)
+      const chefId = await Chef.create({
+        name,
+        file_id: fileId
+      })
   
-      // const chef = await Chef.find(chefCreated.id)
+      const chef = await Chef.find(chefId)
   
-      // //get image chef
-      // const resultsFile = await Chef.getOneFile(chefId)
-      // const chefImage = resultsFile.rows[0]
+      const chefImage = await Chef.getOneFile(chefId)
+      chef.image = `${req.protocol}://${req.headers.host}${chefImage.path.replace("public", "")}`
   
-      // chef.image = `${req.protocol}://${req.headers.host}${chefImage.path.replace("public", "")}`
-  
-      // return res.render(`chef/detalhe`, {
-      //   success: `Usuário criado com sucesso!`,
-      //   chef
-      // })
+      return res.render(`chef/detalhe`, {
+        success: `Usuário criado com sucesso!`,
+        chef
+      })
 
     } catch (error) {
       console.error(error)
     }
 
   },
-  async edit(req, res) {
+  async edit(req, res) { // Done!
 
     const chef = await Chef.find(req.params.id)
 
-    //get image chef
-    results = await Chef.file(chef.id)
-    const chefImage = results.rows[0]
-
+    const chefImage = await Chef.getOneFile(chef.id)
     chef.image = `${req.protocol}://${req.headers.host}${chefImage.path.replace("public", "")}`
 
     return res.render('chef/edit', {chef})
 
   },
-  async put(req, res) {
+  async put(req, res) { // Done!
+    
     const keys = Object.keys(req.body)
-    const file = req.file
+    const { name, id } = req.body
 
     for (key of keys) {
       if (req.body[key] == "") {
@@ -121,64 +116,59 @@ module.exports = {
       }
     }
 
-    if(file) {
-      const result = await File.create(file)
-      const fileId = result.rows[0].id
+    if (req.file) {
 
-      await Chef.update(req.body, fileId)
+      const { filename, path } = req.file
+      const fileId = await File.create({
+        name: filename,
+        path
+      })
+      await Chef.update(id, {
+        name,
+        file_id: fileId
+      })
 
-      return res.redirect(`/chefs/${req.body.id}`)
     } else {
-      // get image
-      let results = await Chef.file(req.body.id)
-      let fileId = results.rows[0].file_id
 
-      await Chef.update(req.body, fileId)
-
-      
-
-
-
-      // search chef
-      const chef = await Chef.find(req.body.id)
-      // check if chef exist
-      if (!chef) return res.send("Chef not found!")
-
-      //get image chef
-      results = await Chef.file(chef.id)
-      const chefImage = results.rows[0]
-
-      chef.image = `${req.protocol}://${req.headers.host}${chefImage.path.replace("public", "")}`
-
-      // search recipes of chef
-      results = await Chef.findRecipes(req.body.id)
-      let recipes = results.rows
-
-
-      // add image on each recipe
-      const recipesPromise = recipes.map(async (recipe, index) => {
-        results = await Recipe.files(recipe.id)
-        const recipeImage = results.rows[0].path
-        recipes[index].image = `${req.protocol}://${req.headers.host}${recipeImage.replace("public", "")}`
+      const file = await Chef.getOneFile(id)
+      await Chef.update(id, {
+        name,
+        file_id: file.id
       })
-
-      await Promise.all(recipesPromise)
-
-
-      return res.render('chef/detalhe', { 
-        success: `Chef atualizado com sucesso.`,
-        chef,
-        recipes,
-      })
-      
+  
     }
 
+    const chef = await Chef.find(id)
+
+    const chefImage = await Chef.getOneFile(chef.id)
+    chef.image = `${req.protocol}://${req.headers.host}${chefImage.path.replace("public", "")}`
+
+    const recipes = await Chef.findRecipes(id)
+
+    async function getImage(recipeId) {
+      const file = await Recipe.getOneFile(recipeId)
+      file.path = `${req.protocol}://${req.headers.host}${file.path.replace("public", "")}`.replace(/\\/g, "/")
+      return file.path
+    }
+
+    const recipesPromise = recipes.map(async recipe => {
+      recipe.image = await getImage(recipe.id)
+      return recipe
+    })
+
+    const allRecipes = await Promise.all(recipesPromise)
+
+    return res.render('chef/detalhe', { 
+      success: 'Chef atualizado com sucesso!',
+      chef,
+      recipes: allRecipes,
+    })
   },
   async delete(req, res) {
 
     const chef = await Chef.find(req.body.id)
 
-    if(chef.total_recipes == 0) {
+    if (chef.total_recipes == 0) {
       await Chef.delete(chef.id)
       
       await File.delete(chef.file_id)
