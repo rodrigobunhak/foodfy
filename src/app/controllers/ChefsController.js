@@ -76,13 +76,11 @@ module.exports = {
       })
     }
 
-    const result = await File.create(file)
-    const fileId = result.rows[0].id
+    const fileCreated = await File.create(file)
 
-    const results = await Chef.create(req.body, fileId)
-    const chefId = results.rows[0].id
+    const chefCreated = await Chef.create(req.body, fileCreated.id)
 
-    const chef = await Chef.find(chefId)
+    const chef = await Chef.find(chefCreated.id)
 
     //get image chef
     const resultsFile = await Chef.file(chefId)
@@ -96,6 +94,7 @@ module.exports = {
     })
 
   },
+
   async edit(req, res) {
 
     const chef = await Chef.find(req.params.id)

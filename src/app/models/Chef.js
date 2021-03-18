@@ -83,13 +83,13 @@ module.exports = {
   // delete(id) {
   //   return db.query(`DELETE FROM chefs WHERE id = $1`, [id])
   // },
-  async getImage(id) {
+  async getOneFile(chefId) {
     const results = await db.query(`
       SELECT *
       FROM files
       LEFT JOIN chefs ON (chefs.file_id = files.id)
       WHERE chefs.id = $1
-    `, [id])
+    `, [chefId])
 
     return results.rows[0]
   }

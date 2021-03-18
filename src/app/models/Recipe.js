@@ -122,17 +122,37 @@ module.exports = {
   // delete(id) {
   //   return db.query(`DELETE FROM recipes WHERE id = $1`, [id])
   // },
-  async files(id) {
-    const results =  db.query(`
+  async getOneFile(recipeId) {
+    const results = await db.query(`
       SELECT recipe_files.*, files.path
       FROM recipe_files
       LEFT JOIN files ON (recipe_files.file_id = files.id)
       WHERE recipe_id = $1
       ORDER BY file_id ASC
-    `, [id])
-
+    `, [recipeId])
+    return results.rows[0]
+  },
+  async getAllFiles(recipeId) {
+    const results = await db.query(`
+      SELECT recipe_files.*, files.path
+      FROM recipe_files
+      LEFT JOIN files ON (recipe_files.file_id = files.id)
+      WHERE recipe_id = $1
+      ORDER BY file_id ASC
+    `, [recipeId])
     return results.rows
   },
+  // async files(id) {
+  //   const results = await db.query(`
+  //     SELECT recipe_files.*, files.path
+  //     FROM recipe_files
+  //     LEFT JOIN files ON (recipe_files.file_id = files.id)
+  //     WHERE recipe_id = $1
+  //     ORDER BY file_id ASC
+  //   `, [id])
+
+  //   return results.rows
+  // },
   search(params) {
 
     const { filter } = params
