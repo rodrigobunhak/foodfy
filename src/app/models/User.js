@@ -3,27 +3,27 @@ const { hash } = require('bcryptjs');
 
 const Base = require('./Base')
 
-Base.init({ table: 'users'})
+Base.init({ table: 'users' })
 
 module.exports = {
   ...Base,
-  async all() {
+  // async all() {
 
-    try {
+  //   try {
       
-      const query = `SELECT id, name, email FROM users`
+  //     const query = `SELECT id, name, email FROM users`
 
-      const results = await db.query(query)
+  //     const results = await db.query(query)
 
-      return results.rows
+  //     return results.rows
 
-    } catch (error) {
+  //   } catch (error) {
 
-      console.error(error)
+  //     console.error(error)
 
-    }
+  //   }
 
-  },
+  // },
   async register(data) {
 
     try {
@@ -52,6 +52,7 @@ module.exports = {
     }
 
   },
+}
   // async create(data) {
 
   //   try {
@@ -84,31 +85,30 @@ module.exports = {
   //   }
 
   // },
-  async update(id, fields) {
+  // async update(id, fields) {
 
-    let query = "UPDATE users SET"
+  //   let query = "UPDATE users SET"
 
-    Object.keys(fields).map((key, index, array) => {
-      if((index + 1) < array.length) {
-        query = `${query}
-          ${key} = '${fields[key]}',  
-        `
-      } else {
-        // last iteration
-        query = `${query}
-          ${key} = '${fields[key]}'
-          WHERE id = ${id}  
-        `
-      }
-    })
+  //   Object.keys(fields).map((key, index, array) => {
+  //     if((index + 1) < array.length) {
+  //       query = `${query}
+  //         ${key} = '${fields[key]}',  
+  //       `
+  //     } else {
+  //       // last iteration
+  //       query = `${query}
+  //         ${key} = '${fields[key]}'
+  //         WHERE id = ${id}  
+  //       `
+  //     }
+  //   })
 
-    await db.query(query)
-    return
+  //   await db.query(query)
+  //   return
 
-  },
-  async delete(id) {
-    await db.query(`DELETE FROM users WHERE id = $1`, [id])
+  // },
+  // async delete(id) {
+  //   await db.query(`DELETE FROM users WHERE id = $1`, [id])
 
-    return
-  },
-}
+  //   return
+  // },

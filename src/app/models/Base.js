@@ -1,5 +1,25 @@
 const db = require('../../config/db')
-const { create } = require('../controllers/UserController')
+
+function find(filters, table) {
+  
+  try {
+    let query = `SELECT * FROM ${table}`
+    
+    if(filters) {
+      Object.keys(filters).map(key => {
+        query += ` ${key}`
+        Object.keys(filters[key]).map(field => {
+          query += ` ${field} = '${filters[key][field]}'`
+        })
+      })
+    }
+
+    return db.query(query)
+
+  } catch (error) {
+    console.error(error)
+  }
+}
 
 const Base = {
   init({ table }) {
@@ -7,23 +27,26 @@ const Base = {
 
     this.table = table
   },
+  async find(id) {
+    
+    const results = await find({ where: {id}}, this.table)
+    
+    return results.rows[0]
+
+  },
   async findOne(filters) {
-    try {
-      let query = `SELECT * FROM ${this.table}`
-      Object.keys(filters).map(key => {
-        query = `${query}
-        ${key}`
-        Object.keys(filters[key]).map(field => {
-          query = `${query} ${field} = '${filters[key][field]}'`
-        })
-      })
+    
+    const results = await find(filters, this.table)
+    
+    return results.rows[0]
 
-      const results = await db.query(query)
-      return results.rows[0]
+  },
+  async findAll(filters) {
+    
+    const results = await find(filters, this.table)
+    
+    return results.rows
 
-    } catch (error) {
-      console.error(error)
-    }
   },
   async create(fields) {
     try {
@@ -46,7 +69,7 @@ const Base = {
       console.error(error);
     }
   },
-  async update(id, fields) {
+  update(id, fields) {
     try {
       let update = []
 
@@ -59,13 +82,15 @@ const Base = {
       ${update.join(',')} WHERE id = ${id}
       `
   
-      await db.query(query)
-      return
+      return db.query(query)
 
     } catch (error) {
       console.error(error);
     }
   },
+  delete(id) {
+    return db.query(`DELETE FROM ${this.table} WHERE id = $1`, [id])
+  }
 }
 
 module.exports = Base

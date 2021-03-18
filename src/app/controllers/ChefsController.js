@@ -3,71 +3,54 @@ const Recipe = require('../models/Recipe')
 const File = require('../models/File');
 
 module.exports = {
-  async index(req, res) {
+  async index(req, res) { // Done!
 
-    // consulta todos os chefes no banco e salva na variavel chefs, array de chefs
-    let results = await Chef.all() 
-    const chefs = results.rows
+    const chefs = await Chef.all() 
 
-    // verifica se tem algum chef, caso nao tenha imprime a pagina vazia
     if (!chefs) return res.render('chefs/index')
     
-    // procura arquivo com o ID do chef e retorna o path
     async function getImage(chefId) {
-      let result = await Chef.file(chefId)
-      const fileSrc = result.rows.map(file => {
-        return `${req.protocol}://${req.headers.host}${file.path.replace("public", "")}`.replace(/\\/g, "/")
-      })
-
-      return fileSrc
-
+      const image = await Chef.getImage(chefId)
+      return `${req.protocol}://${req.headers.host}${image.path.replace("public", "")}`.replace(/\\/g, "/")
+      // let result = await Chef.getAvatar(chefId)
+      // const fileSrc = result.rows.map(file => {
+      //   return `${req.protocol}://${req.headers.host}${file.path.replace("public", "")}`.replace(/\\/g, "/")
+      // })
+      // return fileSrc
     }
     
-
     const chefsPromise = chefs.map(async chef => {
       chef.image = await getImage(chef.id)
       return chef
     })
-
 
     const allChefs = await Promise.all(chefsPromise)
 
     return res.render('chef/index', {chefs: allChefs})
 
   },
-  create(req, res) {
+  create(req, res) { // Done!
     return res.render('chef/create');
   },
-  async show(req, res) { // It's most organized
+  async show(req, res) { // Done!
 
-    // search chef
-    const chef = await Chef.find(req.params.id)
+    const { id } = req.params
 
-    // check if chef exist
+    const chef = await Chef.find(id)
+
     if (!chef) return res.send("Chef not found!")
 
+    const image = await Chef.file(chef.id)
+    chef.image = `${req.protocol}://${req.headers.host}${image.path.replace("public", "")}`
 
-    //get image chef
-    results = await Chef.file(chef.id)
-    const chefImage = results.rows[0]
-
-    chef.image = `${req.protocol}://${req.headers.host}${chefImage.path.replace("public", "")}`
-
-
-    // search recipes of chef
-    results = await Chef.findRecipes(req.params.id)
-    let recipes = results.rows
+    const recipes = await Chef.findRecipes(chef.id)
     
-
-    // add image on each recipe
     const recipesPromise = recipes.map(async (recipe, index) => {
-      results = await Recipe.files(recipe.id)
-      const recipeImage = results.rows[0].path
-      recipes[index].image = `${req.protocol}://${req.headers.host}${recipeImage.replace("public", "")}`
+      const files = await Recipe.files(recipe.id)
+      recipes[index].image = `${req.protocol}://${req.headers.host}${files[0].path.replace("public", "")}`
     })
 
     await Promise.all(recipesPromise)
-
 
     return res.render('chef/detalhe', { chef, recipes })
 
