@@ -2,23 +2,28 @@ const Chef = require('../models/Chef');
 const Recipe = require('../models/Recipe')
 const File = require('../models/File');
 
+async function getAllChefs(protocol, host) {
+  const chefs = await Chef.findAll() 
+  if (!chefs) return res.render('chefs/index')
+  
+  async function getImage(chefId) {
+    const image = await Chef.getOneFile(chefId)
+    return `${protocol}://${host}${image.path.replace("public", "")}`.replace(/\\/g, "/")
+  }
+  
+  const chefsPromise = chefs.map(async chef => {
+    chef.image = await getImage(chef.id)
+    return chef
+  })
+
+  return allChefs = await Promise.all(chefsPromise)
+}
+
 module.exports = {
   async index(req, res) { // Done!
 
-    const chefs = await Chef.findAll() 
-    if (!chefs) return res.render('chefs/index')
-    
-    async function getImage(chefId) {
-      const image = await Chef.getOneFile(chefId)
-      return `${req.protocol}://${req.headers.host}${image.path.replace("public", "")}`.replace(/\\/g, "/")
-    }
-    
-    const chefsPromise = chefs.map(async chef => {
-      chef.image = await getImage(chef.id)
-      return chef
-    })
+    const allChefs = await getAllChefs(req.protocol, req.headers.host)
 
-    const allChefs = await Promise.all(chefsPromise)
     return res.render('chef/index', {chefs: allChefs})
 
   },
@@ -166,14 +171,23 @@ module.exports = {
   },
   async delete(req, res) {
 
-    const chef = await Chef.find(req.body.id)
+    const chefId = req.body.id
 
-    if (chef.total_recipes == 0) {
-      await Chef.delete(chef.id)
+    // const chef = await Chef.find(chefId)
+    const recipes = await Chef.findRecipes(chefId)
+
+    if (recipes.length === 0) {
+
+      await Chef.delete(chefId)
       
-      await File.delete(chef.file_id)
-      
-      return res.redirect(`/chefs`)
+      // await File.delete(chef.file_id)
+        
+      const allChefs = await getAllChefs(req.protocol, req.headers.host)
+
+      return res.render(`chef/index`, {
+        success: 'Chef deletado com sucesso!',
+        chefs: allChefs
+      })
 
     } else {
         return res.send("Chef not deleted, there are recipes linked")

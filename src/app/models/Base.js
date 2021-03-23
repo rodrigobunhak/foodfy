@@ -56,15 +56,21 @@ const Base = {
 
       Object.keys(fields).map(key => {
         keys.push(key)
-        values.push(`'${fields[key]}'`)
+
+        if ((typeof fields[key]) === "object") {
+          values.push(`'{${fields[key]}}'`)
+        } else {
+          values.push(`'${fields[key]}'`)
+        }
       })
 
       const query = `INSERT INTO ${this.table} (${keys.join(',')})
         VALUES (${values.join(',')})
         RETURNING id`
 
-      // console.log(query)
-      // return true
+      console.log("----------------------------------------")
+      console.log(query)
+      console.log("----------------------------------------")
 
       const results = await db.query(query)
       return results.rows[0].id
@@ -78,7 +84,12 @@ const Base = {
       let update = []
 
       Object.keys(fields).map(key => {
-        const line = `${key} = '${fields[key]}'`
+        let line = ""
+        if ((typeof fields[key]) === "object") {
+          line = `${key} = '{${fields[key]}}'`
+        } else {
+          line = `${key} = '${fields[key]}'`
+        }
         update.push(line)
       })
   

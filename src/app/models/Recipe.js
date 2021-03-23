@@ -124,20 +124,20 @@ module.exports = {
   // },
   async getOneFile(recipeId) {
     const results = await db.query(`
-      SELECT recipe_files.*, files.path
+      SELECT recipe_files.id, recipe_files.recipe_id, recipe_files.file_id, files.path
       FROM recipe_files
       LEFT JOIN files ON (recipe_files.file_id = files.id)
-      WHERE recipe_id = $1
+      WHERE recipe_files.recipe_id = $1
       ORDER BY file_id ASC
     `, [recipeId])
     return results.rows[0]
   },
   async getAllFiles(recipeId) {
     const results = await db.query(`
-      SELECT recipe_files.*, files.path
+      SELECT recipe_files.id, recipe_files.recipe_id, recipe_files.file_id, files.path
       FROM recipe_files
       LEFT JOIN files ON (recipe_files.file_id = files.id)
-      WHERE recipe_id = $1
+      WHERE recipe_files.recipe_id = $1
       ORDER BY file_id ASC
     `, [recipeId])
     return results.rows

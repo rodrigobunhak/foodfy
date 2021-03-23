@@ -5,21 +5,19 @@ const RecipeFiles = require('../models/RecipeFiles');
 module.exports = {
   async index(req, res) {
      
-    let results = await Recipe.all()
-    const recipes = results.rows
+    const recipes = await Recipe.findAll()
 
     if (!recipes) return res.render('recipe/index')
 
     async function getImage(recipeId) {
-      let results = await Recipe.files(recipeId)
-      const files = results.rows.map(file => {
-        return `${req.protocol}://${req.headers.host}${file.path.replace("public", "")}`.replace(/\\/g, "/")
-      })
+      
+      const file = await Recipe.getOneFile(recipeId)
 
-      return files[0]
+      return `${req.protocol}://${req.headers.host}${file.path.replace("public", "")}`.replace(/\\/g, "/")
     }
-
+  
     const recipesPromise = recipes.map(async recipe => {
+    
       recipe.image = await getImage(recipe.id)
       return recipe
     })
@@ -36,7 +34,7 @@ module.exports = {
     return res.render('recipe/create',{ chefOptions })
 
   },
-  async show(req, res) {
+  async show(req, res) { // Waiting...
 
     const recipe = await Recipe.find(req.params.id)
 
@@ -53,17 +51,17 @@ module.exports = {
       return res.render('recipe/detalhe', { recipe, files })
     
   },
-  async post(req, res) {
+  async post(req, res) { // Done!
 
     const chefOptions = await Recipe.chefSelectOptions()
 
     const {removedFiles, title, chef, ingredients, preparation, information} = req.body
 
     const recipe = {
-      removed_files: removedFiles,
+      // removed_files: removedFiles,
       title,
-      user: req.session.userId,
-      chef,
+      user_id: req.session.userId,
+      chef_id: chef,
       ingredients,
       preparation,
       information
@@ -81,7 +79,7 @@ module.exports = {
       }
     }
     
-    if (req.files.length == 0) {
+    if (req.files.length === 0) {
       return res.render('recipe/create', {
         error: `Por favor, envie pelo menos uma imagem.`,
         chefOptions,
@@ -89,26 +87,32 @@ module.exports = {
       })
     }
 
-    const results = await Recipe.create(recipe)
-    const recipeId = results.rows[0].id
-
-    // Promise Array
-    const filesPromise = req.files.map(file => {
-      return File.create({...file})
+    const recipeId = await Recipe.create({
+      title,
+      user_id: req.session.userId,
+      chef_id: chef,
+      ingredients,
+      preparation,
+      information
     })
 
-    await Promise.all(filesPromise).then((values) => {
-      const recipeFilesPromise = values.map(value => {
-        RecipeFiles.create(recipeId, value.rows[0].id)
+    const filesPromise = req.files.map(async file => {
+      const fileId = await File.create({
+        name: file.filename,
+        path: file.path
       })
-      Promise.all(recipeFilesPromise)
+
+      RecipeFiles.create({
+        recipe_id: recipeId,
+        file_id: fileId
+      })
     })
+
+    await Promise.all(filesPromise)
     
     const createdRecipe = await Recipe.find(recipeId)
 
-    // get images
-    let myResults = await Recipe.files(recipeId)
-    let files = myResults.rows
+    let files = await Recipe.getAllFiles(recipeId)
     files = files.map(file => ({
       ...file,
       src: `${req.protocol}://${req.headers.host}${file.path.replace("public", "")}`
@@ -121,15 +125,13 @@ module.exports = {
     })
 
   },
-  async edit(req, res) {
+  async edit(req, res) { // Done!
 
     const recipe = await Recipe.find(req.params.id)
 
     const options = await Recipe.chefSelectOptions()
 
-    // get images
-    results = await Recipe.files(recipe.id)
-    let files = results.rows
+    let files = await Recipe.getAllFiles(recipe.id)
     files = files.map(file => ({
       ...file,
       src: `${req.protocol}://${req.headers.host}${file.path.replace("public", "")}`
@@ -158,8 +160,7 @@ module.exports = {
     }
 
     // get images
-    results = await Recipe.files(recipe.id)
-    let files = results.rows
+    let files = await Recipe.getAllFiles(recipe.id)
     files = files.map(file => ({
       ...file,
       src: `${req.protocol}://${req.headers.host}${file.path.replace("public", "")}`
@@ -180,17 +181,20 @@ module.exports = {
 
     if (req.files.length != 0) {
       
-      // Promise Array
-      const filesPromise = req.files.map(file => {
-        return File.create({...file})
+      const filesPromise = req.files.map(async file => {
+        const fileId = await File.create({
+          name: file.filename,
+          path: file.path
+        })
+  
+        RecipeFiles.create({
+          recipe_id: recipeId,
+          file_id: fileId
+        })
       })
+  
+      await Promise.all(filesPromise)
 
-      await Promise.all(filesPromise).then((values) => {
-      const recipeFilesPromise = values.map(value => {
-        RecipeFiles.create(recipeId, value.rows[0].id)
-      })
-        Promise.all(recipeFilesPromise)
-      })
     }
 
 
@@ -207,14 +211,21 @@ module.exports = {
       
     }
 
-    await Recipe.update(recipe)
+    await Recipe.update(recipe.id, {
+      title,
+      user_id: req.session.userId,
+      chef_id: chef,
+      ingredients,
+      preparation,
+      information
+    })
 
     const updatedRecipe = await Recipe.find(recipeId)
 
     // get images
-    let myResults = await Recipe.files(recipeId)
-    let updatedfiles = myResults.rows
-    updatedfilesfiles = files.map(file => ({
+    let myResults = await Recipe.getAllFiles(recipeId)
+    
+    myResults = files.map(file => ({
       ...file,
       src: `${req.protocol}://${req.headers.host}${file.path.replace("public", "")}`
     }))
