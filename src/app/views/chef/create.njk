@@ -1,27 +1,29 @@
-{% extends "layouts/admin.njk" %}
-
-{% block content %}
+{% extends "layouts/admin.njk" %} {% block content %}
 
 <section class="content form">
-  
-  <div class="content-header">
-    
-    <div class="content-header-title">
-      <h2>Criando chef</h2>
+
+    <div class="content-header">
+
+        <div class="content-header-title">
+            <h2>Criando chef</h2>
+        </div>
+
+        <div class="content-header-menu">
+
+            <button class="button" type="submit" form="create-form">
+        <a>Salvar chef</a>
+      </button>
+
+        </div>
+
     </div>
 
-    <div class="content-header-menu">
-      <button class="button" type="submit" form="create-form">Salvar chef</button>
-    </div>
+    <form action="/chefs" method="POST" id="create-form" enctype="multipart/form-data">
 
-  </div>
+        {% include 'chef/fields.njk' %}
 
-  <form action="/chefs" method="POST" id="create-form" enctype="multipart/form-data">
+    </form>
 
-    {% include 'chef/fields.njk' %}
-
-  </form>
-      
 </section>
 
 {% endblock %}
