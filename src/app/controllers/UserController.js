@@ -7,7 +7,7 @@ const User = require('../models/User')
 module.exports = {
   async index(req, res) {
 
-    const users = await User.all()
+    const users = await User.findAll()
 
     return res.render('user/index', { users })
 
@@ -35,9 +35,12 @@ module.exports = {
     const temporaryPassword = crypto.randomBytes(6).toString("hex");
 
     const user = req.body;
-    user.password = temporaryPassword
 
-    const userId = await User.create(user)
+    const userId = await User.create({
+      name: user.name,
+      email: user.email,
+      password: temporaryPassword
+    })
 
     await mailer.sendMail({
       to: user.email,
