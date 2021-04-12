@@ -153,24 +153,25 @@ module.exports = {
 
   //   return results.rows
   // },
-  async search(filters) {
-    try {
-      let query = `SELECT * FROM ${this.table}`
-      
-      if(filters) {
-        Object.keys(filters).map(key => {
-          query += ` ${key}`
-          Object.keys(filters[key]).map(field => {
-            query += ` ${field} ilike '%${filters[key][field]}%'`
-          })
-        })
-      }
-  
-      const results = await db.query(query)
-      return results.rows
-  
-    } catch (error) {
-      console.error(error)
-    }
+  search(params) {
+
+    const { filter } = params
+
+    let query = "",
+    filterQuery = `WHERE`
+
+    filterQuery = `
+      ${filterQuery}
+      recipes.title ilike '%${filter}%'
+    `
+    query = `
+      SELECT recipes.*, chefs.name AS chef_name
+      FROM recipes
+      LEFT JOIN chefs ON (recipes.chef_id = chefs.id)
+      ${filterQuery}
+      ORDER BY updated_at DESC
+    `
+
+    return db.query(query)
   }
 }
